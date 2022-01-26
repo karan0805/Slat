@@ -1,12 +1,15 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import HomeAppShell from '../../layout/HomeAppShell';
 
 const Home = () => {
   return (
-    <div>
-      <Navbar />
-      <h1>This is homepage</h1>
-    </div>
+    <>
+      <HomeAppShell>
+        <p>
+          <center>This is homepage</center>
+        </p>
+      </HomeAppShell>
+    </>
   );
 };
 

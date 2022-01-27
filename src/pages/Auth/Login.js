@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../../features/UserSlice';
+import logo from '../../assets/images/logo.svg';
+
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,33 +25,49 @@ const Login = () => {
     nav('/dashboard');
   };
 
+  const goHome = () => {
+    nav('/');
+  };
+
   return (
     <>
-      <div>Login</div>
-      <form onSubmit={submitHandler}>
-        <label>
-          <p>Email</p>
-          <input
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            required
-          />
-        </label>
-        <label>
-          <p>Password</p>
-          <input
-            type="password"
-            onChange={(e) => setPwd(e.target.value)}
-            value={pwd}
-            required
-          />
-        </label>
-        <p>Forgot Password?</p>
-        <div>
-          <button type="submit">Submit</button>
+      <div className="login">
+        <div className="left">
+          <div className="logo" onClick={goHome}>
+            <img src={logo} width="40px" /> <h1>Slat</h1>
+          </div>
+          <h2>Login to Slat</h2>
+
+          <form className="login-form">
+            <input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              placeholder="Email Address"
+              required
+            />
+            <br />
+            <input
+              type="password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              placeholder="Password"
+              required
+            />
+            <div className="fgp">Forgot Password?</div>
+            <div className="btn" onClick={submitHandler}>
+              Sign In
+            </div>
+            <div>
+              Don&apos;t have an account?
+              <Link to="/auth/signup" className="sgp">
+                <span> Sign Up</span>
+              </Link>
+            </div>
+          </form>
         </div>
-      </form>
+        <div className="right"></div>
+      </div>
     </>
   );
 };

@@ -38,7 +38,7 @@ const Login = () => {
           </div>
           <h2>Login to Slat</h2>
 
-          <form className="login-form">
+          <form className="login-form" onSubmit={submitHandler}>
             <input
               type="email"
               onChange={(e) => setEmail(e.target.value)}
@@ -55,9 +55,7 @@ const Login = () => {
               required
             />
             <div className="fgp">Forgot Password?</div>
-            <div className="btn" onClick={submitHandler}>
-              Sign In
-            </div>
+            <button className="btn">Sign In</button>
             <div>
               Don&apos;t have an account?
               <Link to="/auth/signup" className="sgp">

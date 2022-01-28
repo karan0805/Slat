@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { BiMenu, BiX } from 'react-icons/bi';
 import { Button } from '../../styles/Globalstyles';
+import logo from './../../assets/images/logo.svg';
 import {
+  Menu,
+  MenuIcon,
+  MenuItem,
+  MenuItemBtn,
+  MenuLink,
+  MenuLinkBtn,
   Nav,
   NavbarContainer,
   NavLogo,
-  MenuIcon,
-  Menu,
-  MenuItem,
-  MenuLink,
-  MenuItemBtn,
-  MenuLinkBtn,
 } from './Navbar.styled';
-import logo from './../../assets/images/logo.svg';
 
 const Navbar = () => {
   const [click, setClick] = useState(false);

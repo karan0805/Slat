@@ -1,28 +1,41 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { login } from '../../features/UserSlice';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
-
+import { axiosInstance } from '../../axios';
+import { login } from '../../features/UserSlice';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
+  const [, setAccessToken] = useLocalStorage('access_token', '');
 
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      login({
-        email: email,
-        pwd: pwd,
-        loggedIn: true,
-      }),
+    axiosInstance.post('/api/auth/login', { email: email, password: pwd }).then(
+      (response) => {
+        setAccessToken(response.data.token);
+        dispatch(
+          login({
+            email: email,
+            token: response.data.token,
+            loggedIn: true,
+          }),
+        );
+        toast.success('Successfully logged in..');
+        nav('/dashboard');
+      },
+      (err) => {
+        const errmsg = err.response.data.message;
+        toast.error(errmsg);
+      },
     );
-    nav('/dashboard');
   };
 
   const goHome = () => {
@@ -36,7 +49,7 @@ const Login = () => {
           <div className="logo" onClick={goHome}>
             <img src={logo} width="40px" /> <h1>Slat</h1>
           </div>
-          <h2>Login to Slat</h2>
+          <h2>Welcome Back</h2>
 
           <form className="login-form" onSubmit={submitHandler}>
             <input

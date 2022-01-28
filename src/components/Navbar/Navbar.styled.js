@@ -34,6 +34,8 @@ export const NavLogo = styled(Link)`
   font-size: 2rem;
   font-weight: 500;
   transition: all 0.5s ease;
+  max-width: 50px;
+  margin-right: 10px;
   &:hover {
     transform: scale(1.08);
   }

@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { axiosInstance } from '../../axios';
 import logo from '../../assets/images/logo.svg';
 import './Signup.css';
+import toast from 'react-hot-toast';
 
 const Signup = () => {
   const [fname, setFname] = useState('');
-  const [lname, setLname] = useState('');
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
   const [cpwd, setCpwd] = useState('');
-  const [org, setOrg] = useState('');
 
   const nav = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    alert('thank you for registering');
-    nav('/login');
+    axiosInstance
+      .post('/api/auth/register/', {
+        fullName: fname,
+        email: email,
+        password: pwd,
+      })
+      .then(() => {
+        toast.success('Successfully Registered to Slat');
+        nav('/auth/login');
+      })
+      .catch((err) => {
+        const errmsg = err.response.data.message;
+        toast.error(errmsg);
+      });
   };
   const goHome = () => {
     nav('/');
@@ -29,21 +41,13 @@ const Signup = () => {
           <div className="logo" onClick={goHome}>
             <img src={logo} width="40px" /> <h1>Slat</h1>
           </div>
-          <h2>Sign Up to Slat</h2>
+          <h2>Create An Account</h2>
           <form className="signup-form" onSubmit={submitHandler}>
             <input
               type="text"
               value={fname}
-              placeholder="First Name"
+              placeholder="Full Name"
               onChange={(e) => setFname(e.target.value)}
-              required
-            />
-
-            <input
-              type="text"
-              value={lname}
-              placeholder="Last Name"
-              onChange={(e) => setLname(e.target.value)}
               required
             />
 
@@ -69,13 +73,6 @@ const Signup = () => {
               placeholder="Confirm Password"
               onChange={(e) => setCpwd(e.target.value)}
               required
-            />
-
-            <input
-              type="text"
-              value={org}
-              placeholder="Organization Code"
-              onChange={(e) => setOrg(e.target.value)}
             />
 
             <button className="btn" type="submit">

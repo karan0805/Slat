@@ -3,10 +3,12 @@ import Home from './pages/Home';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import Dashboard from './pages/Dashboard/Dashboard';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <div className="App">
+      <Toaster />
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />

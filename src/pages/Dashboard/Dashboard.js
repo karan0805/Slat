@@ -5,7 +5,7 @@ import { selectUser } from '../../features/UserSlice';
 const Dashboard = () => {
   const user = useSelector(selectUser);
 
-  return <div>Dashboard Bolte. Welcome {user.email}</div>;
+  return <>Welcome to Slat, {user.email}</>;
 };
 
 export default Dashboard;

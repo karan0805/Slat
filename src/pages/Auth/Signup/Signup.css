@@ -1,4 +1,4 @@
-.login {
+.signup {
   display: flex;
   height: 100vh;
 }
@@ -15,6 +15,7 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  margin-top: -40px;
 }
 
 .logo h1 {
@@ -26,7 +27,7 @@
   background-color: #ffde59;
 }
 
-.login-form {
+.signup-form {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -34,9 +35,10 @@
   align-items: center;
 }
 
-.login-form input {
+.signup-form input {
   width: 400px;
   height: 50px;
+  margin-bottom: 2%;
   border: 1px solid rgba(123, 132, 151, 0.35);
   border-radius: 20px;
   font-size: 16;
@@ -44,23 +46,12 @@
   -moz-padding: 0 15px;
 }
 
-.fgp {
-  padding: 15px 0;
-  padding-right: 0%;
-  cursor: pointer;
-  transition: ease-in 125ms;
-}
-
-.fgp:hover {
-  color: #ffb923;
-}
-
-.sgp {
+.lgn {
   text-decoration: none;
   color: #ffb923;
 }
 
-.login-form .btn {
+.signup-form .btn {
   width: 430px;
   border-radius: 20px;
   padding: 15px;
@@ -70,4 +61,5 @@
   font-size: 1rem;
   font-weight: 600;
   border-width: 0px;
+  cursor: pointer;
 }

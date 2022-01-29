@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { axiosInstance } from '../../axios';
-import logo from '../../assets/images/logo.svg';
-import './Signup.css';
 import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { userApi } from '../../../api';
+import logo from '../../../assets/images/logo.svg';
+import './Signup.css';
 
 const Signup = () => {
   const [fname, setFname] = useState('');
@@ -15,12 +15,8 @@ const Signup = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    axiosInstance
-      .post('/api/auth/register/', {
-        fullName: fname,
-        email: email,
-        password: pwd,
-      })
+    userApi
+      .signupUser(fname, email, pwd)
       .then(() => {
         toast.success('Successfully Registered to Slat');
         nav('/auth/login');

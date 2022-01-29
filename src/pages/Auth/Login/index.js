@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../assets/images/logo.svg';
-import { axiosInstance } from '../../axios';
-import { login } from '../../features/UserSlice';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { userApi } from '../../../api';
+import logo from '../../../assets/images/logo.svg';
+import { useLocalStorage } from '../../../hooks/useLocalStorage';
+import { login } from '../../../redux/slices/UserSlice';
 import './Login.css';
 
 const Login = () => {
@@ -18,7 +18,7 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    axiosInstance.post('/api/auth/login', { email: email, password: pwd }).then(
+    userApi.loginUser(email, pwd).then(
       (response) => {
         setAccessToken(response.data.token);
         dispatch(
@@ -67,7 +67,9 @@ const Login = () => {
               placeholder="Password"
               required
             />
-            <div className="fgp">Forgot Password?</div>
+            <Link to="/auth/forgot-password" className="fgp">
+              Forgot Password?
+            </Link>
             <button className="btn">Sign In</button>
             <div>
               Don&apos;t have an account?

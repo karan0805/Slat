@@ -20,6 +20,7 @@ const Login = () => {
     e.preventDefault();
     userApi.loginUser(email, pwd).then(
       (response) => {
+        console.log(response);
         setAccessToken(response.data.token);
         dispatch(
           login({

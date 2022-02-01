@@ -1,16 +1,10 @@
+import { Modal } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
-//import icons from react icons
 import { FaList, FaRegHeart } from 'react-icons/fa';
-import {
-  FiArrowLeftCircle,
-  FiArrowRightCircle,
-  FiHome,
-  FiLogOut,
-} from 'react-icons/fi';
+import { FiHome, FiLogOut } from 'react-icons/fi';
 import { RiPencilLine, RiUserAddLine } from 'react-icons/ri';
-//import react pro sidebar components
 import {
   Menu,
   MenuItem,
@@ -21,46 +15,77 @@ import {
 } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { useDispatch } from 'react-redux';
-//import sidebar css from react-pro-sidebar module and our custom css
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../../redux/slices/UserSlice';
+import { logout } from '../../redux/slices/UserSlice';
 import logo from './../../assets/images/logo.svg';
 import './sidebar.css';
 
-const Sidebar = () => {
+// eslint-disable-next-line react/prop-types
+const Sidebar = ({ menuCollapse }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const [menuCollapse, setMenuCollapse] = useState(false);
-
-  const menuIconClick = () => {
-    menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-  };
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [inviteOpen, setInviteOpen] = useState(false);
 
   const logoutHandler = () => {
     localStorage.clear();
-    dispatch(
-      login({
-        email: '',
-        token: '',
-        loggedIn: false,
-      }),
-    );
+    dispatch(logout());
     toast.success('Succesfully Logout!');
     nav('/');
   };
 
   return (
     <>
+      <Modal
+        centered
+        opened={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        title="Organization Settings"
+        overlayColor="#7f7f7f"
+        overlayOpacity={0.25}
+        radius={'md'}
+        zIndex={5}
+        styles={{
+          root: { fontSize: '16px', padding: '0px' },
+          inner: {},
+          modal: {},
+          header: {},
+          title: { fontWeight: 'bold' },
+          body: {},
+        }}
+      >
+        hello
+      </Modal>
+      <Modal
+        centered
+        opened={inviteOpen}
+        onClose={() => setInviteOpen(false)}
+        title="Invite Member To Organization"
+        overlayColor="#7f7f7f"
+        overlayOpacity={0.25}
+        radius={'md'}
+        zIndex={5}
+        styles={{
+          root: { fontSize: '16px', padding: '0px' },
+          inner: {},
+          modal: {},
+          header: {},
+          title: { fontWeight: 'bold' },
+          body: {},
+        }}
+      >
+        <>hello</>
+      </Modal>
       <div id="header">
-        {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
             <div className="logotext">
-              {/* small and big change using menucollapse state */}
               <p>
                 {menuCollapse ? (
-                  <img style={{ maxWidth: '30px' }} src={logo} alt="slat" />
+                  <span style={{ fontSize: '2rem' }}>
+                    <img style={{ maxWidth: '30px' }} src={logo} alt="slat" />
+                  </span>
                 ) : (
                   <span style={{ fontSize: '2rem' }}>
                     <img
@@ -71,42 +96,66 @@ const Sidebar = () => {
                     Slat
                   </span>
                 )}
-                <div className="closemenu" onClick={menuIconClick}>
-                  {menuCollapse ? (
-                    <FiArrowRightCircle />
-                  ) : (
-                    <FiArrowLeftCircle />
-                  )}
-                </div>
               </p>
             </div>
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}>
+              <MenuItem
+                active={window.location.pathname === '/dashboard'}
+                icon={<FiHome />}
+              >
                 Home
                 <Link to="/" />
               </MenuItem>
-              <MenuItem icon={<FaList />}>
+              <MenuItem
+                active={window.location.pathname === '/dashboard/projects'}
+                icon={<FaList />}
+              >
                 Projects
                 <Link to="/dashboard/projects" />
               </MenuItem>
-              <MenuItem icon={<FaRegHeart />}>
+              <MenuItem
+                active={window.location.pathname === '/dashboard/boards'}
+                icon={<FaRegHeart />}
+              >
                 Boards
                 <Link to="/dashboard/boards" />
               </MenuItem>
-              <MenuItem icon={<RiPencilLine />}>
+              <MenuItem
+                active={window.location.pathname === '/dashboard/inbox'}
+                icon={<RiPencilLine />}
+              >
                 Inbox <Link to="/dashboard/inbox" />
               </MenuItem>
-              <MenuItem icon={<BiCog />}>
+              <MenuItem
+                active={window.location.pathname === '/dashboard/goals'}
+                icon={<BiCog />}
+              >
                 Goals <Link to="/dashboard/goals" />
               </MenuItem>
             </Menu>
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<BiCog />}>Settings</MenuItem>
-              <MenuItem icon={<RiUserAddLine />}>Invite</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  setSettingsOpen((prevCheck) => !prevCheck);
+                  setInviteOpen(false);
+                }}
+                icon={<BiCog />}
+              >
+                Settings
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  setInviteOpen((prevCheck) => !prevCheck);
+                  setSettingsOpen(false);
+                }}
+                icon={<RiUserAddLine />}
+              >
+                Invite
+              </MenuItem>
               <MenuItem icon={<FiLogOut />} onClick={logoutHandler}>
                 Logout
               </MenuItem>

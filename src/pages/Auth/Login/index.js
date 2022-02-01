@@ -24,7 +24,7 @@ const Login = () => {
         setAccessToken(response.data.token);
         dispatch(
           login({
-            email: email,
+            userdata: response.data.user,
             token: response.data.token,
             loggedIn: true,
           }),

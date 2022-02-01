@@ -5,8 +5,10 @@ import ProtectedOutlet from './components/Routes/ProtectedOutlet';
 import ForgotPassword from './pages/Auth/Forgot-Password';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
-import Dashboard from './pages/Dashboard/Dashboard';
+import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
+import DashboardAppshell from './layout/DashboardAppshell';
+import HomeAppShell from './layout/HomeAppShell';
 
 function App() {
   return (
@@ -14,14 +16,51 @@ function App() {
       <Toaster />
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/dashboard" element={<ProtectedOutlet />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<LoginOutlet />}>
+            <Route
+              exact
+              path="/"
+              element={
+                <HomeAppShell>
+                  <Home />
+                </HomeAppShell>
+              }
+            />
           </Route>
           <Route path="/auth" element={<LoginOutlet />}>
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/signup" element={<Signup />} />
             <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+          </Route>
+        </Routes>
+
+        <Routes>
+          <Route path="/dashboard" element={<ProtectedOutlet />}>
+            <Route
+              path="/dashboard/projects"
+              element={
+                <DashboardAppshell>
+                  <Dashboard />
+                </DashboardAppshell>
+              }
+            />
+            <Route
+              path="/dashboard/boards"
+              element={
+                <DashboardAppshell>
+                  <Dashboard />
+                </DashboardAppshell>
+              }
+            />
+            <Route
+              exact
+              path="/dashboard"
+              element={
+                <DashboardAppshell>
+                  <Dashboard />
+                </DashboardAppshell>
+              }
+            />
           </Route>
         </Routes>
       </Router>

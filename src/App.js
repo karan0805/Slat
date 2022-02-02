@@ -16,26 +16,48 @@ function App() {
       <Toaster />
       <Router>
         <Routes>
-          <Route path="/" element={<LoginOutlet />}>
-            <Route path="/" element={<HomeAppShell />}>
-              <Route exact path="/" element={<Home />} />
-            </Route>
-          </Route>
-
           <Route path="/auth" element={<LoginOutlet />}>
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/signup" element={<Signup />} />
             <Route path="/auth/forgot-password" element={<ForgotPassword />} />
           </Route>
 
-          <Route path="/" element={<ProtectedOutlet />}>
-            <Route path="/dashboard" element={<DashboardAppshell />}>
-              <Route path="/dashboard/projects" element={<Dashboard />} />
-              <Route path="/dashboard/boards" element={<Dashboard />} />
-              <Route path="/dashboard/inbox" element={<Dashboard />} />
-              <Route path="/dashboard/goals" element={<Dashboard />} />
-              <Route exact path="/dashboard" element={<Dashboard />} />
-            </Route>
+          <Route path="/dashboard" element={<ProtectedOutlet />}>
+            <Route
+              path="boards"
+              element={
+                <DashboardAppshell>
+                  <Dashboard />
+                </DashboardAppshell>
+              }
+            />
+            <Route
+              path="projects"
+              element={
+                <DashboardAppshell>
+                  <Dashboard />
+                </DashboardAppshell>
+              }
+            />
+            <Route
+              path=""
+              element={
+                <DashboardAppshell>
+                  <Dashboard />
+                </DashboardAppshell>
+              }
+            />
+          </Route>
+
+          <Route path="/" element={<LoginOutlet />}>
+            <Route
+              path="/"
+              element={
+                <HomeAppShell>
+                  <Home />
+                </HomeAppShell>
+              }
+            />
           </Route>
         </Routes>
       </Router>

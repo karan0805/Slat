@@ -21,7 +21,6 @@ export const NavbarContainer = styled(Container)`
   flex-direction: row;
   align-items: center;
   height: 89px;
-  padding-left: ${(props) => (props.iscollapsed ? '60px' : '240px')};
 
   ${Container};
 `;

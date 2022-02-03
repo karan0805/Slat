@@ -19,6 +19,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/slices/UserSlice';
 import logo from './../../assets/images/logo.svg';
 import './sidebar.css';
+import Invite2Org from '../Invite2Org';
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ menuCollapse }) => {
@@ -75,7 +76,7 @@ const Sidebar = ({ menuCollapse }) => {
           body: {},
         }}
       >
-        <>hello</>
+        <Invite2Org setInviteOpen={setInviteOpen} />
       </Modal>
       <div id="header">
         <ProSidebar collapsed={menuCollapse}>

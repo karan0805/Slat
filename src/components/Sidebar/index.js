@@ -140,13 +140,11 @@ const Sidebar = ({ menuCollapse }) => {
           <SidebarFooter>
             <Menu iconShape="square">
               <MenuItem
-                onClick={() => {
-                  setSettingsOpen((prevCheck) => !prevCheck);
-                  setInviteOpen(false);
-                }}
+                active={window.location.pathname === '/dashboard/organization'}
                 icon={<BiCog />}
               >
                 Settings
+                <Link to="/dashboard/organization" />
               </MenuItem>
               <MenuItem
                 onClick={() => {

@@ -45,6 +45,8 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
       setTitle('Inbox');
     } else if (window.location.pathname === '/dashboard/goals') {
       setTitle('Goals');
+    } else if (window.location.pathname === '/dashboard/organization') {
+      setTitle('Organization Settings');
     }
   });
 

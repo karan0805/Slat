@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import Sidebar from '../components/Sidebar';
-import DashNavbar from '../components/DashNavbar';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import DashNavbar from '../components/DashNavbar';
+import Sidebar from '../components/Sidebar';
 
 export const Wrapper = styled.div`
   display: grid;

@@ -110,6 +110,8 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
               zIndex={9999}
             />
             <Menu
+              trigger="hover"
+              delay={100}
               withArrow
               placement="end"
               shadow="xl"

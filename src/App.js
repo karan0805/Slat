@@ -9,6 +9,7 @@ import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
+import Organization from './pages/Organization';
 
 function App() {
   return (
@@ -39,6 +40,14 @@ function App() {
                 </DashboardAppshell>
               }
             />
+            <Route
+              path="organization"
+              element={
+                <DashboardAppshell>
+                  <Organization />
+                </DashboardAppshell>
+              }
+            ></Route>
             <Route
               path=""
               element={

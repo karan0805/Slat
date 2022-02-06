@@ -21,7 +21,9 @@ import { GrOrganization } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout, selectUser } from '../../redux/slices/UserSlice';
+import CreateOrg from '../CreateOrg';
 import { Nav, NavbarContainer } from './DashNavbar.styled';
+import { Modal } from '@mantine/core';
 
 // eslint-disable-next-line react/prop-types
 const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
@@ -30,6 +32,7 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
 
   const user = useSelector(selectUser);
   const [title, setTitle] = useState('');
+  const [addOrg, setAddOrg] = useState(false);
 
   useEffect(() => {
     if (
@@ -61,6 +64,26 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
 
   return (
     <>
+      <Modal
+        centered
+        opened={addOrg}
+        onClose={() => setAddOrg(false)}
+        title="Create New Organization"
+        overlayColor="#7f7f7f"
+        overlayOpacity={0.25}
+        radius={'md'}
+        zIndex={5}
+        styles={{
+          root: { fontSize: '16px', padding: '0px' },
+          inner: {},
+          modal: {},
+          header: {},
+          title: { fontWeight: 'bold' },
+          body: {},
+        }}
+      >
+        <CreateOrg setAddOrg={setAddOrg} />
+      </Modal>
       <Nav>
         <NavbarContainer iscollapsed={menuCollapse}>
           <Group className="closemenu" onClick={menuIconClick}>
@@ -105,7 +128,12 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
               <Menu.Item icon={<GrOrganization />}>
                 {user.userdata.username}&apos;s Workspace
               </Menu.Item>
-              <Menu.Item icon={<FiPlusCircle />}>
+              <Menu.Item
+                onClick={() => {
+                  setAddOrg((prevCheck) => !prevCheck);
+                }}
+                icon={<FiPlusCircle />}
+              >
                 Add New Organization
               </Menu.Item>
               <Menu.Item icon={<BsGear />}>My Profile and Settings</Menu.Item>

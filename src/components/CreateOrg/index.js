@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Button } from '@mantine/core';
 import { orgApi } from '../../api';
@@ -7,19 +8,19 @@ import { login } from '../../redux/slices/UserSlice';
 // eslint-disable-next-line react/prop-types
 export default function CreateOrg({ setAddOrg }) {
   const [org, setOrg] = useState('');
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
     orgApi.addOrg(org).then((res) => {
-      console.log(res);
-      dispatch(
-        login({
-          userdata: res.data.user,
-          token: res.data.token,
-          loggedIn: true,
-        }),
-      );
+      console.log(res.data);
+      // dispatch(
+      //   login({
+      //     userdata: res.data.user,
+      //     token: ,
+      //     loggedIn: true,
+      //   }),
+      // );
     });
     setAddOrg(false);
   };

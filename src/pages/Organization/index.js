@@ -1,6 +1,10 @@
 import { Group, Avatar, Center, Tabs } from '@mantine/core';
 import React from 'react';
 import { BiCog } from 'react-icons/bi';
+import Invite from './components/Invite';
+import Members from './components/Members';
+import Orgsettings from './components/Orgsettings';
+import Teams from './components/Teams';
 
 export default function Organization() {
   return (
@@ -13,18 +17,18 @@ export default function Organization() {
           />
           <h1>Sanket Mense</h1>
         </Group>
-        <Tabs color="cyan" tabPadding={100}>
+        <Tabs color="cyan" tabPadding={5}>
           <Tabs.Tab label="Members" icon={<BiCog />}>
-            Gallery tab content
+            <Members />
           </Tabs.Tab>
           <Tabs.Tab label="Teams" icon={<BiCog />}>
-            Messages tab content
+            <Teams />
           </Tabs.Tab>
           <Tabs.Tab label="Settings" icon={<BiCog />}>
-            Settings tab content
+            <Orgsettings />
           </Tabs.Tab>
           <Tabs.Tab label="Invite" icon={<BiCog />}>
-            Messages tab content
+            <Invite />
           </Tabs.Tab>
         </Tabs>
       </Group>

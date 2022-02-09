@@ -2,9 +2,9 @@ import { Modal } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
-import { FaList, FaRegHeart } from 'react-icons/fa';
-import { FiHome, FiLogOut } from 'react-icons/fi';
-import { RiPencilLine, RiUserAddLine } from 'react-icons/ri';
+import { FaList } from 'react-icons/fa';
+import { FiHome, FiLogOut, FiSearch } from 'react-icons/fi';
+import { RiUserAddLine } from 'react-icons/ri';
 import {
   Menu,
   MenuItem,
@@ -17,9 +17,9 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/slices/UserSlice';
+import Invite2Org from '../Invite2Org';
 import logo from './../../assets/images/logo.svg';
 import './sidebar.css';
-import Invite2Org from '../Invite2Org';
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ menuCollapse }) => {
@@ -110,30 +110,18 @@ const Sidebar = ({ menuCollapse }) => {
                 <Link to="/" />
               </MenuItem>
               <MenuItem
+                active={window.location.pathname === '/dashboard/explore'}
+                icon={<FiSearch />}
+              >
+                Explore
+                <Link to="/dashboard/explore" />
+              </MenuItem>
+              <MenuItem
                 active={window.location.pathname === '/dashboard/projects'}
                 icon={<FaList />}
               >
                 Projects
                 <Link to="/dashboard/projects" />
-              </MenuItem>
-              <MenuItem
-                active={window.location.pathname === '/dashboard/boards'}
-                icon={<FaRegHeart />}
-              >
-                Boards
-                <Link to="/dashboard/boards" />
-              </MenuItem>
-              <MenuItem
-                active={window.location.pathname === '/dashboard/inbox'}
-                icon={<RiPencilLine />}
-              >
-                Inbox <Link to="/dashboard/inbox" />
-              </MenuItem>
-              <MenuItem
-                active={window.location.pathname === '/dashboard/goals'}
-                icon={<BiCog />}
-              >
-                Goals <Link to="/dashboard/goals" />
               </MenuItem>
             </Menu>
           </SidebarContent>
@@ -144,7 +132,7 @@ const Sidebar = ({ menuCollapse }) => {
                 icon={<BiCog />}
               >
                 Settings
-                <Link to="/dashboard/organization" />
+                <Link to="/dashboard/settings/organization" />
               </MenuItem>
               <MenuItem
                 onClick={() => {

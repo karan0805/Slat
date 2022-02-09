@@ -25,7 +25,7 @@ function App() {
 
           <Route path="/dashboard" element={<ProtectedOutlet />}>
             <Route
-              path="boards"
+              path="explore"
               element={
                 <DashboardAppshell>
                   <Dashboard />
@@ -41,7 +41,7 @@ function App() {
               }
             />
             <Route
-              path="organization"
+              path="settings/organization"
               element={
                 <DashboardAppshell>
                   <Organization />

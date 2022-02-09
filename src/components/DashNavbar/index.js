@@ -42,13 +42,11 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
       setTitle('Home');
     } else if (window.location.pathname === '/dashboard/projects') {
       setTitle('Projects');
-    } else if (window.location.pathname === '/dashboard/boards') {
-      setTitle('Boards');
-    } else if (window.location.pathname === '/dashboard/inbox') {
-      setTitle('Inbox');
-    } else if (window.location.pathname === '/dashboard/goals') {
-      setTitle('Goals');
-    } else if (window.location.pathname === '/dashboard/organization') {
+    } else if (window.location.pathname === '/dashboard/explore') {
+      setTitle('Explore');
+    } else if (
+      window.location.pathname === '/dashboard/organization/settings'
+    ) {
       setTitle('Organization Settings');
     }
   });

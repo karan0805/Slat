@@ -127,9 +127,11 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
             >
               <Menu.Label>Signed in as {user.fullName}</Menu.Label>
               <Divider />
-              <Menu.Item icon={<GrOrganization />}>
-                {user.username}&apos;s Workspace
-              </Menu.Item>
+              {user.org.map((org, i) => (
+                <Menu.Item key={i} icon={<GrOrganization />}>
+                  {org.orgName}
+                </Menu.Item>
+              ))}
               <Menu.Item
                 onClick={() => {
                   setAddOrg((prevCheck) => !prevCheck);

@@ -7,6 +7,7 @@ import logo from '../../../assets/images/logo.svg';
 import { useLocalStorage } from '../../../hooks/useLocalStorage';
 import { login } from '../../../redux/slices/UserSlice';
 import './Login.css';
+import { orgLogin } from '../../../redux/slices/OrgSlice';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -20,8 +21,10 @@ const Login = () => {
     e.preventDefault();
     userApi.loginUser(email, pwd).then(
       (response) => {
+        console.log(response.data.data);
         setAccessToken(response.data.data.token);
         dispatch(login(response.data.data.user));
+        dispatch(orgLogin(response.data.data));
         toast.success('Successfully logged in..');
         nav('/dashboard');
       },
@@ -52,6 +55,7 @@ const Login = () => {
               value={email}
               placeholder="Email Address"
               required
+              autoComplete="email"
             />
             <br />
             <input
@@ -60,6 +64,7 @@ const Login = () => {
               value={pwd}
               placeholder="Password"
               required
+              autoComplete="current-password"
             />
             <Link to="/auth/forgot-password" className="fgp">
               Forgot Password?

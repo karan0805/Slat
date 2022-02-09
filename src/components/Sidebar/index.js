@@ -16,15 +16,19 @@ import {
 import 'react-pro-sidebar/dist/css/styles.css';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../redux/slices/UserSlice';
+import { logout, selectUser } from '../../redux/slices/UserSlice';
 import Invite2Org from '../Invite2Org';
 import logo from './../../assets/images/logo.svg';
 import './sidebar.css';
+import { useSelector } from 'react-redux';
+import { selectActiveOrg } from '../../redux/slices/OrgSlice';
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ menuCollapse }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+  const activeOrg = useSelector(selectActiveOrg);
+  const user = useSelector(selectUser);
 
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [inviteOpen, setInviteOpen] = useState(false);
@@ -120,20 +124,24 @@ const Sidebar = ({ menuCollapse }) => {
                 active={window.location.pathname === '/dashboard/projects'}
                 icon={<FaList />}
               >
-                Projects
+                {activeOrg.orgName}
                 <Link to="/dashboard/projects" />
               </MenuItem>
             </Menu>
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem
-                active={window.location.pathname === '/dashboard/organization'}
-                icon={<BiCog />}
-              >
-                Settings
-                <Link to="/dashboard/settings/organization" />
-              </MenuItem>
+              {activeOrg.owner === user._id ? (
+                <MenuItem
+                  active={
+                    window.location.pathname === '/dashboard/organization'
+                  }
+                  icon={<BiCog />}
+                >
+                  Settings
+                  <Link to="/dashboard/settings/organization" />
+                </MenuItem>
+              ) : null}
               <MenuItem
                 onClick={() => {
                   setInviteOpen((prevCheck) => !prevCheck);

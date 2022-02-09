@@ -7,7 +7,7 @@ export const orgSlice = createSlice({
     orgDetails: null,
   },
   reducers: {
-    login: (state, action) => {
+    orgLogin: (state, action) => {
       (state.activeOrg = action.payload.activeOrg),
         (state.orgDetails = action.payload.orgDetails);
     },
@@ -17,13 +17,13 @@ export const orgSlice = createSlice({
         (state.orgDetails = action.payload.orgDetails);
     },
 
-    logout: (state) => {
+    orgLogout: (state) => {
       (state.activeOrg = null), (state.orgDetails = null);
     },
   },
 });
 
-export const { login, switchOrg, logout } = orgSlice.actions;
+export const { orgLogin, switchOrg, orgLogout } = orgSlice.actions;
 
 export const selectActiveOrg = (state) => state.org.activeOrg;
 export const selectActiveOrgDetails = (state) => state.org.orgDetails;

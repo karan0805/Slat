@@ -2,7 +2,7 @@ import { Modal } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
-import { FaList } from 'react-icons/fa';
+import { BsGlobe } from 'react-icons/bs';
 import { FiHome, FiLogOut, FiSearch } from 'react-icons/fi';
 import { RiUserAddLine } from 'react-icons/ri';
 import {
@@ -14,14 +14,13 @@ import {
   SidebarHeader,
 } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import Invite2Org from '../../components/Invite2Org';
+import { selectActiveOrg } from '../../redux/slices/OrgSlice';
 import { logout, selectUser } from '../../redux/slices/UserSlice';
-import Invite2Org from '../Invite2Org';
 import logo from './../../assets/images/logo.svg';
 import './sidebar.css';
-import { useSelector } from 'react-redux';
-import { selectActiveOrg } from '../../redux/slices/OrgSlice';
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ menuCollapse }) => {
@@ -122,7 +121,7 @@ const Sidebar = ({ menuCollapse }) => {
               </MenuItem>
               <MenuItem
                 active={window.location.pathname === '/dashboard/projects'}
-                icon={<FaList />}
+                icon={<BsGlobe />}
               >
                 {activeOrg.orgName}
                 <Link to="/dashboard/projects" />
@@ -134,12 +133,13 @@ const Sidebar = ({ menuCollapse }) => {
               {activeOrg.owner === user._id ? (
                 <MenuItem
                   active={
-                    window.location.pathname === '/dashboard/organization'
+                    window.location.pathname ===
+                    '/dashboard/organizations/manage'
                   }
                   icon={<BiCog />}
                 >
-                  Settings
-                  <Link to="/dashboard/settings/organization" />
+                  Org Settings
+                  <Link to="/dashboard/organizations/manage" />
                 </MenuItem>
               ) : null}
               <MenuItem

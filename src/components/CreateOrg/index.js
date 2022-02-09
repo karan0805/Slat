@@ -10,9 +10,9 @@ export default function CreateOrg({ setAddOrg }) {
   const submitHandler = (e) => {
     e.preventDefault();
     orgApi.addOrg(org).then((response) => {
-      console.log(response.data.data.user);
+      console.log(response.data);
+      setAddOrg(false);
     });
-    setAddOrg(false);
   };
 
   return (

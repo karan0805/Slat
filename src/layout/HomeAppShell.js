@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import Navbar from '../components/Navbar';
+import Navbar from './Navbar';
 
 const HomeAppShell = (props) => {
   return (

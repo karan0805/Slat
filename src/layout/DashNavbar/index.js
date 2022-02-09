@@ -5,6 +5,7 @@ import {
   Divider,
   Group,
   Menu,
+  Modal,
   UnstyledButton,
 } from '@mantine/core';
 import { useEffect, useState } from 'react';
@@ -20,10 +21,9 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrOrganization } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import CreateOrg from '../../components/CreateOrg';
 import { logout, selectUser } from '../../redux/slices/UserSlice';
-import CreateOrg from '../CreateOrg';
 import { Nav, NavbarContainer } from './DashNavbar.styled';
-import { Modal } from '@mantine/core';
 
 // eslint-disable-next-line react/prop-types
 const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
@@ -45,7 +45,7 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
     } else if (window.location.pathname === '/dashboard/explore') {
       setTitle('Explore');
     } else if (
-      window.location.pathname === '/dashboard/organization/settings'
+      window.location.pathname === '/dashboard/settings/organization'
     ) {
       setTitle('Organization Settings');
     }
@@ -118,9 +118,11 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
               control={
                 <UnstyledButton>
                   <Group>
-                    <Avatar color="cyan" radius="xl">
-                      KG
-                    </Avatar>
+                    <Avatar
+                      src={`https://avatars.dicebear.com/api/initials/${user.fullName}.svg`}
+                      alt="it's me"
+                      radius="xl"
+                    />
                   </Group>
                 </UnstyledButton>
               }

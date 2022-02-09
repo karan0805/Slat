@@ -30,7 +30,7 @@ const Dashboard = () => {
   return (
     <>
       <Time>{moment().format('dddd, MMMM D')}</Time>
-      <Greet> Good Morning, {user.userdata.fullName}</Greet>
+      <Greet> Good Morning, {user.fullName}</Greet>
     </>
   );
 };

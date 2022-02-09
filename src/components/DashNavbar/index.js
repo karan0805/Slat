@@ -127,10 +127,10 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
                 </UnstyledButton>
               }
             >
-              <Menu.Label>Signed in as {user.userdata.fullName}</Menu.Label>
+              <Menu.Label>Signed in as {user.fullName}</Menu.Label>
               <Divider />
               <Menu.Item icon={<GrOrganization />}>
-                {user.userdata.username}&apos;s Workspace
+                {user.username}&apos;s Workspace
               </Menu.Item>
               <Menu.Item
                 onClick={() => {

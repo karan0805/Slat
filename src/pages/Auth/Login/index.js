@@ -21,13 +21,7 @@ const Login = () => {
     userApi.loginUser(email, pwd).then(
       (response) => {
         setAccessToken(response.data.data.token);
-        dispatch(
-          login({
-            userdata: response.data.data.user,
-            token: response.data.data.token,
-            loggedIn: true,
-          }),
-        );
+        dispatch(login(response.data.data.user));
         toast.success('Successfully logged in..');
         nav('/dashboard');
       },

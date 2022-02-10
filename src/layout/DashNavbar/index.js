@@ -21,9 +21,11 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrOrganization } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { orgApi } from '../../api';
 import CreateOrg from '../../components/CreateOrg';
 import { logout, selectUser } from '../../redux/slices/UserSlice';
 import { Nav, NavbarContainer } from './DashNavbar.styled';
+import { switchOrg } from '../../redux/slices/OrgSlice';
 
 // eslint-disable-next-line react/prop-types
 const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
@@ -60,6 +62,24 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
     nav('/');
     dispatch(logout());
     toast.success('Succesfully Logout!');
+  };
+
+  const switchOrgHandler = (id) => {
+    if (id) {
+      orgApi.switchOrg(id).then(
+        (response) => {
+          if (response.data.status == 200) {
+            console.log(response.data);
+            toast.success('Successfully Switched Organization');
+            dispatch(switchOrg(response.data.data));
+          }
+        },
+        (err) => {
+          const errmsg = err.response.data.message;
+          toast.error(errmsg);
+        },
+      );
+    }
   };
 
   return (
@@ -108,7 +128,6 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
               zIndex={9999}
             />
             <Menu
-              trigger="hover"
               delay={100}
               withArrow
               placement="end"
@@ -129,8 +148,15 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
             >
               <Menu.Label>Signed in as {user.fullName}</Menu.Label>
               <Divider />
-              {user.org.map((org, i) => (
-                <Menu.Item key={i} icon={<GrOrganization />}>
+              {user.org.map((org) => (
+                <Menu.Item
+                  key={org._id}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    switchOrgHandler(org._id);
+                  }}
+                  icon={<GrOrganization />}
+                >
                   {org.orgName}
                 </Menu.Item>
               ))}

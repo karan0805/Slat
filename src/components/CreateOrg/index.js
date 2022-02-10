@@ -1,6 +1,7 @@
 import { Button, Group, Select, TextInput } from '@mantine/core';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { orgApi } from '../../api';
+import toast from 'react-hot-toast';
 
 // eslint-disable-next-line react/prop-types
 export default function CreateOrg({ setAddOrg }) {
@@ -9,10 +10,19 @@ export default function CreateOrg({ setAddOrg }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    orgApi.addOrg(org).then((response) => {
-      console.log(response.data);
-      setAddOrg(false);
-    });
+    orgApi.addOrg(org).then(
+      (response) => {
+        if (response.data.status == 200) {
+          console.log(response.data);
+          toast.success('Successfully Created Organization');
+          setAddOrg(false);
+        }
+      },
+      (err) => {
+        const errmsg = err.response.data.message;
+        toast.error(errmsg);
+      },
+    );
   };
 
   return (

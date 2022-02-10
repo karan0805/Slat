@@ -15,16 +15,18 @@ const Signup = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    userApi
-      .signupUser(fname, email, pwd)
-      .then(() => {
-        toast.success('Successfully Registered to Slat');
-        nav('/auth/login');
-      })
-      .catch((err) => {
+    userApi.signupUser(fname, email, pwd).then(
+      (response) => {
+        if (response.data.status == 200) {
+          toast.success('Successfully Registered to Slat');
+          nav('/auth/login');
+        }
+      },
+      (err) => {
         const errmsg = err.response.data.message;
         toast.error(errmsg);
-      });
+      },
+    );
   };
   const goHome = () => {
     nav('/');

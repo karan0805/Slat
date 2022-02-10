@@ -4,15 +4,13 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { userApi } from '../../../api';
 import logo from '../../../assets/images/logo.svg';
-import { useLocalStorage } from '../../../hooks/useLocalStorage';
+import { orgLogin } from '../../../redux/slices/OrgSlice';
 import { login } from '../../../redux/slices/UserSlice';
 import './Login.css';
-import { orgLogin } from '../../../redux/slices/OrgSlice';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
-  const [, setAccessToken] = useLocalStorage('access_token', '');
 
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -21,12 +19,13 @@ const Login = () => {
     e.preventDefault();
     userApi.loginUser(email, pwd).then(
       (response) => {
-        console.log(response.data.data);
-        setAccessToken(response.data.data.token);
-        dispatch(login(response.data.data.user));
-        dispatch(orgLogin(response.data.data));
-        toast.success('Successfully logged in..');
-        nav('/dashboard');
+        if (response.data.status == 200) {
+          localStorage.setItem('access_token', response.data.data.token);
+          dispatch(login(response.data.data));
+          dispatch(orgLogin(response.data.data));
+          toast.success('Successfully logged in..');
+          nav('/dashboard');
+        }
       },
       (err) => {
         const errmsg = err.response.data.message;

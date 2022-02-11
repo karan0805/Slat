@@ -82,34 +82,76 @@ const Dashboard = () => {
               <Text weight={500} size="xl">
                 Projects
               </Text>
-              <Space h="30px" />
+              <Space h="22px" />
 
               <Text size="sm">
                 <SimpleGrid cols={2}>
-                  <Box>
+                  <Box
+                    sx={() => ({
+                      display: 'block',
+                      cursor: 'pointer',
+                      padding: '5px',
+                      borderRadius: '5px',
+                      fontWeight: '500',
+
+                      '&:hover': {
+                        backgroundColor: '#f5f5f5',
+                      },
+                    })}
+                  >
                     <Group>
-                      <ThemeIcon variant="light" size="lg" color="pink">
+                      <ThemeIcon
+                        variant="light"
+                        size="lg"
+                        color="pink"
+                        style={{ border: '1px dashed black' }}
+                      >
                         <BiPlus />
                       </ThemeIcon>
                       <Text>Create Project</Text>
                     </Group>
                   </Box>
 
-                  <Box>
+                  <Box
+                    sx={() => ({
+                      display: 'block',
+                      cursor: 'pointer',
+                      padding: '5px',
+                      borderRadius: '5px',
+                      fontWeight: '500',
+
+                      '&:hover': {
+                        backgroundColor: '#f5f5f5',
+                      },
+                    })}
+                  >
                     <Group>
                       <Avatar
                         src={`https://avatars.dicebear.com/api/identicon/Slat.svg`}
                         radius="md"
-                        size="md"
+                        size="32px"
                       />
-                      <Text>Slat</Text>
+                      <Text>PathFinder</Text>
                     </Group>
                   </Box>
-                  <Box>
+                  <Box
+                    sx={() => ({
+                      display: 'block',
+                      cursor: 'pointer',
+                      padding: '5px',
+                      borderRadius: '5px',
+                      fontWeight: '500',
+
+                      '&:hover': {
+                        backgroundColor: '#f5f5f5',
+                      },
+                    })}
+                  >
                     <Group>
                       <Avatar
                         src={`https://avatars.dicebear.com/api/identicon/hireme.svg`}
                         radius="sm"
+                        size="32px"
                       />
                       <Text>Hire Me</Text>
                     </Group>

@@ -2,7 +2,7 @@ import { Modal } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
-import { BsGlobe } from 'react-icons/bs';
+import { MdWorkspaces } from 'react-icons/md';
 import { FiHome, FiLogOut, FiSearch } from 'react-icons/fi';
 import { RiUserAddLine } from 'react-icons/ri';
 import {
@@ -121,7 +121,7 @@ const Sidebar = ({ menuCollapse }) => {
               </MenuItem>
               <MenuItem
                 active={window.location.pathname === '/dashboard/projects'}
-                icon={<BsGlobe />}
+                icon={<MdWorkspaces />}
               >
                 {activeOrg.orgName}
                 <Link to="/dashboard/projects" />

@@ -46,9 +46,7 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
       setTitle('Projects');
     } else if (window.location.pathname === '/dashboard/explore') {
       setTitle('Explore');
-    } else if (
-      window.location.pathname === '/dashboard/settings/organization'
-    ) {
+    } else if (window.location.pathname === '/dashboard/organizations/manage') {
       setTitle('Organization Settings');
     }
   });
@@ -69,7 +67,6 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
       orgApi.switchOrg(id).then(
         (response) => {
           if (response.data.status == 200) {
-            console.log(response.data);
             toast.success('Successfully Switched Organization');
             dispatch(switchOrg(response.data.data));
           }
@@ -108,7 +105,9 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
         <NavbarContainer iscollapsed={menuCollapse}>
           <Group className="closemenu" onClick={menuIconClick}>
             {menuCollapse ? <GiHamburgerMenu /> : <FiArrowLeftCircle />}
-            <span style={{ fontSize: '1.5rem' }}>{title}</span>
+            <span style={{ fontSize: '1.25rem', fontWeight: 500 }}>
+              {title}
+            </span>
           </Group>
           <Group position="right">
             <Autocomplete

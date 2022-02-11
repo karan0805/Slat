@@ -20,13 +20,11 @@ const Login = () => {
     userApi.loginUser(email, pwd).then(
       (response) => {
         if (response.data.status == 200) {
-          setTimeout(() => {
-            localStorage.setItem('access_token', response.data.data.token);
-            dispatch(login(response.data.data));
-            dispatch(orgLogin(response.data.data));
-            toast.success('Successfully logged in..');
-            nav('/dashboard');
-          }, 50);
+          localStorage.setItem('access_token', response.data.data.token);
+          dispatch(login(response.data.data));
+          dispatch(orgLogin(response.data.data));
+          toast.success('Successfully logged in..');
+          window.location.href = '/dashboard';
         }
       },
       (err) => {

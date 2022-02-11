@@ -13,7 +13,6 @@ export default function CreateOrg({ setAddOrg }) {
     orgApi.addOrg(org).then(
       (response) => {
         if (response.data.status == 200) {
-          console.log(response.data);
           toast.success('Successfully Created Organization');
           setAddOrg(false);
         }

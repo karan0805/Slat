@@ -9,10 +9,10 @@ export const Time = styled.div`
   justify-content: center;
   font-size: 1rem;
   line-height: 20px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-color: #1e1f21;
+  margin-bottom: 4px;
+  color: #1e1f21;
   font-weight: 500;
+  font-family: 'Segoe UI';
 `;
 
 export const Greet = styled.div`
@@ -20,8 +20,9 @@ export const Greet = styled.div`
   justify-content: center;
   font-size: 2rem;
   line-height: 40px;
-  font-color: #1e1f21;
+  color: #1e1f21;
   font-weight: 400;
+  font-family: 'Segoe UI';
 `;
 
 const Dashboard = () => {

@@ -48,6 +48,8 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
       setTitle('Explore');
     } else if (window.location.pathname === '/dashboard/organizations/manage') {
       setTitle('Organization Settings');
+    } else if (window.location.pathname === '/dashboard/account/manage') {
+      setTitle('Account Settings');
     }
   });
 
@@ -167,7 +169,14 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
               >
                 Add New Organization
               </Menu.Item>
-              <Menu.Item icon={<BsGear />}>My Profile and Settings</Menu.Item>
+              <Menu.Item
+                onClick={() => {
+                  nav('/dashboard/account/manage');
+                }}
+                icon={<BsGear />}
+              >
+                My Profile and Settings
+              </Menu.Item>
               <Divider />
               <Menu.Label>Danger zone</Menu.Label>
               <Menu.Item onClick={logoutHandler} icon={<FiLogOut />}>

@@ -10,6 +10,7 @@ import Signup from './pages/Auth/Signup';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import OrganizationSettings from './pages/OrganizationSettings';
+import ProfileSettings from './pages/ProfileSettings';
 
 function App() {
   return (
@@ -45,6 +46,14 @@ function App() {
               element={
                 <DashboardAppshell>
                   <OrganizationSettings />
+                </DashboardAppshell>
+              }
+            ></Route>
+            <Route
+              path="account/manage"
+              element={
+                <DashboardAppshell>
+                  <ProfileSettings />
                 </DashboardAppshell>
               }
             ></Route>

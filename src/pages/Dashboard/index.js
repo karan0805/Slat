@@ -1,8 +1,23 @@
 /* eslint-disable no-unused-vars */
+import {
+  Avatar,
+  Box,
+  Card,
+  Container,
+  Grid,
+  Group,
+  SimpleGrid,
+  Space,
+  Text,
+  Textarea,
+  ThemeIcon,
+} from '@mantine/core';
 import moment from 'moment';
+import { BiPlus } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/slices/UserSlice';
 import styled from 'styled-components';
+import { selectUser } from '../../redux/slices/UserSlice';
+import Members from '../OrganizationSettings/components/Members';
 
 export const Time = styled.div`
   display: flex;
@@ -23,6 +38,7 @@ export const Greet = styled.div`
   color: #1e1f21;
   font-weight: 400;
   font-family: 'Segoe UI';
+  margin-bottom: 100px;
 `;
 
 const Dashboard = () => {
@@ -38,10 +54,81 @@ const Dashboard = () => {
 
   return (
     <>
-      <Time>{moment().format('dddd, MMMM D')}</Time>
-      <Greet>
-        {greet}, {user.fullName}
-      </Greet>
+      <Container>
+        <Time>{moment().format('dddd, MMMM D')}</Time>
+        <Greet>
+          {greet}, {user.fullName}
+        </Greet>
+        <Grid grow>
+          <Grid.Col span={6}>
+            <Card radius="md" shadow="sm" withBorder>
+              <Text weight={500} size="xl">
+                Add Notes
+              </Text>
+              <Space h="30px" />
+              <Text size="sm">
+                <Textarea
+                  placeholder="Start typing..."
+                  variant="unstyled"
+                  autosize
+                  minRows={3}
+                  size="md"
+                />
+              </Text>
+            </Card>
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Card radius="md" shadow="sm" withBorder>
+              <Text weight={500} size="xl">
+                Projects
+              </Text>
+              <Space h="30px" />
+
+              <Text size="sm">
+                <SimpleGrid cols={2}>
+                  <Box>
+                    <Group>
+                      <ThemeIcon variant="light" size="lg" color="pink">
+                        <BiPlus />
+                      </ThemeIcon>
+                      <Text>Create Project</Text>
+                    </Group>
+                  </Box>
+
+                  <Box>
+                    <Group>
+                      <Avatar
+                        src={`https://avatars.dicebear.com/api/identicon/Slat.svg`}
+                        radius="md"
+                        size="md"
+                      />
+                      <Text>Slat</Text>
+                    </Group>
+                  </Box>
+                  <Box>
+                    <Group>
+                      <Avatar
+                        src={`https://avatars.dicebear.com/api/identicon/hireme.svg`}
+                        radius="sm"
+                      />
+                      <Text>Hire Me</Text>
+                    </Group>
+                  </Box>
+                </SimpleGrid>
+              </Text>
+            </Card>
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Card radius="md" shadow="sm" withBorder>
+              <Text weight={500} size="xl">
+                Members
+              </Text>
+              <Space h="10px" />
+              <Members />
+            </Card>
+          </Grid.Col>
+        </Grid>
+      </Container>
     </>
   );
 };

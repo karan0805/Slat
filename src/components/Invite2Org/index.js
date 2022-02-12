@@ -1,13 +1,12 @@
 import { Button, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
-import React from 'react';
+import { orgApi } from '../../api';
 
-export default function Invite2Org({ setInviteOpen }) {
+export default function Invite2Org({ setInviteOpen, activeOrg, user }) {
   const form = useForm({
     initialValues: {
       name: '',
       email: '',
-      termsOfService: false,
     },
 
     validationRules: {
@@ -18,15 +17,28 @@ export default function Invite2Org({ setInviteOpen }) {
   return (
     <>
       <form
-        onSubmit={form.onSubmit(() => {
-          setInviteOpen(false);
+        onSubmit={form.onSubmit((values) => {
+          const payload = {
+            Name: values.name,
+            Email: values.email,
+            OrgName: activeOrg.orgName,
+            InviterName: user.fullName,
+            InviteUrl:
+              'http://localhost:3000/join/Organization/Karan Gandhi Workspace/6206cf9fa157c03c84ac3b17',
+          };
+          orgApi.inviteOrg(payload).then((response) => {
+            if (response.status === 200) {
+              alert('Invite sent');
+              setInviteOpen(false);
+            }
+          });
         })}
       >
         <Group direction="column" grow="true">
           <TextInput
             required
             label="Full Name"
-            placeholder="Sanket Mense"
+            placeholder="Full Name"
             {...form.getInputProps('name')}
           />
           <TextInput

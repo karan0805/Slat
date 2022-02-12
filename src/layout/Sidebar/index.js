@@ -57,7 +57,11 @@ const Sidebar = ({ menuCollapse }) => {
           body: {},
         }}
       >
-        <Invite2Org setInviteOpen={setInviteOpen} />
+        <Invite2Org
+          setInviteOpen={setInviteOpen}
+          user={user}
+          activeOrg={activeOrg}
+        />
       </Modal>
       <div id="header">
         <ProSidebar collapsed={menuCollapse}>

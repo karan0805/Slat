@@ -11,6 +11,11 @@ export const joinOrg = (orgid) => {
   return axiosInstance.post('/api/org/joinOrg', { orgId: orgid });
 };
 
+export const inviteOrg = (payload) => {
+  console.log(payload);
+  return axiosInstance.post('/api/org/inviteOrg', payload);
+};
+
 export const switchCurrentOrg = (orgid) => {
   return axiosInstance.post('/api/org/switchOrg', { orgId: orgid });
 };

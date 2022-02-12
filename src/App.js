@@ -1,5 +1,6 @@
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import JoinOrg from './components/JoinOrg';
 import LoginOutlet from './components/Routes/LoginOutlet';
 import ProtectedOutlet from './components/Routes/ProtectedOutlet';
 import DashboardAppshell from './layout/DashboardAppshell';
@@ -62,6 +63,17 @@ function App() {
               element={
                 <DashboardAppshell>
                   <Dashboard />
+                </DashboardAppshell>
+              }
+            />
+          </Route>
+
+          <Route path="/join" element={<ProtectedOutlet />}>
+            <Route
+              path="organization/:orgName/:orgId"
+              element={
+                <DashboardAppshell>
+                  <JoinOrg />
                 </DashboardAppshell>
               }
             />

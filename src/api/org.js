@@ -1,9 +1,36 @@
 import { axiosInstance } from '../axios';
 
-export const addOrg = (org) => {
-  return axiosInstance.post('/api/org/addorg', { orgName: org });
+export const addOrg = (orgName, orgDesc) => {
+  return axiosInstance.post('/api/org/addOrg', {
+    orgName: orgName,
+    orgDesc: orgDesc,
+  });
 };
 
-export const switchOrg = (orgid) => {
-  return axiosInstance.post('/api/org/switchorg', { orgId: orgid });
+export const joinOrg = (orgid) => {
+  return axiosInstance.post('/api/org/joinOrg', { orgId: orgid });
+};
+
+export const switchCurrentOrg = (orgid) => {
+  return axiosInstance.post('/api/org/switchOrg', { orgId: orgid });
+};
+
+export const leaveOrg = (orgid) => {
+  return axiosInstance.post('/api/org/leaveOrg', { orgId: orgid });
+};
+
+export const orgSettings = (activeOrg, orgName, orgDesc) => {
+  return axiosInstance.post('/api/org/orgSettings', {
+    activeOrg,
+    orgName,
+    orgDesc,
+  });
+};
+
+export const getMembers = (activeOrg) => {
+  return axiosInstance.post('/api/org/getmembers', { activeOrg });
+};
+
+export const deleteOrg = (activeOrg) => {
+  return axiosInstance.post('/api/org/deleteOrg', { activeOrg });
 };

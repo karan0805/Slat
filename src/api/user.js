@@ -1,5 +1,9 @@
 import { axiosInstance } from '../axios';
 
+export const updatecontext = () => {
+  return axiosInstance.get('/api/auth/updateContext');
+};
+
 export const loginUser = (email, pwd) => {
   return axiosInstance.post('/api/auth/login', { email: email, password: pwd });
 };

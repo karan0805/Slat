@@ -1,28 +1,17 @@
-import { Space, Table, Avatar, Group } from '@mantine/core';
+import { Avatar, Group, Space, Table } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { orgApi } from '../../../api';
 
-export default function Members() {
-  const elements = [
-    { name: 'Karan Gandhi', email: 'karangandhi@gmail.com', role: 'Admin' },
-    { name: 'Hitesh', email: 'temp@gmail.com', role: 'Member' },
-    { name: 'Sanket', email: 'temp@gmail.com', role: 'Member' },
-  ];
+export default function Members({ activeOrg }) {
+  const [members, setMembers] = useState([]);
 
-  const rows = elements.map((element) => (
-    <tr key={element.name}>
-      <td>
-        <Group>
-          <Avatar
-            src={`https://avatars.dicebear.com/api/initials/${element.name}.svg`}
-            alt="it's me"
-            radius="xl"
-          />
-          <>{element.name}</>
-        </Group>
-      </td>
-      <td>{element.email}</td>
-      <td>{element.role}</td>
-    </tr>
-  ));
+  useEffect(() => {
+    orgApi.getMembers(activeOrg).then((response) => {
+      if (response.status === 200) {
+        setMembers(response.data.data);
+      }
+    });
+  }, [activeOrg]);
 
   return (
     <>
@@ -35,7 +24,22 @@ export default function Members() {
             <th>Role</th>
           </tr>
         </thead>
-        <tbody>{rows}</tbody>
+        <tbody>
+          {members.map((member) => (
+            <tr key={member._id}>
+              <td>
+                <Group>
+                  <Avatar src={member.image} alt="it's me" radius="xl" />
+                  <>{member.fullName}</>
+                </Group>
+              </td>
+              <td>{member.email}</td>
+              <td>
+                {activeOrg.owner.includes(member._id) ? 'Admin' : 'Member'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </Table>
     </>
   );

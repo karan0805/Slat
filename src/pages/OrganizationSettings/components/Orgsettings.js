@@ -1,6 +1,42 @@
+/* eslint-disable react/prop-types */
 import { Button, Group, TextInput, Container, Select } from '@mantine/core';
+import { useState } from 'react';
+import { orgApi, userApi } from '../../../api';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { update } from '../../../redux/slices/UserSlice';
+import { switchOrg } from '../../../redux/slices/OrgSlice';
 
-export default function Orgsettings() {
+export default function Orgsettings({ activeOrg, orgDetails }) {
+  const dispatch = useDispatch();
+  const [orgName, setOrgName] = useState(activeOrg.orgName);
+  const [orgDesc, setOrgDesc] = useState(orgDetails.orgDesc);
+
+  const submitHandler = () => {
+    orgApi.orgSettings(activeOrg, orgName, orgDesc).then(
+      (response) => {
+        if (response.data.status == 200) {
+          dispatch(switchOrg(response.data.data));
+          toast.success('Successfuly Updated');
+        }
+        userApi.updatecontext().then(
+          (response) => {
+            if (response.data.status == 200) {
+              dispatch(update(response.data.data));
+              console.log('context updated');
+            }
+          },
+          (err) => {
+            console.log(err);
+          },
+        );
+      },
+      (err) => {
+        toast.error(err.response.data.message);
+      },
+    );
+  };
+
   return (
     <Container size="xs" padding="xs">
       <Group direction="column" grow style={{ marginTop: '20px' }}>
@@ -9,16 +45,22 @@ export default function Orgsettings() {
           placeholder="Organization Name"
           radius="md"
           size="md"
+          value={orgName}
+          onChange={(event) => setOrgName(event.currentTarget.value)}
         />
         <Select
-          placeholder="Usage"
           radius="md"
           size="md"
-          clearable
           data={['Personal', 'Professional', 'Event Management', 'Others']}
+          value={orgDesc}
+          onChange={setOrgDesc}
         />
       </Group>
-      <Button color="teal" style={{ marginTop: '20px' }}>
+      <Button
+        color="teal"
+        style={{ marginTop: '20px' }}
+        onClick={submitHandler}
+      >
         Update Changes
       </Button>
     </Container>

@@ -16,6 +16,7 @@ import moment from 'moment';
 import { BiPlus } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { selectActiveOrg } from '../../redux/slices/OrgSlice';
 import { selectUser } from '../../redux/slices/UserSlice';
 import Members from '../OrganizationSettings/components/Members';
 
@@ -43,6 +44,7 @@ export const Greet = styled.div`
 
 const Dashboard = () => {
   const user = useSelector(selectUser);
+  const activeOrg = useSelector(selectActiveOrg);
   var myDate = new Date();
   var hrs = myDate.getHours();
 
@@ -166,7 +168,7 @@ const Dashboard = () => {
                 Members
               </Text>
               <Space h="10px" />
-              <Members />
+              <Members activeOrg={activeOrg} />
             </Card>
           </Grid.Col>
         </Grid>

@@ -2,8 +2,8 @@ import { Modal } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
-import { MdWorkspaces } from 'react-icons/md';
 import { FiHome, FiLogOut, FiSearch } from 'react-icons/fi';
+import { MdWorkspaces } from 'react-icons/md';
 import { RiUserAddLine } from 'react-icons/ri';
 import {
   Menu,
@@ -22,14 +22,12 @@ import { logout, selectUser } from '../../redux/slices/UserSlice';
 import logo from './../../assets/images/logo.svg';
 import './sidebar.css';
 
-// eslint-disable-next-line react/prop-types
 const Sidebar = ({ menuCollapse }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const activeOrg = useSelector(selectActiveOrg);
   const user = useSelector(selectUser);
 
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const [inviteOpen, setInviteOpen] = useState(false);
 
   const logoutHandler = () => {
@@ -41,26 +39,6 @@ const Sidebar = ({ menuCollapse }) => {
 
   return (
     <>
-      <Modal
-        centered
-        opened={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-        title="Organization Settings"
-        overlayColor="#7f7f7f"
-        overlayOpacity={0.25}
-        radius={'md'}
-        zIndex={5}
-        styles={{
-          root: { fontSize: '16px', padding: '0px' },
-          inner: {},
-          modal: {},
-          header: {},
-          title: { fontWeight: 'bold' },
-          body: {},
-        }}
-      >
-        hello
-      </Modal>
       <Modal
         centered
         opened={inviteOpen}
@@ -145,7 +123,6 @@ const Sidebar = ({ menuCollapse }) => {
               <MenuItem
                 onClick={() => {
                   setInviteOpen((prevCheck) => !prevCheck);
-                  setSettingsOpen(false);
                 }}
                 icon={<RiUserAddLine />}
               >

@@ -2,7 +2,6 @@ import { Button, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import React from 'react';
 
-// eslint-disable-next-line react/prop-types
 export default function Invite2Org({ setInviteOpen }) {
   const form = useForm({
     initialValues: {

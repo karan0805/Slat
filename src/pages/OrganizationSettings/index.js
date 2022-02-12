@@ -4,7 +4,10 @@ import { BiCog } from 'react-icons/bi';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { RiUserAddLine, RiGroupLine } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
-import { selectActiveOrg } from '../../redux/slices/OrgSlice';
+import {
+  selectActiveOrg,
+  selectActiveOrgDetails,
+} from '../../redux/slices/OrgSlice';
 import Invite from './components/Invite';
 import Members from './components/Members';
 import Orgsettings from './components/Orgsettings';
@@ -12,6 +15,7 @@ import Manage from './components/Manage';
 
 export default function OrganizationSettings() {
   const activeOrg = useSelector(selectActiveOrg);
+  const orgDetails = useSelector(selectActiveOrgDetails);
 
   return (
     <Container size={1000} style={{ marginTop: '100px' }}>
@@ -37,16 +41,16 @@ export default function OrganizationSettings() {
         }}
       >
         <Tabs.Tab label="Settings" icon={<BiCog />}>
-          <Orgsettings />
+          <Orgsettings activeOrg={activeOrg} orgDetails={orgDetails} />
         </Tabs.Tab>
         <Tabs.Tab label="Members" icon={<RiGroupLine />}>
-          <Members />
+          <Members activeOrg={activeOrg} />
         </Tabs.Tab>
-        <Tabs.Tab label="Invite" icon={<RiUserAddLine />}>
-          <Invite />
+        <Tabs.Tab label="Invite URL" icon={<RiUserAddLine />}>
+          <Invite activeOrg={activeOrg} />
         </Tabs.Tab>
         <Tabs.Tab label="Manage" icon={<GiSettingsKnobs />}>
-          <Manage />
+          <Manage activeOrg={activeOrg} />
         </Tabs.Tab>
       </Tabs>
     </Container>

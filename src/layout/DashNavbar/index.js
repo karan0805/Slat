@@ -23,24 +23,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { orgApi } from '../../api';
 import CreateOrg from '../../components/CreateOrg';
+import { selectActiveOrg, switchOrg } from '../../redux/slices/OrgSlice';
 import { logout, selectUser } from '../../redux/slices/UserSlice';
 import { Nav, NavbarContainer } from './DashNavbar.styled';
-import { switchOrg } from '../../redux/slices/OrgSlice';
 
-// eslint-disable-next-line react/prop-types
 const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
+  const activeOrg = useSelector(selectActiveOrg);
   const [title, setTitle] = useState('');
   const [addOrg, setAddOrg] = useState(false);
 
   useEffect(() => {
-    if (
-      window.location.pathname === '/dashboard' ||
-      window.location.pathname === '/dashboard/'
-    ) {
+    if (window.location.pathname === '/dashboard') {
       setTitle('Home');
     } else if (window.location.pathname === '/dashboard/projects') {
       setTitle('Projects');
@@ -65,12 +62,13 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
   };
 
   const switchOrgHandler = (id) => {
-    if (id) {
-      orgApi.switchOrg(id).then(
+    if (id !== activeOrg._id) {
+      orgApi.switchCurrentOrg(id).then(
         (response) => {
           if (response.data.status == 200) {
             toast.success('Successfully Switched Organization');
             dispatch(switchOrg(response.data.data));
+            nav('/dashboard');
           }
         },
         (err) => {

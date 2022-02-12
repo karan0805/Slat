@@ -4,8 +4,8 @@ import { Avatar, Container, Group, Tabs, Title } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { selectActiveOrg } from '../../redux/slices/OrgSlice';
 import Profile from './components/Profile';
-import Members from './components/Members';
-import Orgsettings from './components/Orgsettings';
+import Organisation from './components/Organisation';
+import Notification from './components/Notification';
 
 export default function ProfileSettings() {
   const activeOrg = useSelector(selectActiveOrg);
@@ -37,10 +37,10 @@ export default function ProfileSettings() {
           <Profile />
         </Tabs.Tab>
         <Tabs.Tab label="Notification">
-          <Members />
+          <Notification />
         </Tabs.Tab>
         <Tabs.Tab label="Organizations">
-          <Profile />
+          <Organisation />
         </Tabs.Tab>
       </Tabs>
     </Container>

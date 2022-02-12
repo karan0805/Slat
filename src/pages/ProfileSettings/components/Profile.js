@@ -7,7 +7,9 @@ export default function Invite2Org({ setInviteOpen }) {
   const form = useForm({
     initialValues: {
       name: '',
+      role: '',
       email: '',
+      number: '',
     },
 
     validationRules: {
@@ -33,10 +35,9 @@ export default function Invite2Org({ setInviteOpen }) {
           </Grid.Col>
           <Grid.Col span={6}>
             <TextInput
-              required
               label="Role"
               placeholder="Product Developer"
-              {...form.getInputProps('email')}
+              {...form.getInputProps('role')}
             />
           </Grid.Col>
           <Grid.Col span={6}>
@@ -44,30 +45,26 @@ export default function Invite2Org({ setInviteOpen }) {
               required
               label="Email Address"
               placeholder="abc@mail.com"
-              {...form.getInputProps('name')}
+              {...form.getInputProps('email')}
             />
           </Grid.Col>
-          <Grid.Col span={6}>
-            <Button type="submit">Update</Button>
-          </Grid.Col>
+
           <Grid.Col span={6}>
             <TextInput
-              required
               label="Number"
               placeholder="1234567890"
-              {...form.getInputProps('name')}
+              {...form.getInputProps('number')}
             />
           </Grid.Col>
           <Grid.Col span={6}>
-            <TextInput
-              required
-              label="Full Name"
-              placeholder="Sanket Mense"
-              {...form.getInputProps('name')}
-            />
+            <Button type="">Update</Button>
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Button color="red" type="">
+              Reset my Password
+            </Button>
           </Grid.Col>
         </Grid>
-        <Button type="submit">Update</Button>
       </form>
     </>
   );

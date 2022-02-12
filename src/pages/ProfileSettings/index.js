@@ -1,14 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { Avatar, Container, Group, Tabs, Title } from '@mantine/core';
-import { BiCog } from 'react-icons/bi';
-import { GiSettingsKnobs } from 'react-icons/gi';
-import { RiUserAddLine, RiGroupLine } from 'react-icons/ri';
+
 import { useSelector } from 'react-redux';
 import { selectActiveOrg } from '../../redux/slices/OrgSlice';
-import Invite from './components/Invite';
-import Members from './components/Members';
-import Orgsettings from './components/Orgsettings';
-import Manage from './components/Manage';
+import Profile from './components/Profile';
+import Organisation from './components/Organisation';
+import Notification from './components/Notification';
 
 export default function ProfileSettings() {
   const activeOrg = useSelector(selectActiveOrg);
@@ -36,17 +33,14 @@ export default function ProfileSettings() {
           tabLabel: {},
         }}
       >
-        <Tabs.Tab label="Settings" icon={<BiCog />}>
-          <Orgsettings />
+        <Tabs.Tab label="Profile">
+          <Profile />
         </Tabs.Tab>
-        <Tabs.Tab label="Members" icon={<RiGroupLine />}>
-          <Members />
+        <Tabs.Tab label="Notification">
+          <Notification />
         </Tabs.Tab>
-        <Tabs.Tab label="Invite" icon={<RiUserAddLine />}>
-          <Invite />
-        </Tabs.Tab>
-        <Tabs.Tab label="Manage" icon={<GiSettingsKnobs />}>
-          <Manage />
+        <Tabs.Tab label="Organizations">
+          <Organisation />
         </Tabs.Tab>
       </Tabs>
     </Container>

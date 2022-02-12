@@ -1,6 +1,6 @@
 import { Button, Center } from '@mantine/core';
 
-export default function Manage() {
+export default function Organisation() {
   return (
     <Center>
       <Button color="red" style={{ marginTop: '20px' }}>

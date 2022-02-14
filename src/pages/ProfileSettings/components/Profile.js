@@ -48,14 +48,17 @@ export default function Profile({ user }) {
   return (
     <>
       <Modal
+        centered
         opened={resetopen}
-        onClose={() => setResetOpen(false)}
+        radius={'md'}
+        zIndex={9999}
         title="Reset Password"
+        onClose={() => setResetOpen(false)}
       >
         <ResetPassword setResetOpen={setResetOpen} />
       </Modal>
 
-      <SimpleGrid cols={2} grow style={{ marginTop: '20px' }}>
+      <SimpleGrid cols={2} style={{ marginTop: '20px' }}>
         <TextInput
           required
           label="Full Name"

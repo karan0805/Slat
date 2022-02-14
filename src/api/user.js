@@ -19,3 +19,11 @@ export const forgotUser = (email) => {
     email: email,
   });
 };
+
+export const profileSettings = (payload) => {
+  return axiosInstance.post('/api/users/usersettings', payload);
+};
+
+export const resetPassword = (payload) => {
+  return axiosInstance.post('/api/users/changepassword', payload);
+};

@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Button, Group, TextInput, Container, Select } from '@mantine/core';
+import { Button, Container, Group, Select, TextInput } from '@mantine/core';
 import { useState } from 'react';
-import { orgApi, userApi } from '../../../api';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { update } from '../../../redux/slices/UserSlice';
+import { orgApi, userApi } from '../../../api';
 import { switchOrg } from '../../../redux/slices/OrgSlice';
+import { update } from '../../../redux/slices/UserSlice';
 
 export default function Orgsettings({ activeOrg, orgDetails }) {
   const dispatch = useDispatch();

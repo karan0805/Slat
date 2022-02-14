@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { Avatar, Container, Group, Tabs, Title } from '@mantine/core';
-
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/slices/UserSlice';
 import { selectActiveOrg } from '../../redux/slices/OrgSlice';
@@ -36,7 +35,7 @@ export default function ProfileSettings() {
         }}
       >
         <Tabs.Tab label="Profile">
-          <Profile />
+          <Profile user={user} />
         </Tabs.Tab>
         <Tabs.Tab label="Notification">
           <Notification />

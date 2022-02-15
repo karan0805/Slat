@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Group, Textarea, TextInput, Modal } from '@mantine/core';
+import { Button, Textarea, TextInput, Modal } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 
 const CreateProject = ({ addProject, setAddProject }) => {
@@ -28,26 +28,33 @@ const CreateProject = ({ addProject, setAddProject }) => {
         }}
       >
         <form>
-          <Group direction="column" grow>
-            <TextInput
-              placeholder="Project Name"
-              label="Projet Name"
-              radius="md"
-              onChange={(e) => setProjectName(e.target.value)}
-              value={projectName}
-              required
-            />
-            <Textarea
-              placeholder="Project Description"
-              label="Project Description"
-              radius="md"
-              onChange={(e) => setProjectDescription(e.target.value)}
-              value={projectDescription}
-              required
-            />
-            <DatePicker value={endDate} onChange={setEndDate} />;
-            <Button type="submit">Create </Button>
-          </Group>
+          <TextInput
+            placeholder="Project Name"
+            label="Projet Name"
+            radius="md"
+            onChange={(e) => setProjectName(e.target.value)}
+            value={projectName}
+            required
+          />
+          <Textarea
+            placeholder="Project Description"
+            label="Project Description"
+            radius="md"
+            onChange={(e) => setProjectDescription(e.target.value)}
+            value={projectDescription}
+            required
+          />
+          <DatePicker
+            firstDayOfWeek="sunday"
+            placeholder="End Date"
+            label="End Date"
+            value={endDate}
+            radius="md"
+            onChange={setEndDate}
+            required
+          />
+          <br />
+          <Button type="submit">Create </Button>
         </form>
       </Modal>
     </>

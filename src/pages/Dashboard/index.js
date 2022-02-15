@@ -99,6 +99,7 @@ const Dashboard = () => {
               <Text size="sm">
                 <SimpleGrid cols={2}>
                   <Box
+                    onClick={clickHandler}
                     sx={() => ({
                       display: 'block',
                       cursor: 'pointer',

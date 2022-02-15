@@ -13,9 +13,11 @@ import {
   ThemeIcon,
 } from '@mantine/core';
 import moment from 'moment';
+import { useState } from 'react';
 import { BiPlus } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import CreateProject from '../../components/CreateProject/CreateProject';
 import { selectActiveOrg } from '../../redux/slices/OrgSlice';
 import { selectUser } from '../../redux/slices/UserSlice';
 import Members from '../OrganizationSettings/components/Members';
@@ -45,6 +47,9 @@ export const Greet = styled.div`
 const Dashboard = () => {
   const user = useSelector(selectUser);
   const activeOrg = useSelector(selectActiveOrg);
+
+  const [addProject, setAddProject] = useState(false);
+
   var myDate = new Date();
   var hrs = myDate.getHours();
 
@@ -54,8 +59,13 @@ const Dashboard = () => {
   else if (hrs >= 12 && hrs <= 17) greet = 'Good Afternoon';
   else if (hrs >= 17 && hrs <= 24) greet = 'Good Evening';
 
+  const clickHandler = () => {
+    setAddProject(true);
+  };
+
   return (
     <>
+      <CreateProject addProject={addProject} setAddProject={setAddProject} />
       <Container>
         <Time>{moment().format('dddd, MMMM D')}</Time>
         <Greet>

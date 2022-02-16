@@ -1,11 +1,51 @@
 import React, { useState } from 'react';
 import { Button, Textarea, TextInput, Modal } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
+import { projectApi, userApi } from '../../api';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { update } from '../../redux/slices/UserSlice';
+import { switchOrg } from '../../redux/slices/OrgSlice';
 
-const CreateProject = ({ addProject, setAddProject }) => {
+const CreateProject = ({ addProject, setAddProject, activeOrg }) => {
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [endDate, setEndDate] = useState();
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const payload = {
+      projectName,
+      projectDescription,
+      endDate,
+      orgId: activeOrg._id,
+    };
+    projectApi.addProject(payload).then(
+      (res) => {
+        if (res.status === 200) {
+          console.log(res);
+          toast.success('Project added successfully');
+          setAddProject(false);
+        }
+        userApi.updatecontext({ activeOrg }).then(
+          (response) => {
+            if (response.data.status == 200) {
+              dispatch(update(response.data.data));
+              dispatch(switchOrg(response.data.data));
+              console.log('context updated');
+            }
+          },
+          (err) => {
+            console.log(err);
+          },
+        );
+      },
+      (err) => {
+        toast.error(err.response.data.message);
+      },
+    );
+  };
 
   return (
     <>
@@ -27,7 +67,7 @@ const CreateProject = ({ addProject, setAddProject }) => {
           body: {},
         }}
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <TextInput
             placeholder="Project Name"
             label="Projet Name"
@@ -51,6 +91,7 @@ const CreateProject = ({ addProject, setAddProject }) => {
             value={endDate}
             radius="md"
             onChange={setEndDate}
+            minDate={new Date()}
             required
           />
           <br />

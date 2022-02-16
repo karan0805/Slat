@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Avatar,
   Box,
@@ -18,7 +17,10 @@ import { BiPlus } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import CreateProject from '../../components/CreateProject/CreateProject';
-import { selectActiveOrg } from '../../redux/slices/OrgSlice';
+import {
+  selectActiveOrg,
+  selectActiveOrgDetails,
+} from '../../redux/slices/OrgSlice';
 import { selectUser } from '../../redux/slices/UserSlice';
 import Members from '../OrganizationSettings/components/Members';
 
@@ -47,6 +49,7 @@ export const Greet = styled.div`
 const Dashboard = () => {
   const user = useSelector(selectUser);
   const activeOrg = useSelector(selectActiveOrg);
+  const orgDetails = useSelector(selectActiveOrgDetails);
 
   const [addProject, setAddProject] = useState(false);
 
@@ -65,7 +68,11 @@ const Dashboard = () => {
 
   return (
     <>
-      <CreateProject addProject={addProject} setAddProject={setAddProject} />
+      <CreateProject
+        addProject={addProject}
+        setAddProject={setAddProject}
+        activeOrg={activeOrg}
+      />
       <Container>
         <Time>{moment().format('dddd, MMMM D')}</Time>
         <Greet>
@@ -124,51 +131,27 @@ const Dashboard = () => {
                       <Text>Create Project</Text>
                     </Group>
                   </Box>
+                  {orgDetails.projects.map((project) => (
+                    <Box
+                      key={project._id}
+                      sx={() => ({
+                        display: 'block',
+                        cursor: 'pointer',
+                        padding: '5px',
+                        borderRadius: '5px',
+                        fontWeight: '500',
 
-                  <Box
-                    sx={() => ({
-                      display: 'block',
-                      cursor: 'pointer',
-                      padding: '5px',
-                      borderRadius: '5px',
-                      fontWeight: '500',
-
-                      '&:hover': {
-                        backgroundColor: '#f5f5f5',
-                      },
-                    })}
-                  >
-                    <Group>
-                      <Avatar
-                        src={`https://avatars.dicebear.com/api/identicon/Slat.svg`}
-                        radius="md"
-                        size="32px"
-                      />
-                      <Text>PathFinder</Text>
-                    </Group>
-                  </Box>
-                  <Box
-                    sx={() => ({
-                      display: 'block',
-                      cursor: 'pointer',
-                      padding: '5px',
-                      borderRadius: '5px',
-                      fontWeight: '500',
-
-                      '&:hover': {
-                        backgroundColor: '#f5f5f5',
-                      },
-                    })}
-                  >
-                    <Group>
-                      <Avatar
-                        src={`https://avatars.dicebear.com/api/identicon/hireme.svg`}
-                        radius="sm"
-                        size="32px"
-                      />
-                      <Text>Hire Me</Text>
-                    </Group>
-                  </Box>
+                        '&:hover': {
+                          backgroundColor: '#f5f5f5',
+                        },
+                      })}
+                    >
+                      <Group>
+                        <Avatar src={project.image} radius="md" size="32px" />
+                        <Text>{project.name}</Text>
+                      </Group>
+                    </Box>
+                  ))}
                 </SimpleGrid>
               </Text>
             </Card>

@@ -1,10 +1,7 @@
-import { Modal } from '@mantine/core';
-import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
 import { FiHome, FiLogOut, FiSearch } from 'react-icons/fi';
 import { MdWorkspaces } from 'react-icons/md';
-import { RiUserAddLine } from 'react-icons/ri';
 import {
   Menu,
   MenuItem,
@@ -16,7 +13,6 @@ import {
 import 'react-pro-sidebar/dist/css/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import Invite2Org from '../../components/Invite2Org';
 import { selectActiveOrg } from '../../redux/slices/OrgSlice';
 import { logout, selectUser } from '../../redux/slices/UserSlice';
 import logo from './../../assets/images/logo.svg';
@@ -28,8 +24,6 @@ const Sidebar = ({ menuCollapse }) => {
   const activeOrg = useSelector(selectActiveOrg);
   const user = useSelector(selectUser);
 
-  const [inviteOpen, setInviteOpen] = useState(false);
-
   const logoutHandler = () => {
     localStorage.clear();
     dispatch(logout());
@@ -39,30 +33,6 @@ const Sidebar = ({ menuCollapse }) => {
 
   return (
     <>
-      <Modal
-        centered
-        opened={inviteOpen}
-        onClose={() => setInviteOpen(false)}
-        title="Invite Member To Organization"
-        overlayColor="#7f7f7f"
-        overlayOpacity={0.25}
-        radius={'md'}
-        zIndex={5}
-        styles={{
-          root: { fontSize: '16px', padding: '0px' },
-          inner: {},
-          modal: {},
-          header: {},
-          title: { fontWeight: 'bold' },
-          body: {},
-        }}
-      >
-        <Invite2Org
-          setInviteOpen={setInviteOpen}
-          user={user}
-          activeOrg={activeOrg}
-        />
-      </Modal>
       <div id="header">
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
@@ -124,14 +94,7 @@ const Sidebar = ({ menuCollapse }) => {
                   <Link to="/dashboard/organizations/manage" />
                 </MenuItem>
               ) : null}
-              <MenuItem
-                onClick={() => {
-                  setInviteOpen((prevCheck) => !prevCheck);
-                }}
-                icon={<RiUserAddLine />}
-              >
-                Invite
-              </MenuItem>
+
               <MenuItem icon={<FiLogOut />} onClick={logoutHandler}>
                 Logout
               </MenuItem>

@@ -15,7 +15,7 @@ const DashboardAppshell = (props) => {
 
   return (
     <Wrapper menuCollapse={menuCollapse}>
-      <div>
+      <div style={{ overflowy: 'hidden' }}>
         <Sidebar menuCollapse={menuCollapse} />
       </div>
       <div>

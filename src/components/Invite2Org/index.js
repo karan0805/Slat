@@ -2,7 +2,7 @@ import { Button, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import { orgApi } from '../../api';
 
-export default function Invite2Org({ setInviteOpen, activeOrg, user }) {
+const Invite2Org = ({ setInviteOpen, activeOrg, user }) => {
   const form = useForm({
     initialValues: {
       name: '',
@@ -52,4 +52,6 @@ export default function Invite2Org({ setInviteOpen, activeOrg, user }) {
       </form>
     </>
   );
-}
+};
+
+export default Invite2Org;

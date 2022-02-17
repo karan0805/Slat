@@ -48,7 +48,8 @@ export default function Invite({ activeOrg }) {
         <Group style={{ marginTop: '20px' }}>
           <TextInput
             value={
-              'http://localhost:3000/join/Organization/' +
+              process.env.REACT_APP_FRONTENDURL +
+              '/join/Organization/' +
               activeOrg.orgName +
               '/' +
               activeOrg._id
@@ -63,7 +64,8 @@ export default function Invite({ activeOrg }) {
             color={clipboard.copied ? 'teal' : ''}
             onClick={() =>
               clipboard.copy(
-                'http://localhost:3000/join/Organization/' +
+                process.env.REACT_APP_FRONTENDURL +
+                  '/join/Organization/' +
                   activeOrg.orgName +
                   '/' +
                   activeOrg._id,

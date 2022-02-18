@@ -58,11 +58,11 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button`
-  border-radius: ${({ bigRadius }) => (bigRadius ? '30px' : '7px')};
+  border-radius: ${({ bigRadius }) => (bigRadius ? '30px' : '8px')};
   background-color: ${({ primary }) => (primary ? '#ffb923' : '#000')};
   color: ${({ primary }) => (primary ? '#fff' : '#fff')};
   padding: ${({ big }) => (big ? '18px 30px' : '10px 28px')};
-  font-size: ${({ bigFont }) => (bigFont ? '20px' : '18px')};
+  font-size: ${({ bigFont }) => (bigFont ? '32px' : '24px')};
   outline: none;
   cursor: pointer;
   border: none;
@@ -93,7 +93,7 @@ export const OutlineButton = styled.button`
   color: #333;
   outline: none;
   padding: ${({ big }) => (big ? '15px 60px' : '13px 55px')};
-  font-size: ${({ fontBig }) => (fontBig ? '22px' : '18px')};
+  font-size: ${({ fontBig }) => (fontBig ? '32px' : '24px')};
   transition: all 0.5s ease;
   background-color: #fefefe;
 

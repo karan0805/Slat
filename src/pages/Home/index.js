@@ -1,9 +1,12 @@
 import React from 'react';
+import Section1 from './Section1';
+import Hero from './Hero';
 
 const Home = () => {
   return (
     <>
-      <center>This is homepage</center>
+      <Hero />
+      <Section1 />
     </>
   );
 };

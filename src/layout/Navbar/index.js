@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { BiMenu, BiX } from 'react-icons/bi';
 import { Button } from '../../styles/Globalstyles';
-import logo from './../../assets/images/logo.svg';
+import logo from './../../assets/svgs/logo.svg';
 import {
   Menu,
   MenuIcon,
@@ -35,8 +35,8 @@ const Navbar = () => {
   window.addEventListener('resize', showButton);
 
   return (
-    <div>
-      <IconContext.Provider value={{ color: '#000' }}>
+    <>
+      <IconContext.Provider value={{ color: '#ffffff' }}>
         <Nav>
           <NavbarContainer>
             <NavLogo to="/">
@@ -62,11 +62,11 @@ const Navbar = () => {
                   Features
                 </MenuLink>
               </MenuItem>
-              <MenuItem>
+              {/* <MenuItem>
                 <MenuLink onClick={closeMenu} to="/auth/login">
                   Login
                 </MenuLink>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItemBtn>
                 {button ? (
                   <MenuLinkBtn to="/auth/signup">
@@ -84,7 +84,7 @@ const Navbar = () => {
           </NavbarContainer>
         </Nav>
       </IconContext.Provider>
-    </div>
+    </>
   );
 };
 

@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import { Container } from '../../styles/Globalstyles';
 
 export const Nav = styled.nav`
-  font-size: 18px;
+  padding-left: 80px;
+  padding-top: 20px;
   position: sticky;
-  top: 0;
-  z-index: 999;
+  top: 100;
   height: 80px;
-  background-color: rgba(0, 0, 0, 0);
-  /* box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5); */
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,11 +20,12 @@ export const NavbarContainer = styled(Container)`
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  padding-right: 120px;
   ${Container};
 `;
 
 export const NavLogo = styled(Link)`
-  color: black;
+  color: #ffffff;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -86,9 +85,9 @@ export const MenuItem = styled.li`
 
 export const MenuLink = styled(Link)`
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.5rem;
-  color: black;
+  color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -98,6 +97,17 @@ export const MenuLink = styled(Link)`
 
   &:hover {
     color: #6a67ce;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgb(60, 129, 246),
+      rgb(157, 85, 255) 20%,
+      rgb(131, 58, 180) 40%,
+      rgb(193, 53, 132) 60%,
+      rgb(225, 48, 108) 80%,
+      rgb(253, 29, 29)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     transform: traslateY(-3rem);
   }
   &:active {

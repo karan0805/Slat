@@ -23,7 +23,12 @@ const Invite2Org = ({ setInviteOpen, activeOrg, user }) => {
             Email: values.email,
             OrgName: activeOrg.orgName,
             InviterName: user.fullName,
-            InviteUrl: `${process.env.REACT_APP_FRONTENDURL}/join/Organization/Karan Gandhi Workspace/6206cf9fa157c03c84ac3b17`,
+            InviteUrl:
+              process.env.REACT_APP_FRONTENDURL +
+              '/join/Organization/' +
+              activeOrg.orgName +
+              '/' +
+              activeOrg._id,
           };
           orgApi.inviteOrg(payload).then((response) => {
             if (response.status === 200) {

@@ -20,7 +20,7 @@ const Hero = () => {
   return (
     <Container
       fluid
-      style={{ backgroundColor: 'black', height: '100vh', paddingTop: '150px' }}
+      style={{ backgroundColor: 'black', height: '100vh', paddingTop: '200px' }}
     >
       <Group position="center" direction="column">
         <Title
@@ -70,7 +70,7 @@ const Hero = () => {
           your work, maximize efficiency, and improve continuously.
         </Text>
       </Container>
-      <Space h="65px" />
+      <Space h="85px" />
       <Container>
         <Group position="center" grow>
           <Group
@@ -219,7 +219,7 @@ const Hero = () => {
           </Group>
         </Group>
       </Container>
-      <Space h="75px" />
+      <Space h="85px" />
       <Container>
         <Group position="center">
           <Input

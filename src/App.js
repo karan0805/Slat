@@ -20,9 +20,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/auth" element={<LoginOutlet />}>
-            <Route path="/auth/login" element={<Login />} />
-            <Route path="/auth/signup" element={<Signup />} />
-            <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route path="reset-password" element={<ForgotPassword />} />
           </Route>
 
           <Route path="/dashboard" element={<ProtectedOutlet />}>

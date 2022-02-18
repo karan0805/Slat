@@ -9,7 +9,7 @@ export const Nav = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-  height: 80px;
+  height: 60px;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -44,7 +44,7 @@ export const NavLogo = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   transition: all 0.5s ease;
   max-width: 50px;
@@ -63,7 +63,7 @@ export const MenuIcon = styled.div`
     top: 0;
     right: 0;
     transform: translate(-50%, 20%);
-    font-size: 4rem;
+    font-size: 3rem;
     cursor: pointer;
   }
 `;
@@ -100,7 +100,7 @@ export const MenuItem = styled.li`
 export const MenuLink = styled(Link)`
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: #ffffff;
   display: flex;
   justify-content: space-between;

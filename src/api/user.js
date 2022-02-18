@@ -17,12 +17,11 @@ export const signupUser = (fname, email, pwd) => {
 export const forgotUser = (email) => {
   return axiosInstance.post('/api/auth/forgot-pswd', {
     email: email,
+    REACT_APP_FRONTENDURL: process.env.REACT_APP_FRONTENDURL,
   });
 };
-export const resetUser = (password) => {
-  return axiosInstance.post('/api/auth/reset-pswd', {
-    password: password,
-  });
+export const resetUser = (payload) => {
+  return axiosInstance.post('/api/auth/reset-pswd', payload);
 };
 
 export const profileSettings = (payload) => {

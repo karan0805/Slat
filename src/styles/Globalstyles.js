@@ -62,7 +62,7 @@ export const Button = styled.button`
   background-color: ${({ primary }) => (primary ? '#fff' : '#000')};
   color: ${({ primary }) => (primary ? '#000' : '#000')};
   padding: ${({ big }) => (big ? '18px 30px' : '10px 28px')};
-  font-size: ${({ bigFont }) => (bigFont ? '32px' : '20px')};
+  font-size: ${({ bigFont }) => (bigFont ? '32px' : '16px')};
   outline: none;
   cursor: pointer;
   border: none;
@@ -70,7 +70,7 @@ export const Button = styled.button`
   font-weight: 500;
 
   &:hover {
-    background-color: ${({ primary }) => (primary ? '#6A67CE' : '#ffb923')};
+    background-color: ${({ primary }) => (primary ? '#ffb923' : '#6A67CE')};
     color: #fff;
   }
   &:active {

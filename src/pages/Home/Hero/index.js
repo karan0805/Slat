@@ -15,12 +15,14 @@ import { ReactComponent as Feature4 } from '../../../assets/svgs/feature4.svg';
 import { ReactComponent as Feature5 } from '../../../assets/svgs/feature5.svg';
 import { ReactComponent as Feature6 } from '../../../assets/svgs/feature6.svg';
 import { HiOutlineMail } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const nav = useNavigate();
   return (
     <Container
       fluid
-      style={{ backgroundColor: 'black', height: '100vh', paddingTop: '200px' }}
+      style={{ backgroundColor: 'black', height: '100vh', paddingTop: '150px' }}
     >
       <Group position="center" direction="column">
         <Title
@@ -52,7 +54,7 @@ const Hero = () => {
           Project Planning Software
         </Title>
       </Group>
-      <Space h="45px" />
+      <Space h="25px" />
       <Container>
         <Text
           align="center"
@@ -70,7 +72,20 @@ const Hero = () => {
           your work, maximize efficiency, and improve continuously.
         </Text>
       </Container>
-      <Space h="85px" />
+      <Space h="60px" />
+      <Group position="center">
+        <Button
+          radius="xl"
+          size="lg"
+          color="yellow"
+          onClick={() => {
+            nav('/auth/login');
+          }}
+        >
+          Plan Your First Project
+        </Button>
+      </Group>
+      <Space h="60px" />
       <Container>
         <Group position="center" grow>
           <Group

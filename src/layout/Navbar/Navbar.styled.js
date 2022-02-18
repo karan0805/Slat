@@ -6,8 +6,9 @@ import { Container } from '../../styles/Globalstyles';
 export const Nav = styled.nav`
   padding-left: 80px;
   padding-top: 20px;
-  position: sticky;
-  top: 100;
+  position: fixed;
+  top: 0;
+  width: 100%;
   height: 80px;
   background-color: black;
   display: flex;

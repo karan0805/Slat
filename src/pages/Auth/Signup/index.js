@@ -54,6 +54,7 @@ const Signup = () => {
               value={email}
               placeholder="Email Address"
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="new-email"
               required
             />
 
@@ -62,6 +63,7 @@ const Signup = () => {
               value={pwd}
               placeholder="Password"
               onChange={(e) => setPwd(e.target.value)}
+              autoComplete="new-password"
               required
             />
 

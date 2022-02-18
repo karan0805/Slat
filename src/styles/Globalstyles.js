@@ -58,11 +58,11 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button`
-  border-radius: ${({ bigRadius }) => (bigRadius ? '30px' : '8px')};
-  background-color: ${({ primary }) => (primary ? '#ffb923' : '#000')};
-  color: ${({ primary }) => (primary ? '#fff' : '#fff')};
+  border-radius: ${({ bigRadius }) => (bigRadius ? '30px' : '50px')};
+  background-color: ${({ primary }) => (primary ? '#fff' : '#000')};
+  color: ${({ primary }) => (primary ? '#000' : '#000')};
   padding: ${({ big }) => (big ? '18px 30px' : '10px 28px')};
-  font-size: ${({ bigFont }) => (bigFont ? '32px' : '24px')};
+  font-size: ${({ bigFont }) => (bigFont ? '32px' : '20px')};
   outline: none;
   cursor: pointer;
   border: none;

@@ -13,6 +13,7 @@ import {
   Nav,
   NavbarContainer,
   NavLogo,
+  NavTopBar,
 } from './Navbar.styled';
 
 const Navbar = () => {
@@ -37,6 +38,7 @@ const Navbar = () => {
   return (
     <>
       <IconContext.Provider value={{ color: '#ffffff' }}>
+        <NavTopBar>[Sponsor] Sponsor our Project 🚀 Click Here &gt;</NavTopBar>
         <Nav>
           <NavbarContainer>
             <NavLogo to="/">
@@ -70,12 +72,12 @@ const Navbar = () => {
               <MenuItemBtn>
                 {button ? (
                   <MenuLinkBtn to="/auth/signup">
-                    <Button primary>Get Started</Button>
+                    <Button primary>Try Now</Button>
                   </MenuLinkBtn>
                 ) : (
                   <MenuLinkBtn to="/auth/signup">
                     <Button primary bigFont onClick={closeMenu}>
-                      Get Started
+                      Try Now
                     </Button>
                   </MenuLinkBtn>
                 )}

@@ -5,7 +5,7 @@ import { Container } from '../../styles/Globalstyles';
 
 export const Nav = styled.nav`
   padding-left: 80px;
-  padding-top: 20px;
+  padding-top: 30px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -14,6 +14,19 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const NavTopBar = styled.div`
+  background-color: #ffbb39;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 24px;
+  padding: 5px 0;
+  z-index: 99;
 `;
 
 export const NavbarContainer = styled(Container)`
@@ -87,7 +100,7 @@ export const MenuItem = styled.li`
 export const MenuLink = styled(Link)`
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #ffffff;
   display: flex;
   justify-content: space-between;

@@ -19,6 +19,11 @@ export const forgotUser = (email) => {
     email: email,
   });
 };
+export const resetUser = (password) => {
+  return axiosInstance.post('/api/auth/reset-pswd', {
+    password: password,
+  });
+};
 
 export const profileSettings = (payload) => {
   return axiosInstance.post('/api/users/usersettings', payload);

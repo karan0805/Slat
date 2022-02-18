@@ -1,3 +1,4 @@
+import { Anchor } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { BiMenu, BiX } from 'react-icons/bi';
@@ -38,7 +39,17 @@ const Navbar = () => {
   return (
     <>
       <IconContext.Provider value={{ color: '#ffffff' }}>
-        <NavTopBar>[Sponsor] Sponsor our Project 🚀 Click Here &gt;</NavTopBar>
+        <NavTopBar>
+          [Contribute] Sponsor our Project 🚀{' '}
+          <Anchor
+            href="https://www.buymeacoffee.com/karan0805"
+            style={{ color: 'white' }}
+            target="_blank"
+          >
+            Click Here
+          </Anchor>
+          &gt;
+        </NavTopBar>
         <Nav>
           <NavbarContainer>
             <NavLogo to="/">

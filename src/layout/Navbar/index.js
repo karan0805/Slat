@@ -2,6 +2,7 @@ import { Anchor } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { BiMenu, BiX } from 'react-icons/bi';
+import { ImCross } from 'react-icons/im';
 import { Button } from '../../styles/Globalstyles';
 import logo from './../../assets/svgs/logo.svg';
 import {
@@ -39,18 +40,21 @@ const Navbar = () => {
   return (
     <>
       <IconContext.Provider value={{ color: '#ffffff' }}>
-        <NavTopBar>
-          [Contribute] Sponsor our Project 🚀{' '}
-          <Anchor
-            href="https://www.buymeacoffee.com/karan0805"
-            style={{ color: 'white' }}
-            target="_blank"
-          >
-            Click Here
-          </Anchor>
-          &gt;
-        </NavTopBar>
         <Nav>
+          <NavTopBar>
+            [Contribute] Sponsor our Project 🚀{' '}
+            <Anchor
+              href="https://www.buymeacoffee.com/karan0805"
+              style={{ color: 'white' }}
+              target="_blank"
+            >
+              Click Here
+            </Anchor>
+            &gt;
+            <ImCross
+              style={{ position: 'absolute', right: '40px', height: '24px' }}
+            />
+          </NavTopBar>
           <NavbarContainer>
             <NavLogo to="/">
               <img

@@ -53,22 +53,20 @@ const Section1 = () => {
         </Title>
       </Group>
       <Space h="15px" />
-      <Container>
-        <Text
-          align="center"
-          weight="400"
-          style={{
-            color: '#111111',
-            lineHeight: '32px',
-            fontSize: '20px',
-            fontFamily: 'Inter',
-            fontWeight: '400',
-          }}
-        >
-          Visualize your progress on digital Kanban boards and see your team
-          move tasks from to-do to done.
-        </Text>
-      </Container>
+      <Text
+        align="center"
+        weight="400"
+        style={{
+          color: '#111111',
+          lineHeight: '32px',
+          fontSize: '20px',
+          fontFamily: 'Inter',
+          fontWeight: '400',
+        }}
+      >
+        Visualize your progress on digital Kanban boards and see your team move
+        tasks from to-do to done.
+      </Text>
       <Space h="75px" />
       <Container size="xl">
         <Grid gutter="50">

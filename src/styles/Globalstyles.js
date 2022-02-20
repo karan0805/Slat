@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;800;900&family=Rubik:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 *{
     margin: 0;
@@ -22,13 +22,13 @@ html {
     }
 }
 body{
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     line-height: 1.6;
-    font-size: 1.6rem;
-    background: #F9F9F9;
     color: #333;
-
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
 }
 `;
 
@@ -36,7 +36,7 @@ export default GlobalStyles;
 
 export const Container = styled.div`
   margin: 0 auto;
-  padding: 0 50px;
+  padding: 0 200px;
   max-width: 1300px;
   width: 100%;
 
@@ -70,7 +70,7 @@ export const Button = styled.button`
   font-weight: 500;
 
   &:hover {
-    background-color: ${({ primary }) => (primary ? '#ffb923' : '#6A67CE')};
+    background-color: ${({ primary }) => (primary ? '#6A67CE' : '#ffb923')};
     color: #fff;
   }
   &:active {

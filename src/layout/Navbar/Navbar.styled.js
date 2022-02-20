@@ -4,16 +4,15 @@ import { Link } from 'react-router-dom';
 import { Container } from '../../styles/Globalstyles';
 
 export const Nav = styled.nav`
-  padding-left: 80px;
-  padding-top: 30px;
   position: fixed;
-  top: 0;
+  top: 34px;
   width: 100%;
   height: 60px;
   background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99;
 `;
 
 export const NavTopBar = styled.div`
@@ -33,8 +32,7 @@ export const NavbarContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
-  padding-right: 120px;
+  height: 60px;
   ${Container};
 `;
 
@@ -44,11 +42,9 @@ export const NavLogo = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 500;
   transition: all 0.5s ease;
-  max-width: 50px;
-  margin-right: 10px;
   &:hover {
     transform: scale(1.08);
   }
@@ -77,7 +73,6 @@ export const Menu = styled.ul`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
     position: absolute;
     top: 80px;
     left: ${({ click }) => (click ? '0' : '-100%')};
@@ -105,7 +100,7 @@ export const MenuLink = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 16px 32px;
   height: 100%;
   transition: all 0.2s ease;
 
@@ -158,4 +153,69 @@ export const MenuLinkBtn = styled(Link)`
   width: 100%;
   border: none;
   outline: none;
+`;
+
+export const DropDownContent = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #000000;
+  color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  @media screen and (max-width: 1000px) {
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+  }
+`;
+
+export const DropDownLi = styled(MenuItemBtn)`
+  display: inline-block;
+
+  &:hover ${DropDownContent} {
+    display: block;
+  }
+
+  @media screen and (max-width: 1000px) {
+    height: 80px;
+    width: 100%;
+  }
+`;
+
+export const Dropbtn = styled.div`
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  height: 100%;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #6a67ce;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgb(60, 129, 246),
+      rgb(157, 85, 255) 20%,
+      rgb(131, 58, 180) 40%,
+      rgb(193, 53, 132) 60%,
+      rgb(225, 48, 108) 80%,
+      rgb(253, 29, 29)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: traslateY(-3rem);
+  }
+
+  @media only screen and (max-width: 1000px) {
+    display: block;
+    color: white;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.2s ease;
+  }
 `;

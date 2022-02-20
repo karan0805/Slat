@@ -1,4 +1,3 @@
-import { Button, PasswordInput, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
@@ -48,54 +47,35 @@ const Login = () => {
           </div>
           <h2>Welcome Back</h2>
 
-          <form>
-            <TextInput
-              style={{ width: 425 }}
-              size="lg"
-              radius="xl"
-              placeholder="mail@website.com"
-              label="Email Address"
-              value={email}
+          <form className="login-form" onSubmit={submitHandler}>
+            <input
+              type="email"
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              placeholder="Email Address"
               required
-            ></TextInput>
-            <br />
-            <PasswordInput
-              style={{ width: 425 }}
-              size="lg"
-              radius="xl"
-              placeholder="Min. 8 character"
-              label="Password"
-              value={pwd}
-              onChange={(e) => setPwd(e.target.value)}
-              required
+              autoComplete="email"
             />
             <br />
+            <input
+              type="password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              placeholder="Password"
+              required
+              autoComplete="current-password"
+            />
             <Link to="/auth/forgot-password" className="fgp">
               Forgot Password?
             </Link>
-            <br />
-            <Button
-              color="teal"
-              style={{
-                marginTop: '20px',
-                width: 425,
-                height: 50,
-              }}
-              radius="xl"
-              onClick={submitHandler}
-            >
-              Sign In
-            </Button>
+            <button className="btn">Sign In</button>
+            <div>
+              Don&apos;t have an account?
+              <Link to="/auth/signup" className="sgp">
+                <span> Sign Up</span>
+              </Link>
+            </div>
           </form>
-
-          <div>
-            <br />
-            Don&apos;t have an account?
-            <Link to="/auth/signup" className="sgp">
-              <span> Sign Up</span>
-            </Link>
-          </div>
         </div>
         <div className="right"></div>
       </div>

@@ -1,36 +1,41 @@
 import {
+  Button,
   Container,
   Group,
-  Button,
-  Space,
   Input,
+  Space,
   Text,
   Title,
 } from '@mantine/core';
 import React from 'react';
-import { ReactComponent as Feature1 } from '../../../assets/svgs/feature1.svg';
-import { ReactComponent as Feature2 } from '../../../assets/svgs/feature2.svg';
-import { ReactComponent as Feature3 } from '../../../assets/svgs/feature3.svg';
-import { ReactComponent as Feature4 } from '../../../assets/svgs/feature4.svg';
-import { ReactComponent as Feature5 } from '../../../assets/svgs/feature5.svg';
-import { ReactComponent as Feature6 } from '../../../assets/svgs/feature6.svg';
 import { HiOutlineMail } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
+import { ReactComponent as About } from '../../../assets/svgs/about.svg';
+import { ReactComponent as Campaign } from '../../../assets/svgs/campaign.svg';
+import { ReactComponent as Design } from '../../../assets/svgs/design.svg';
+import { ReactComponent as Listed } from '../../../assets/svgs/listed.svg';
+import { ReactComponent as Sale } from '../../../assets/svgs/sale.svg';
+import { ReactComponent as Store } from '../../../assets/svgs/store.svg';
 
 const Hero = () => {
   const nav = useNavigate();
   return (
     <Container
       fluid
-      style={{ backgroundColor: 'black', height: '100vh', paddingTop: '150px' }}
+      style={{
+        backgroundColor: 'black',
+        height: '100vh',
+        minHeight: '840px',
+        paddingTop: '200px',
+      }}
     >
-      <Group position="center" direction="column">
+      <Group position="center" direction="column" spacing="xs">
         <Title
           order={1}
           style={{
             fontWeight: '800',
             fontSize: '68px',
-            lineHeight: '88px',
+            lineHeight: '66px',
             color: '#ffffff',
             fontFamily: 'Inter',
           }}
@@ -89,6 +94,9 @@ const Hero = () => {
       <Container>
         <Group position="center" grow>
           <Group
+            onClick={() => {
+              nav('/about');
+            }}
             direction="column"
             position="center"
             sx={() => ({
@@ -99,7 +107,7 @@ const Hero = () => {
               },
             })}
           >
-            <Feature1 />
+            <About />
             <Text
               style={{
                 color: '#cccccc',
@@ -109,10 +117,13 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature1
+              Feature
             </Text>
           </Group>
           <Group
+            onClick={() => {
+              nav('/nft-listed');
+            }}
             direction="column"
             position="center"
             sx={() => ({
@@ -123,7 +134,7 @@ const Hero = () => {
               },
             })}
           >
-            <Feature2 />
+            <Listed />
             <Text
               style={{
                 color: '#cccccc',
@@ -133,10 +144,13 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature2
+              Feature{' '}
             </Text>
           </Group>
           <Group
+            onClick={() => {
+              nav('/nft-sale');
+            }}
             direction="column"
             position="center"
             sx={() => ({
@@ -147,7 +161,7 @@ const Hero = () => {
               },
             })}
           >
-            <Feature3 />
+            <Sale />
             <Text
               style={{
                 color: '#cccccc',
@@ -157,10 +171,13 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature3
+              Feature{' '}
             </Text>
           </Group>
           <Group
+            onClick={() => {
+              nav('/cotton-designs');
+            }}
             direction="column"
             position="center"
             sx={() => ({
@@ -171,7 +188,7 @@ const Hero = () => {
               },
             })}
           >
-            <Feature4 />
+            <Design />
             <Text
               style={{
                 color: '#cccccc',
@@ -181,10 +198,13 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature4
+              Feature
             </Text>
           </Group>
           <Group
+            onClick={() => {
+              nav('/store');
+            }}
             direction="column"
             position="center"
             sx={() => ({
@@ -195,7 +215,7 @@ const Hero = () => {
               },
             })}
           >
-            <Feature5 />
+            <Store />
             <Text
               style={{
                 color: '#cccccc',
@@ -205,10 +225,13 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature5
+              Feature
             </Text>
           </Group>
           <Group
+            onClick={() => {
+              nav('/campaign');
+            }}
             direction="column"
             position="center"
             sx={() => ({
@@ -219,7 +242,7 @@ const Hero = () => {
               },
             })}
           >
-            <Feature6 />
+            <Campaign />
             <Text
               style={{
                 color: '#cccccc',
@@ -229,7 +252,7 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature6
+              Feature{' '}
             </Text>
           </Group>
         </Group>

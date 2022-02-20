@@ -1,4 +1,4 @@
-import { TextInput, PasswordInput, Button } from '@mantine/core';
+import { TextInput, PasswordInput, Button, Group, Text } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -40,15 +40,14 @@ const Signup = () => {
           <div className="logo" onClick={goHome}>
             <img src={logo} width="40px" /> <h1>Slat</h1>
           </div>
-          <h2>Create An Account</h2>
 
-          <form>
+          <Group position="center" direction="column">
+            <h2>Create An Account</h2>
             <TextInput
               style={{ width: 425 }}
               size="lg"
               radius="xl"
               placeholder="Name"
-              label="Full Name"
               value={fname}
               onChange={(e) => setFname(e.target.value)}
               required
@@ -58,7 +57,6 @@ const Signup = () => {
               size="lg"
               radius="xl"
               placeholder="mail@website.com"
-              label="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="new-email"
@@ -68,8 +66,8 @@ const Signup = () => {
               style={{ width: 425 }}
               size="lg"
               radius="xl"
+              autoComplete="new-password"
               placeholder="Min. 8 character"
-              label="Password"
               value={pwd}
               onChange={(e) => setPwd(e.target.value)}
               required
@@ -78,31 +76,33 @@ const Signup = () => {
               style={{ width: 425 }}
               size="lg"
               radius="xl"
+              autoComplete="new-password"
               placeholder="Min. 8 character"
-              label="Confirm Password"
               value={cpwd}
               onChange={(e) => setCpwd(e.target.value)}
               required
             />
             <Button
-              color="teal"
               style={{
-                marginTop: '20px',
                 width: 425,
                 height: 50,
+                fontWeight: 600,
+                fontSize: '16px',
+                backgroundColor: '#FFDE59',
+                color: 'black',
               }}
               radius="xl"
               onClick={submitHandler}
             >
-              Sign In
+              Submit
             </Button>
-          </form>
-          <div>
-            Already have an account?
-            <Link to="/auth/login" className="lgn">
-              <span> Sign In</span>
-            </Link>
-          </div>
+            <Text>
+              Already have an account?
+              <Link to="/auth/login" className="lgn">
+                <span> Sign In</span>
+              </Link>
+            </Text>
+          </Group>
         </div>
         <div className="right"></div>
       </div>

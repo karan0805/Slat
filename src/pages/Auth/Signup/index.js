@@ -1,3 +1,4 @@
+import { TextInput, PasswordInput, Button } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -40,51 +41,68 @@ const Signup = () => {
             <img src={logo} width="40px" /> <h1>Slat</h1>
           </div>
           <h2>Create An Account</h2>
-          <form className="signup-form" onSubmit={submitHandler}>
-            <input
-              type="text"
+
+          <form>
+            <TextInput
+              style={{ width: 425 }}
+              size="lg"
+              radius="xl"
+              placeholder="Name"
+              label="Full Name"
               value={fname}
-              placeholder="Full Name"
               onChange={(e) => setFname(e.target.value)}
               required
             />
-
-            <input
-              type="text"
+            <TextInput
+              style={{ width: 425 }}
+              size="lg"
+              radius="xl"
+              placeholder="mail@website.com"
+              label="Email Address"
               value={email}
-              placeholder="Email Address"
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="new-email"
               required
             />
-
-            <input
-              type="password"
+            <PasswordInput
+              style={{ width: 425 }}
+              size="lg"
+              radius="xl"
+              placeholder="Min. 8 character"
+              label="Password"
               value={pwd}
-              placeholder="Password"
               onChange={(e) => setPwd(e.target.value)}
-              autoComplete="new-password"
               required
             />
-
-            <input
-              type="password"
+            <PasswordInput
+              style={{ width: 425 }}
+              size="lg"
+              radius="xl"
+              placeholder="Min. 8 character"
+              label="Confirm Password"
               value={cpwd}
-              placeholder="Confirm Password"
               onChange={(e) => setCpwd(e.target.value)}
               required
             />
-
-            <button className="btn" type="submit">
-              Submit
-            </button>
-            <div>
-              Already have an account?
-              <Link to="/auth/login" className="lgn">
-                <span> Sign In</span>
-              </Link>
-            </div>
+            <Button
+              color="teal"
+              style={{
+                marginTop: '20px',
+                width: 425,
+                height: 50,
+              }}
+              radius="xl"
+              onClick={submitHandler}
+            >
+              Sign In
+            </Button>
           </form>
+          <div>
+            Already have an account?
+            <Link to="/auth/login" className="lgn">
+              <span> Sign In</span>
+            </Link>
+          </div>
         </div>
         <div className="right"></div>
       </div>

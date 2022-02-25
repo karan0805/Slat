@@ -47,6 +47,8 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
       setTitle('Organization Settings');
     } else if (window.location.pathname === '/dashboard/account/manage') {
       setTitle('Account Settings');
+    } else if (window.location.pathname === '/dashboard/project') {
+      setTitle('Project');
     }
   });
 

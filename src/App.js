@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import OrganizationSettings from './pages/OrganizationSettings';
 import ProfileSettings from './pages/ProfileSettings';
+import { ProjectView } from './pages/ProjectView';
 
 function App() {
   return (
@@ -40,6 +41,14 @@ function App() {
               element={
                 <DashboardAppshell>
                   <Dashboard />
+                </DashboardAppshell>
+              }
+            />
+            <Route
+              path="project"
+              element={
+                <DashboardAppshell>
+                  <ProjectView />
                 </DashboardAppshell>
               }
             />

@@ -15,6 +15,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import { BiPlus } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import CreateProject from '../../components/CreateProject/CreateProject';
 import {
@@ -50,7 +51,7 @@ const Dashboard = () => {
   const user = useSelector(selectUser);
   const activeOrg = useSelector(selectActiveOrg);
   const orgDetails = useSelector(selectActiveOrgDetails);
-
+  const nav = useNavigate();
   const [addProject, setAddProject] = useState(false);
 
   var myDate = new Date();
@@ -146,7 +147,16 @@ const Dashboard = () => {
                         },
                       })}
                     >
-                      <Group>
+                      <Group
+                        onClick={() => {
+                          nav(
+                            '/dashboard/project?projectId=' +
+                              project._id +
+                              '&name=' +
+                              project.name,
+                          );
+                        }}
+                      >
                         <Avatar src={project.image} radius="md" size="32px" />
                         <Text>{project.name}</Text>
                       </Group>

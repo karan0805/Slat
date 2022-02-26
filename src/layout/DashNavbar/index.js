@@ -39,16 +39,16 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
   useEffect(() => {
     if (window.location.pathname === '/dashboard') {
       setTitle('Home');
-    } else if (window.location.pathname === '/dashboard/projects') {
-      setTitle('Projects');
+    } else if (window.location.pathname === '/dashboard/project') {
+      const queryparams = new URLSearchParams(window.location.search);
+      const token = queryparams.get('name');
+      setTitle(token);
     } else if (window.location.pathname === '/dashboard/explore') {
       setTitle('Explore');
     } else if (window.location.pathname === '/dashboard/organizations/manage') {
       setTitle('Organization Settings');
     } else if (window.location.pathname === '/dashboard/account/manage') {
       setTitle('Account Settings');
-    } else if (window.location.pathname === '/dashboard/project') {
-      setTitle('Project');
     }
   });
 

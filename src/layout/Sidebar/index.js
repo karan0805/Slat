@@ -4,6 +4,7 @@ import { FiHome, FiLogOut, FiSearch } from 'react-icons/fi';
 import { MdWorkspaces } from 'react-icons/md';
 import {
   Menu,
+  SubMenu,
   MenuItem,
   ProSidebar,
   SidebarContent,
@@ -13,7 +14,10 @@ import {
 import 'react-pro-sidebar/dist/css/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { selectActiveOrg } from '../../redux/slices/OrgSlice';
+import {
+  selectActiveOrg,
+  selectActiveOrgDetails,
+} from '../../redux/slices/OrgSlice';
 import { logout, selectUser } from '../../redux/slices/UserSlice';
 import logo from './../../assets/images/logo.svg';
 import './sidebar.css';
@@ -22,6 +26,7 @@ const Sidebar = ({ menuCollapse }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const activeOrg = useSelector(selectActiveOrg);
+  const orgDetails = useSelector(selectActiveOrgDetails);
   const user = useSelector(selectUser);
 
   const logoutHandler = () => {
@@ -56,7 +61,7 @@ const Sidebar = ({ menuCollapse }) => {
             </div>
           </SidebarHeader>
           <SidebarContent>
-            <Menu iconShape="square">
+            <Menu iconShape="circle">
               <MenuItem
                 active={window.location.pathname === '/dashboard'}
                 icon={<FiHome />}
@@ -71,17 +76,27 @@ const Sidebar = ({ menuCollapse }) => {
                 Explore
                 <Link to="/dashboard/explore" />
               </MenuItem>
-              <MenuItem
+
+              <SubMenu title={activeOrg.orgName} icon={<MdWorkspaces />}>
+                {orgDetails.projects.map((project) => (
+                  <MenuItem key="i">
+                    {project.name}
+                    <Link
+                      to={`/dashboard/project?projectId=${project._id} &name= ${project.name}`}
+                    />
+                  </MenuItem>
+                ))}
+              </SubMenu>
+              {/* <MenuItem
                 active={window.location.pathname === '/dashboard/projects'}
                 icon={<MdWorkspaces />}
               >
                 {activeOrg.orgName}
-                <Link to="/dashboard/projects" />
-              </MenuItem>
+              </MenuItem> */}
             </Menu>
           </SidebarContent>
           <SidebarFooter>
-            <Menu iconShape="square">
+            <Menu iconShape="circle">
               {activeOrg.owner === user._id ? (
                 <MenuItem
                   active={

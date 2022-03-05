@@ -10,6 +10,7 @@ import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
+import Explore from './pages/Explore';
 import OrganizationSettings from './pages/OrganizationSettings';
 import ProfileSettings from './pages/ProfileSettings';
 import { ProjectView } from './pages/ProjectView';
@@ -32,15 +33,7 @@ function App() {
               path="explore"
               element={
                 <DashboardAppshell>
-                  <Dashboard />
-                </DashboardAppshell>
-              }
-            />
-            <Route
-              path="projects"
-              element={
-                <DashboardAppshell>
-                  <Dashboard />
+                  <Explore />
                 </DashboardAppshell>
               }
             />

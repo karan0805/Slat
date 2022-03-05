@@ -12,7 +12,7 @@ import {
 import React from 'react';
 import img from '../../../assets/images/dashboard.png';
 
-const Section1 = () => {
+const Section3 = () => {
   return (
     <Container
       fluid
@@ -32,7 +32,7 @@ const Section1 = () => {
             fontFamily: 'Inter',
           }}
         >
-          Get Familiar with
+          Save Time By Adopting
         </Title>
         <Title
           order={1}
@@ -48,7 +48,7 @@ const Section1 = () => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Kanban Boards
+          Automation
         </Title>
       </Group>
       <Space h="15px" />
@@ -63,8 +63,9 @@ const Section1 = () => {
           fontWeight: '400',
         }}
       >
-        Visualize your progress on digital Kanban boards and see your team move
-        tasks from to-do to done.
+        Don’t spend time on manual work. Let us do it for you. Streamline
+        processes, make sure your team doesn’t miss critical steps,
+        <br /> and deliver value faster with Automation.
       </Text>
       <Space h="75px" />
       <Container size="xl">
@@ -89,12 +90,13 @@ const Section1 = () => {
               style={{ paddingTop: '20px', paddingBottom: '20px' }}
             >
               <Text size="lg" style={{ fontFamily: 'Inter', fontSize: '45px' }}>
-                Create and manage Kanban boards online with Slat
+                Save time for more important problems
               </Text>
               <Text size="lg" style={{ fontFamily: 'Inter', fontSize: '24px' }}>
                 <Space h="md" />
-                Visualize your progress on digital Kanban boards and see your
-                team move tasks from to-do to done.
+                Make Assignment of tasks easy and fast with Automation. You can
+                use Automation to assign tasks to your team members and make
+                sure they are on time.
                 <Space h="md" />
                 <Group>
                   <Button
@@ -115,4 +117,4 @@ const Section1 = () => {
   );
 };
 
-export default Section1;
+export default Section3;

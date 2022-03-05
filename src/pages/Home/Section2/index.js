@@ -12,7 +12,7 @@ import {
 import React from 'react';
 import img from '../../../assets/images/dashboard.png';
 
-const Section1 = () => {
+const Section2 = () => {
   return (
     <Container
       fluid
@@ -32,7 +32,7 @@ const Section1 = () => {
             fontFamily: 'Inter',
           }}
         >
-          Get Familiar with
+          Create Your Own
         </Title>
         <Title
           order={1}
@@ -48,7 +48,7 @@ const Section1 = () => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Kanban Boards
+          Project Calendars
         </Title>
       </Group>
       <Space h="15px" />
@@ -63,38 +63,24 @@ const Section1 = () => {
           fontWeight: '400',
         }}
       >
-        Visualize your progress on digital Kanban boards and see your team move
-        tasks from to-do to done.
+        Slat makes easy for teams to plan, manage, and visualize their work in a
+        shared team calendar.
       </Text>
       <Space h="75px" />
       <Container size="xl">
         <Grid gutter="50">
-          <Grid.Col lg={6} md={12}>
-            <Card shadow="xl" padding="xl" radius="lg">
-              <Card.Section>
-                <Image
-                  radius="md"
-                  height="384px"
-                  src={img}
-                  alt="Random"
-                  withPlaceholder
-                  fit="contain"
-                />
-              </Card.Section>
-            </Card>
-          </Grid.Col>
           <Grid.Col lg={6} md={12}>
             <Group
               direction="column"
               style={{ paddingTop: '20px', paddingBottom: '20px' }}
             >
               <Text size="lg" style={{ fontFamily: 'Inter', fontSize: '45px' }}>
-                Create and manage Kanban boards online with Slat
+                Hit your deadlines with shared team calendar software
               </Text>
               <Text size="lg" style={{ fontFamily: 'Inter', fontSize: '24px' }}>
                 <Space h="md" />
-                Visualize your progress on digital Kanban boards and see your
-                team move tasks from to-do to done.
+                View your team’s work in one online calendar—so you can hit your
+                deadlines every time.
                 <Space h="md" />
                 <Group>
                   <Button
@@ -109,10 +95,24 @@ const Section1 = () => {
               </Text>
             </Group>
           </Grid.Col>
+          <Grid.Col lg={6} md={12}>
+            <Card shadow="xl" padding="xl" radius="lg">
+              <Card.Section>
+                <Image
+                  radius="md"
+                  height="384px"
+                  src={img}
+                  alt="Random"
+                  withPlaceholder
+                  fit="contain"
+                />
+              </Card.Section>
+            </Card>
+          </Grid.Col>
         </Grid>
       </Container>
     </Container>
   );
 };
 
-export default Section1;
+export default Section2;

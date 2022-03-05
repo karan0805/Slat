@@ -1,15 +1,16 @@
+import { Avatar } from '@mantine/core';
 import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
 import { FiHome, FiLogOut, FiSearch } from 'react-icons/fi';
 import { MdWorkspaces } from 'react-icons/md';
 import {
   Menu,
-  SubMenu,
   MenuItem,
   ProSidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SubMenu,
 } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -78,8 +79,13 @@ const Sidebar = ({ menuCollapse }) => {
               </MenuItem>
 
               <SubMenu title={activeOrg.orgName} icon={<MdWorkspaces />}>
-                {orgDetails.projects.map((project) => (
-                  <MenuItem key="i">
+                {orgDetails.projects.map((project, i) => (
+                  <MenuItem
+                    key={i}
+                    icon={
+                      <Avatar src={project.image} radius="sm" size="24px" />
+                    }
+                  >
                     {project.name}
                     <Link
                       to={`/dashboard/project?projectId=${project._id} &name= ${project.name}`}

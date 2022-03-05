@@ -12,7 +12,7 @@ import {
 import React from 'react';
 import img from '../../../assets/images/dashboard.png';
 
-const Section1 = () => {
+const Section4 = () => {
   return (
     <Container
       fluid
@@ -32,7 +32,7 @@ const Section1 = () => {
             fontFamily: 'Inter',
           }}
         >
-          Get Familiar with
+          Get
         </Title>
         <Title
           order={1}
@@ -48,7 +48,7 @@ const Section1 = () => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Kanban Boards
+          Key Insights
         </Title>
       </Group>
       <Space h="15px" />
@@ -63,38 +63,25 @@ const Section1 = () => {
           fontWeight: '400',
         }}
       >
-        Visualize your progress on digital Kanban boards and see your team move
-        tasks from to-do to done.
+        See data in real time. Dashboards let you gauge progress across teams
+        and projects—without the manual effort on same page.
       </Text>
       <Space h="75px" />
       <Container size="xl">
         <Grid gutter="50">
-          <Grid.Col lg={6} md={12}>
-            <Card shadow="xl" padding="xl" radius="lg">
-              <Card.Section>
-                <Image
-                  radius="md"
-                  height="384px"
-                  src={img}
-                  alt="Random"
-                  withPlaceholder
-                  fit="contain"
-                />
-              </Card.Section>
-            </Card>
-          </Grid.Col>
           <Grid.Col lg={6} md={12}>
             <Group
               direction="column"
               style={{ paddingTop: '20px', paddingBottom: '20px' }}
             >
               <Text size="lg" style={{ fontFamily: 'Inter', fontSize: '45px' }}>
-                Create and manage Kanban boards online with Slat
+                Get key insights without cobbling them together
               </Text>
               <Text size="lg" style={{ fontFamily: 'Inter', fontSize: '24px' }}>
                 <Space h="md" />
-                Visualize your progress on digital Kanban boards and see your
-                team move tasks from to-do to done.
+                Using Slats Dashboard, getting key insights all at one place is
+                easy. You can see the progress of your team and projects, and
+                see the progress of your team and projects.
                 <Space h="md" />
                 <Group>
                   <Button
@@ -109,10 +96,24 @@ const Section1 = () => {
               </Text>
             </Group>
           </Grid.Col>
+          <Grid.Col lg={6} md={12}>
+            <Card shadow="xl" padding="xl" radius="lg">
+              <Card.Section>
+                <Image
+                  radius="md"
+                  height="384px"
+                  src={img}
+                  alt="Random"
+                  withPlaceholder
+                  fit="contain"
+                />
+              </Card.Section>
+            </Card>
+          </Grid.Col>
         </Grid>
       </Container>
     </Container>
   );
 };
 
-export default Section1;
+export default Section4;

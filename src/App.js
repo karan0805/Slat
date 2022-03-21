@@ -14,6 +14,7 @@ import Explore from './pages/Explore';
 import OrganizationSettings from './pages/OrganizationSettings';
 import ProfileSettings from './pages/ProfileSettings';
 import { ProjectView } from './pages/ProjectView';
+import Chart from './pages/Chart';
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
               element={
                 <DashboardAppshell>
                   <ProjectView />
+                </DashboardAppshell>
+              }
+            />
+            <Route
+              path="project/chart/:projectId"
+              element={
+                <DashboardAppshell>
+                  <Chart />
                 </DashboardAppshell>
               }
             />

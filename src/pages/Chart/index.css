@@ -1,5 +1,63 @@
-/* .org-tree li {
+.org-tree ul {
+  padding-top: 20px;
+  position: relative;
+}
+
+.org-tree li {
   float: left;
   text-align: center;
   list-style-type: none;
-} */
+  position: relative;
+  padding: 20px 5px 0 5px;
+
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+.org-tree li::before,
+.org-tree li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+.org-tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+.org-tree li:only-child::after,
+.org-tree li:only-child::before {
+  display: none;
+}
+
+.org-tree li:first-child::before,
+.org-tree li:last-child::after {
+  border: 0 none;
+}
+
+.org-tree li:last-child::before {
+  border-right: 1px solid #ccc;
+}
+
+.org-tree li:last-child::before {
+  border-radius: 0 5px 0 0;
+}
+.org-tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+}
+
+.org-tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+}

@@ -45,9 +45,44 @@ const projectData = [
   },
 ];
 
+// const data = [
+//   {
+//     name: 'Root',
+//     children: [
+//       {
+//         name: 'Child 1',
+//         children: [
+//           {
+//             name: 'Grand Child',
+//           },
+//         ],
+//       },
+//       {
+//         name: 'Child 2',
+//         children: [
+//           {
+//             name: 'Grand Child',
+//             children: [
+//               {
+//                 name: 'Great Grand Child 1',
+//               },
+//               {
+//                 name: 'Grand Grand Child 2',
+//               },
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         name: 'Child 3',
+//       },
+//     ],
+//   },
+// ];
+
 const Card = ({ data }) => {
   return (
-    <>
+    <ul>
       {data.map((member) => (
         <>
           <li key={member.name} className="card">
@@ -56,17 +91,15 @@ const Card = ({ data }) => {
           </li>
         </>
       ))}
-    </>
+    </ul>
   );
 };
 
 const Chart = () => {
   return (
-    <>
-      <div className="org-tree" align="center">
-        <Card data={projectData} />
-      </div>
-    </>
+    <div className="org-tree">
+      <Card data={projectData} />
+    </div>
   );
 };
 

@@ -1,17 +1,36 @@
-import React, { useState } from 'react';
-import { Button, Textarea, TextInput, Modal } from '@mantine/core';
+import React, { useState, useEffect } from 'react';
+import { Button, Textarea, TextInput, Modal, Select } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { projectApi, userApi } from '../../api';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { update } from '../../redux/slices/UserSlice';
 import { switchOrg } from '../../redux/slices/OrgSlice';
+import { orgApi } from '../../api';
 
 const CreateProject = ({ addProject, setAddProject, activeOrg }) => {
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [endDate, setEndDate] = useState();
+  const [members, setMembers] = useState([]);
+  const [lead, setLead] = useState('');
+  const memberList = [];
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    orgApi.getMembers(activeOrg).then((response) => {
+      if (response.status === 200) {
+        setMembers(response.data.data);
+      }
+    });
+  }, [activeOrg]);
+
+  for (var i = 0; i < members.length; i++) {
+    memberList.push({
+      value: members[i].fullName,
+      label: members[i].fullName,
+    });
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +39,7 @@ const CreateProject = ({ addProject, setAddProject, activeOrg }) => {
       projectDescription,
       endDate,
       orgId: activeOrg._id,
+      lead: lead,
     };
     projectApi.addProject(payload).then(
       (res) => {
@@ -92,6 +112,14 @@ const CreateProject = ({ addProject, setAddProject, activeOrg }) => {
             radius="md"
             onChange={setEndDate}
             minDate={new Date()}
+            required
+          />
+          <Select
+            label="Choose a Lead"
+            placeholder="Pick One"
+            data={memberList}
+            value={lead}
+            onChange={setLead}
             required
           />
           <br />

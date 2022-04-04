@@ -9,6 +9,7 @@ import ForgotPassword from './pages/Auth/Forgot-Password';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import Dashboard from './pages/Dashboard';
+import { Kanban } from './pages/ProjectView/components/Kanban';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import OrganizationSettings from './pages/OrganizationSettings';
@@ -43,6 +44,14 @@ function App() {
               element={
                 <DashboardAppshell>
                   <ProjectView />
+                </DashboardAppshell>
+              }
+            />
+            <Route
+              path="board"
+              element={
+                <DashboardAppshell>
+                  <Kanban />
                 </DashboardAppshell>
               }
             />

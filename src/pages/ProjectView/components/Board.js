@@ -1,8 +1,10 @@
 import React from 'react';
 import { SimpleGrid, Box, Group, ThemeIcon, Text, Avatar } from '@mantine/core';
 import { BiPlus } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 export const Board = () => {
+  const nav = useNavigate();
   const card = ['design', 'development', 'testing', 'qa', 'release'];
 
   return (
@@ -37,6 +39,9 @@ export const Board = () => {
         {card.map((card) => (
           <Box
             key={card}
+            onClick={() => {
+              nav('/dashboard/board');
+            }}
             sx={() => ({
               display: 'block',
               cursor: 'pointer',

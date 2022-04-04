@@ -3,53 +3,63 @@ import { SimpleGrid, Box, Group, ThemeIcon, Text, Avatar } from '@mantine/core';
 import { BiPlus } from 'react-icons/bi';
 
 export const Board = () => {
+  const card = ['design', 'development', 'testing', 'qa', 'release'];
+
   return (
     <>
-      <SimpleGrid cols={4}>
+      <SimpleGrid cols={3}>
         <Box
           sx={() => ({
+            margin: '10px',
             display: 'block',
             cursor: 'pointer',
             padding: '5px',
-            borderRadius: '5px',
+            borderRadius: '4px',
             fontWeight: '500',
-
             '&:hover': {
               backgroundColor: '#f5f5f5',
             },
           })}
         >
-          <Group>
+          <Group direction="column" position="center">
             <ThemeIcon
               variant="light"
-              size="lg"
-              color="pink"
+              size="80px"
+              radius="40px"
+              color="grey"
               style={{ border: '1px dashed black' }}
             >
               <BiPlus />
             </ThemeIcon>
-            <Text>Create Project</Text>
+            <Text>Add Board</Text>
           </Group>
         </Box>
+        {card.map((card) => (
+          <Box
+            key={card}
+            sx={() => ({
+              display: 'block',
+              cursor: 'pointer',
+              padding: '5px',
+              borderRadius: '5px',
+              fontWeight: '500',
+              margin: '10px',
 
-        <Box
-          sx={() => ({
-            display: 'block',
-            cursor: 'pointer',
-            padding: '5px',
-            borderRadius: '5px',
-            fontWeight: '500',
-
-            '&:hover': {
-              backgroundColor: '#f5f5f5',
-            },
-          })}
-        >
-          <Group>
-            <Avatar radius="md" size="32px" />
-            <Text>YO</Text>
-          </Group>
-        </Box>
+              '&:hover': {
+                backgroundColor: '#f5f5f5',
+              },
+            })}
+          >
+            <Group direction="column" position="center">
+              <Avatar
+                src={`https://avatars.dicebear.com/api/initials/${card}.svg`}
+                radius="40px"
+                size="80px"
+              />
+              <Text>{card}</Text>
+            </Group>
+          </Box>
+        ))}
       </SimpleGrid>
     </>
   );

@@ -67,3 +67,10 @@
   width: 0;
   height: 20px;
 }
+
+.id {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2%;
+}

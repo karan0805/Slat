@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { projectApi } from '../../../api';
 
 export const Member = ({ activeOrg }) => {
+  const [maintainers, setMaintainers] = useState([]);
   const [members, setMembers] = useState([]);
   const [lead, setLead] = useState([]);
 
@@ -15,6 +16,7 @@ export const Member = ({ activeOrg }) => {
         console.log(response.data.data);
         setLead(response.data.data.lead);
         setMembers(response.data.data.members);
+        setMaintainers(response.data.data.maintainers);
       }
     });
   }, [activeOrg]);
@@ -40,6 +42,18 @@ export const Member = ({ activeOrg }) => {
             <td>{lead.email}</td>
             <td>Lead</td>
           </tr>
+          {maintainers.map((maintainer) => (
+            <tr key={maintainer}>
+              <td>
+                <Group>
+                  <Avatar src={maintainer.image} alt="it's me" radius="xl" />
+                  <>{maintainer.fullName}</>
+                </Group>
+              </td>
+              <td>{maintainer.email}</td>
+              <td>Maintainer</td>
+            </tr>
+          ))}
           {members.map((member) => (
             <tr key={member}>
               <td>
@@ -49,7 +63,7 @@ export const Member = ({ activeOrg }) => {
                 </Group>
               </td>
               <td>{member.email}</td>
-              <td>Lead</td>
+              <td>Member</td>
             </tr>
           ))}
         </tbody>

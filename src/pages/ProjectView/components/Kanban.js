@@ -2,7 +2,7 @@ import Cards from './Cards';
 import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
-import { SegmentedControl, Textarea, Button } from '@mantine/core';
+// import { SegmentedControl, Textarea, Button } from '@mantine/core';
 
 const { uuid } = require('uuidv4');
 //Column State
@@ -32,27 +32,27 @@ const columnsFromBackend = {
 };
 
 //Add function
-const AddTask = (e, columns, columnId, setColumns) => {
-  e.preventDefault();
+// const AddTask = (e, columns, columnId, setColumns) => {
+//   e.preventDefault();
 
-  const data = {
-    id: uuid(),
-    priority: e.target.priority.value,
-    content: e.target.content.value,
-  };
-  console.log(data);
-  const addcolumn = columns[columnId];
-  console.log(addcolumn);
-  setColumns({
-    ...columns,
-    [columnId]: {
-      ...addcolumn,
-      items: data,
-    },
-  });
-  const addcolumn1 = columns[columnId];
-  console.log(addcolumn1);
-};
+//   const data = {
+//     id: uuid(),
+//     priority: e.target.priority.value,
+//     content: e.target.content.value,
+//   };
+//   console.log(data);
+//   const addcolumn = columns[columnId];
+//   console.log(addcolumn);
+//   setColumns({
+//     ...columns,
+//     [columnId]: {
+//       ...addcolumn,
+//       items: data,
+//     },
+//   });
+//   const addcolumn1 = columns[columnId];
+//   console.log(addcolumn1);
+// };
 
 //Drag and Drop function
 const onDragEnd = (result, columns, setColumns) => {
@@ -156,7 +156,7 @@ export const Kanban = () => {
                   }}
                 </Droppable>
               </div>
-              <form onSubmit={(e) => AddTask(e, columns, columnId, setColumns)}>
+              {/* <form onSubmit={(e) => AddTask(e, columns, columnId, setColumns)}>
                 <SegmentedControl
                   name="priority"
                   fullWidth
@@ -175,7 +175,7 @@ export const Kanban = () => {
                 >
                   AddTask
                 </Button>
-              </form>
+              </form> */}
             </div>
           );
         })}

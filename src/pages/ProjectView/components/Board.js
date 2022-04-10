@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SimpleGrid, Box, Group, ThemeIcon, Text, Avatar } from '@mantine/core';
 import { BiPlus } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import AddBoard from './AddBoard';
 
 export const Board = () => {
   const nav = useNavigate();
   const card = ['design', 'development', 'testing', 'qa', 'release'];
 
+  const [addBoard, setAddBoard] = useState(false);
+
   return (
     <>
+      <AddBoard addBoard={addBoard} setAddBoard={setAddBoard} />
       <SimpleGrid cols={3}>
         <Box
+          onClick={() => {
+            setAddBoard(true);
+          }}
           sx={() => ({
             margin: '10px',
             display: 'block',

@@ -27,7 +27,7 @@ const CreateProject = ({ addProject, setAddProject, activeOrg }) => {
 
   for (var i = 0; i < members.length; i++) {
     memberList.push({
-      value: members[i].fullName,
+      value: members[i]._id,
       label: members[i].fullName,
     });
   }

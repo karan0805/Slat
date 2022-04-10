@@ -1,4 +1,4 @@
-import { Avatar, Paper } from '@mantine/core';
+import { Paper } from '@mantine/core';
 import React from 'react';
 
 import './index.css';
@@ -92,12 +92,12 @@ const Card = ({ data }) => {
         <>
           <li key={member.name}>
             <Paper shadow="sm" p="md" className="id">
-              <Avatar
+              {/* <Avatar
                 radius="xl"
                 size="lg"
                 shadow="sm"
                 src={`https://avatars.dicebear.com/api/adventurer-neutral/${member.name}.svg`}
-              />
+              /> */}
               <div className="card-body">
                 <h2>{member.name}</h2>
                 <p>{member.title}</p>

@@ -2,7 +2,6 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 *{
     margin: 0;
@@ -22,13 +21,13 @@ html {
     }
 }
 body{
-    font-family: 'Inter', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 400;
     line-height: 1.6;
+    font-size: 1.6rem;
+    background: #F9F9F9;
     color: #333;
-    background-color: #fff;
-    font-size: 16px;
-    line-height: 1.5;
+
 }
 `;
 
@@ -36,8 +35,8 @@ export default GlobalStyles;
 
 export const Container = styled.div`
   margin: 0 auto;
-  padding: 0 200px;
-  max-width: 1300px;
+  padding: 0 100px;
+  max-width: 1400px;
   width: 100%;
 
   @media (max-width: 400px) {
@@ -59,17 +58,18 @@ export const Container = styled.div`
 
 export const Button = styled.button`
   border-radius: ${({ bigRadius }) => (bigRadius ? '30px' : '50px')};
-  background-color: ${({ primary }) => (primary ? '#fff' : '#000')};
+  background: linear-gradient(91.76deg, #18c3e6 4.94%, #a1e690 94.92%);
   color: ${({ primary }) => (primary ? '#000' : '#000')};
   padding: ${({ big }) => (big ? '18px 30px' : '10px 28px')};
   font-size: ${({ bigFont }) => (bigFont ? '32px' : '16px')};
   outline: none;
   cursor: pointer;
-  border: none;
+  border: 2px white solid;
   transition: all 0.5s ease;
   font-weight: 500;
 
   &:hover {
+    transform: translateY(-3px);
     background-color: ${({ primary }) => (primary ? '#6A67CE' : '#ffb923')};
     color: #fff;
   }
@@ -83,48 +83,34 @@ export const Button = styled.button`
   }
   @media only screen and (max-width: 375px) {
     padding: ${({ big }) => (big ? '12px 20px' : '10px 20px')};
-    font-size: ${({ bigFont }) => (bigFont ? '16px' : '18px')};
+    font-size: ${({ bigFont }) => (bigFont ? '16px' : '10px')};
   }
 `;
 
 export const OutlineButton = styled.button`
-  border-radius: ${({ bigRadius }) => (bigRadius ? '40px' : '30px')};
-  border: 2px solid #333;
-  color: #333;
+  border-radius: ${({ bigRadius }) => (bigRadius ? '30px' : '50px')};
+  border: 2px white solid;
+  color: white;
   outline: none;
-  padding: ${({ big }) => (big ? '15px 60px' : '13px 55px')};
-  font-size: ${({ fontBig }) => (fontBig ? '32px' : '24px')};
+  padding: ${({ big }) => (big ? '18px 30px' : '10px 28px')};
+  font-size: ${({ bigFont }) => (bigFont ? '32px' : '16px')};
   transition: all 0.5s ease;
-  background-color: #fefefe;
+  background-color: transparent;
+  text-align: center;
+  font-weight: 500;
 
   &:hover {
-    background-color: #333;
+    transform: translateY(-3px);
+    background-color: transparent;
     color: #fff;
-    border: none;
-    transform: translateY(-0.5rem) scale(1.02);
-  }
-  &:active {
-    transform: translateY(0.5rem);
   }
 
-  @media only screen and (max-width: 1200px) {
-    border-radius: ${({ bigRadius }) => (bigRadius ? '20px' : '18px')};
-    padding: ${({ big }) => (big ? '9px 30px' : '8px 28px')};
-    font-size: ${({ fontBig }) => (fontBig ? '18px' : '16px')};
+  @media only screen and (max-width: 1000px) {
+    /* width: 100%; */
+    padding: ${({ big }) => (big ? '18px 30px' : '10px 20px')};
   }
-
-  @media only screen and (max-width: 780px) {
-    border: none;
-    color: #ffb923;
-    padding: 1rem 2rem;
-    background: none;
-    transition: all 0.4s ease;
-
-    &:hover {
-      border-bottom: 1px solid #ffb923;
-      background: none;
-      border-radius: 0;
-      color: #ffb923;
-    }
+  @media only screen and (max-width: 375px) {
+    padding: ${({ big }) => (big ? '12px 20px' : '10px 20px')};
+    font-size: ${({ bigFont }) => (bigFont ? '16px' : '10px')};
   }
 `;

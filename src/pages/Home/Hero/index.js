@@ -1,18 +1,11 @@
-import {
-  Button,
-  Container,
-  Group,
-  Input,
-  Space,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Container, Group, Input, Space, Text, Title } from '@mantine/core';
 import React from 'react';
+import { Button } from '../../../styles/Globalstyles';
 import { HiOutlineMail } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as About } from '../../../assets/svgs/about.svg';
 import { ReactComponent as Campaign } from '../../../assets/svgs/campaign.svg';
-import { ReactComponent as Design } from '../../../assets/svgs/design.svg';
+//import { ReactComponent as Design } from '../../../assets/svgs/design.svg';
 import { ReactComponent as Listed } from '../../../assets/svgs/listed.svg';
 import { ReactComponent as Sale } from '../../../assets/svgs/sale.svg';
 import { ReactComponent as Store } from '../../../assets/svgs/store.svg';
@@ -24,9 +17,8 @@ const Hero = () => {
       fluid
       style={{
         backgroundColor: 'black',
-        height: '100vh',
-        minHeight: '840px',
-        paddingTop: '200px',
+        minHeight: '100vh',
+        paddingTop: '100px',
       }}
     >
       <Group position="center" direction="column" spacing="xs">
@@ -38,6 +30,7 @@ const Hero = () => {
             lineHeight: '66px',
             color: '#ffffff',
             fontFamily: 'Inter',
+            textAlign: 'center',
           }}
         >
           Try the World&apos;s Coolest
@@ -54,6 +47,7 @@ const Hero = () => {
               'repeating-linear-gradient(45deg, #3c81f6, #9d55ff 20%, #833ab4 40%, #c13584 60%, #e1306c 80%, #fd1d1d)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
+            textAlign: 'center',
           }}
         >
           Project Planning Software
@@ -95,7 +89,7 @@ const Hero = () => {
         <Group position="center" grow>
           <Group
             onClick={() => {
-              nav('/about');
+              nav('/');
             }}
             direction="column"
             position="center"
@@ -117,12 +111,12 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature
+              About
             </Text>
           </Group>
           <Group
             onClick={() => {
-              nav('/nft-listed');
+              nav('/');
             }}
             direction="column"
             position="center"
@@ -144,12 +138,12 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature{' '}
+              Features{' '}
             </Text>
           </Group>
           <Group
             onClick={() => {
-              nav('/nft-sale');
+              nav('/');
             }}
             direction="column"
             position="center"
@@ -171,10 +165,10 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature{' '}
+              Community{' '}
             </Text>
           </Group>
-          <Group
+          {/* <Group
             onClick={() => {
               nav('/cotton-designs');
             }}
@@ -200,10 +194,10 @@ const Hero = () => {
             >
               Feature
             </Text>
-          </Group>
+          </Group> */}
           <Group
             onClick={() => {
-              nav('/store');
+              nav('/');
             }}
             direction="column"
             position="center"
@@ -225,12 +219,12 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature
+              Pricing
             </Text>
           </Group>
           <Group
             onClick={() => {
-              nav('/campaign');
+              nav('/');
             }}
             direction="column"
             position="center"
@@ -252,7 +246,7 @@ const Hero = () => {
                 fontWeight: '600',
               }}
             >
-              Feature{' '}
+              News{' '}
             </Text>
           </Group>
         </Group>

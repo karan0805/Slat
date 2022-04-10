@@ -4,31 +4,26 @@ import { Link } from 'react-router-dom';
 import { Container } from '../../styles/Globalstyles';
 
 export const Nav = styled.nav`
-  position: fixed;
-  top: 34px;
   width: 100%;
-  height: 60px;
+  height: 81px;
   background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99;
 `;
 
-export const NavTopBar = styled.div`
-  background-color: #ffbb39;
+export const NavBanner = styled.div`
+  background: linear-gradient(91.76deg, #18c3e6 4.94%, #a1e690 94.92%);
   color: white;
   text-align: center;
-  font-weight: bold;
-  position: fixed;
-  top: 0;
+  font-weight: 600;
+  position: relative;
   width: 100%;
-  height: 24px;
   padding: 5px 0;
-  z-index: 99;
 `;
 
 export const NavbarContainer = styled(Container)`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,7 +53,6 @@ export const MenuIcon = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-50%, 20%);
     font-size: 3rem;
     cursor: pointer;
   }
@@ -72,10 +66,14 @@ export const Menu = styled.ul`
   @media only screen and (max-width: 1000px) {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     position: absolute;
+    height: 540px;
     top: 80px;
-    left: ${({ click }) => (click ? '0' : '-100%')};
+    margin: 0px;
+    padding: 0px;
+    left: ${({ click }) => (click ? '0px' : '-100vw')};
     background-color: rgba(0, 0, 0, 0.9);
     transition: all 0.5s ease;
   }
@@ -107,13 +105,9 @@ export const MenuLink = styled(Link)`
   &:hover {
     color: #6a67ce;
     background-image: repeating-linear-gradient(
-      45deg,
-      rgb(60, 129, 246),
-      rgb(157, 85, 255) 20%,
-      rgb(131, 58, 180) 40%,
-      rgb(193, 53, 132) 60%,
-      rgb(225, 48, 108) 80%,
-      rgb(253, 29, 29)
+      91.76deg,
+      #18c3e6 4.94%,
+      #a1e690 94.92%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -126,7 +120,7 @@ export const MenuLink = styled(Link)`
 
   @media only screen and (max-width: 1000px) {
     display: block;
-    padding: 3rem;
+    padding: 1.5rem;
     text-align: center;
     transition: all 0.2s ease;
   }
@@ -138,8 +132,6 @@ export const MenuItemBtn = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 120px;
   }
 `;
 

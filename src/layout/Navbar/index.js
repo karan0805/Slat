@@ -1,10 +1,9 @@
-import { Anchor } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { BiMenu, BiX } from 'react-icons/bi';
 import { ImCross } from 'react-icons/im';
-import { Button } from '../../styles/Globalstyles';
 import logo from './../../assets/svgs/logo.svg';
+import { Button } from '../../styles/Globalstyles';
 import {
   Menu,
   MenuIcon,
@@ -13,14 +12,22 @@ import {
   MenuLink,
   MenuLinkBtn,
   Nav,
+  NavBanner,
   NavbarContainer,
   NavLogo,
-  NavTopBar,
 } from './Navbar.styled';
+import { Text } from '@mantine/core';
+import { useToggle } from '@mantine/hooks';
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const [banner, setBanner] = useState(true);
+  const [bannertext, toggle] = useToggle(
+    'Banner for Announcements and Marketing',
+    ['Banner for Announcements and Marketing', ' Sponsor our Project 🚀'],
+  );
+
   const handleClick = () => setClick(!click);
   const closeMenu = () => setClick(false);
 
@@ -34,35 +41,35 @@ const Navbar = () => {
 
   useEffect(() => {
     showButton();
-  }, []);
+    setTimeout(() => {
+      toggle();
+    }, 5000);
+  }, [toggle]);
   window.addEventListener('resize', showButton);
 
   return (
     <>
       <IconContext.Provider value={{ color: '#ffffff' }}>
-        <Nav>
-          <NavTopBar>
-            [Contribute] Sponsor our Project 🚀{' '}
-            <Anchor
-              href="https://www.buymeacoffee.com/karan0805"
-              style={{ color: 'white' }}
-              target="_blank"
-            >
-              Click Here
-            </Anchor>
-            &gt;
+        {banner && (
+          <NavBanner>
+            {bannertext}
             <ImCross
               style={{ position: 'absolute', right: '40px', height: '24px' }}
+              onClick={() => setBanner(false)}
             />
-          </NavTopBar>
+          </NavBanner>
+        )}
+        <Nav>
           <NavbarContainer>
             <NavLogo to="/">
               <img
-                style={{ maxWidth: '50px', marginRight: '10px' }}
+                style={{ maxWidth: '45px', marginRight: '10px' }}
                 src={logo}
                 alt="slat"
               />
-              Slat
+              <Text color={'white'} style={{ fontSize: '28px' }}>
+                SLAT
+              </Text>
             </NavLogo>
             <MenuIcon onClick={handleClick}>
               {click ? <BiX /> : <BiMenu />}
@@ -91,8 +98,8 @@ const Navbar = () => {
                   </MenuLinkBtn>
                 ) : (
                   <MenuLinkBtn to="/auth/signup">
-                    <Button primary bigFont onClick={closeMenu}>
-                      Try Now
+                    <Button primary onClick={closeMenu}>
+                      Early Sign up
                     </Button>
                   </MenuLinkBtn>
                 )}

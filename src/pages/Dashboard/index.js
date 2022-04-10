@@ -106,32 +106,34 @@ const Dashboard = () => {
 
               <Text size="sm">
                 <SimpleGrid cols={2}>
-                  <Box
-                    onClick={clickHandler}
-                    sx={() => ({
-                      display: 'block',
-                      cursor: 'pointer',
-                      padding: '5px',
-                      borderRadius: '5px',
-                      fontWeight: '500',
+                  {activeOrg.owner === user._id ? (
+                    <Box
+                      onClick={clickHandler}
+                      sx={() => ({
+                        display: 'block',
+                        cursor: 'pointer',
+                        padding: '5px',
+                        borderRadius: '5px',
+                        fontWeight: '500',
 
-                      '&:hover': {
-                        backgroundColor: '#f5f5f5',
-                      },
-                    })}
-                  >
-                    <Group>
-                      <ThemeIcon
-                        variant="light"
-                        size="lg"
-                        color="pink"
-                        style={{ border: '1px dashed black' }}
-                      >
-                        <BiPlus />
-                      </ThemeIcon>
-                      <Text>Create Project</Text>
-                    </Group>
-                  </Box>
+                        '&:hover': {
+                          backgroundColor: '#f5f5f5',
+                        },
+                      })}
+                    >
+                      <Group>
+                        <ThemeIcon
+                          variant="light"
+                          size="lg"
+                          color="pink"
+                          style={{ border: '1px dashed black' }}
+                        >
+                          <BiPlus />
+                        </ThemeIcon>
+                        <Text>Create Project</Text>
+                      </Group>
+                    </Box>
+                  ) : null}
                   {orgDetails.projects.map((project) => (
                     <Box
                       key={project._id}

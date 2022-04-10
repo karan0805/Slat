@@ -88,17 +88,11 @@ const Sidebar = ({ menuCollapse }) => {
                   >
                     {project.name}
                     <Link
-                      to={`/dashboard/project?projectId=${project._id} &name= ${project.name}`}
+                      to={`/dashboard/project?projectId=${project._id}&name=${project.name}`}
                     />
                   </MenuItem>
                 ))}
               </SubMenu>
-              {/* <MenuItem
-                active={window.location.pathname === '/dashboard/projects'}
-                icon={<MdWorkspaces />}
-              >
-                {activeOrg.orgName}
-              </MenuItem> */}
             </Menu>
           </SidebarContent>
           <SidebarFooter>

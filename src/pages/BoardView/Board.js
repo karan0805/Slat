@@ -92,7 +92,7 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-export const Kanban = () => {
+export const Board = () => {
   const [columns, setColumns] = useState(columnsFromBackend);
 
   return (

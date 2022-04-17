@@ -23,7 +23,7 @@ const BoardView = () => {
   }, []);
 
   return (
-    <Container>
+    <Container fluid style={{ padding: '0 50px' }}>
       <Title
         order={2}
         style={{

@@ -25,6 +25,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.3",
+    "uuid4": "^2.0.2",
     "uuidv4": "^6.2.13",
     "web-vitals": "^1.1.2"
   },

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { projectApi } from '../../../api';
 import CreateBoard from '../../../components/CreateBoard';
 
-export const Board = () => {
+export const Boards = () => {
   const nav = useNavigate();
   const [boards, setBoards] = useState([]);
   const [projectId, setProjectId] = useState('');

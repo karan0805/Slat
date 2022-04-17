@@ -1,5 +1,6 @@
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Chart from './components/Chart';
 import JoinOrg from './components/JoinOrg';
 import LoginOutlet from './components/Routes/LoginOutlet';
 import ProtectedOutlet from './components/Routes/ProtectedOutlet';
@@ -8,14 +9,13 @@ import HomeAppShell from './layout/HomeAppShell';
 import ForgotPassword from './pages/Auth/Forgot-Password';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
+import BoardView from './pages/BoardView';
 import Dashboard from './pages/Dashboard';
-import { Kanban } from './pages/ProjectView/components/Kanban';
-import Home from './pages/Home';
 import Explore from './pages/Explore';
+import Home from './pages/Home';
 import OrganizationSettings from './pages/OrganizationSettings';
 import ProfileSettings from './pages/ProfileSettings';
 import { ProjectView } from './pages/ProjectView';
-import Chart from './pages/Chart';
 
 function App() {
   return (
@@ -51,7 +51,7 @@ function App() {
               path="board"
               element={
                 <DashboardAppshell>
-                  <Kanban />
+                  <BoardView />
                 </DashboardAppshell>
               }
             />

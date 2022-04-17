@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import Ticket from '../../../components/Ticket';
+import Ticket from '../../components/Ticket';
 
 // import { SegmentedControl, Textarea, Button } from '@mantine/core';
 

@@ -1,6 +1,6 @@
 import { Container, Tabs } from '@mantine/core';
 import React from 'react';
-import { Board } from './components/Board.js';
+import { Boards } from './components/Boards.js';
 import { Member } from './components/Member.js';
 import { Dashboard } from './components/Dashboard.js';
 
@@ -12,7 +12,7 @@ export const ProjectView = () => {
           <Dashboard />
         </Tabs.Tab>
         <Tabs.Tab label="Boards">
-          <Board />
+          <Boards />
         </Tabs.Tab>
         <Tabs.Tab label="Members">
           <Member />

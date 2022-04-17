@@ -110,7 +110,7 @@ const Explore = () => {
       <td>{project.name}</td>
       <td>{project.endDate.split('T')[0]}</td>
       <td>{statusBadge(project.status)}</td>
-      <td>{project.lead}</td>
+      <td>{project.lead.fullname}</td>
     </tr>
   ));
 

@@ -15,7 +15,7 @@ import Explore from './pages/Explore';
 import OrganizationSettings from './pages/OrganizationSettings';
 import ProfileSettings from './pages/ProfileSettings';
 import { ProjectView } from './pages/ProjectView';
-import Chart from './pages/Chart';
+import Chart from './components/Chart';
 
 function App() {
   return (

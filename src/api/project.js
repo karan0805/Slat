@@ -14,6 +14,11 @@ export const getMembers = (payload) => {
 export const addBoard = (payload) => {
   return axiosInstance.post('/api/project/addProjectBoard', payload);
 };
+
 export const getBoards = (payload) => {
   return axiosInstance.post('/api/project/getProjectBoards', payload);
+};
+
+export const addMember = (payload) => {
+  return axiosInstance.post('/api/project/addMember', payload);
 };

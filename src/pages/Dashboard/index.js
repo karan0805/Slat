@@ -151,12 +151,7 @@ const Dashboard = () => {
                     >
                       <Group
                         onClick={() => {
-                          nav(
-                            '/dashboard/project?projectId=' +
-                              project._id +
-                              '&name=' +
-                              project.name,
-                          );
+                          nav('/dashboard/project?projectId=' + project._id);
                         }}
                       >
                         <Avatar src={project.image} radius="md" size="32px" />

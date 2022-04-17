@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Group, Text, Badge, Button } from '@mantine/core';
 
-const Cards = (props) => {
+const Ticket = (props) => {
   return (
     <Card shadow="sm">
       <Group position="apart" direction="row">
@@ -21,4 +21,4 @@ const Cards = (props) => {
     </Card>
   );
 };
-export default Cards;
+export default Ticket;

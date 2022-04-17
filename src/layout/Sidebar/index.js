@@ -87,9 +87,7 @@ const Sidebar = ({ menuCollapse }) => {
                     }
                   >
                     {project.name}
-                    <Link
-                      to={`/dashboard/project?projectId=${project._id}&name=${project.name}`}
-                    />
+                    <Link to={`/dashboard/project?projectId=${project._id}`} />
                   </MenuItem>
                 ))}
               </SubMenu>

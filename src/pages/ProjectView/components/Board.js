@@ -1,18 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SimpleGrid, Box, Group, ThemeIcon, Text, Avatar } from '@mantine/core';
 import { BiPlus } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-import AddBoard from './AddBoard';
+import { projectApi } from '../../../api';
+import CreateBoard from '../../../components/CreateBoard';
 
 export const Board = () => {
   const nav = useNavigate();
-  const card = ['design', 'development', 'testing', 'qa', 'release'];
-
+  const [boards, setBoards] = useState([]);
+  const [projectId, setProjectId] = useState('');
   const [addBoard, setAddBoard] = useState(false);
+
+  useEffect(() => {
+    const queryparams = new URLSearchParams(window.location.search);
+    setProjectId(queryparams.get('projectId'));
+
+    projectApi
+      .getBoards({ projectId: queryparams.get('projectId') })
+      .then((res) => {
+        if (res.data.status === 200) {
+          setBoards(res.data.data);
+        }
+      });
+  }, [addBoard]);
 
   return (
     <>
-      <AddBoard addBoard={addBoard} setAddBoard={setAddBoard} />
+      <CreateBoard
+        addBoard={addBoard}
+        setAddBoard={setAddBoard}
+        projectId={projectId}
+      />
       <SimpleGrid cols={3}>
         <Box
           onClick={() => {
@@ -43,11 +61,11 @@ export const Board = () => {
             <Text>Add Board</Text>
           </Group>
         </Box>
-        {card.map((card) => (
+        {boards.map((board) => (
           <Box
-            key={card}
+            key={board._id}
             onClick={() => {
-              nav('/dashboard/board');
+              nav('/dashboard/board?boardId=' + board._id);
             }}
             sx={() => ({
               display: 'block',
@@ -63,12 +81,8 @@ export const Board = () => {
             })}
           >
             <Group direction="column" position="center">
-              <Avatar
-                src={`https://avatars.dicebear.com/api/initials/${card}.svg`}
-                radius="40px"
-                size="80px"
-              />
-              <Text>{card}</Text>
+              <Avatar src={board.image} radius="40px" size="80px" />
+              <Text>{board.name}</Text>
             </Group>
           </Box>
         ))}

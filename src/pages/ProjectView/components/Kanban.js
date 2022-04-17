@@ -1,6 +1,6 @@
-import Cards from './Cards';
 import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import Ticket from '../../../components/Ticket';
 
 // import { SegmentedControl, Textarea, Button } from '@mantine/core';
 
@@ -143,7 +143,7 @@ export const Kanban = () => {
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                   >
-                                    <Cards item={item} />
+                                    <Ticket item={item} />
                                   </div>
                                 );
                               }}

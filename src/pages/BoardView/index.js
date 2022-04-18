@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react';
 import { boardApi } from '../../api';
 import { VscSettingsGear } from 'react-icons/vsc';
 import { Board } from './Board';
+import { ListView } from './ListView';
 
 const BoardView = () => {
   const [boardDetails, setBoardDetails] = useState('');
@@ -69,7 +70,9 @@ const BoardView = () => {
           <Tabs.Tab label="Board">
             <Board />
           </Tabs.Tab>
-          <Tabs.Tab label="CheckList">Messages tab content</Tabs.Tab>
+          <Tabs.Tab label="List View">
+            <ListView />
+          </Tabs.Tab>
           <Tabs.Tab label="Settings" icon={<VscSettingsGear />}>
             Settings tab content
           </Tabs.Tab>

@@ -8,6 +8,7 @@ import {
   Text,
   Center,
   TextInput,
+  Badge,
 } from '@mantine/core';
 import { Selector, ChevronDown, ChevronUp, Search } from 'tabler-icons-react';
 
@@ -78,88 +79,89 @@ function sortData(data, payload) {
     payload.search,
   );
 }
+
 const data = [
   {
     name: 'Athena Weissnat',
-    company: 'Little - Rippin',
-    email: 'Elouise.Prohaska@yahoo.com',
+    status: '0',
+    priority: '1',
+    assignee: 'Sanket',
   },
   {
     name: 'Deangelo Runolfsson',
-    company: 'Greenfelder - Krajcik',
-    email: 'Kadin_Trantow87@yahoo.com',
+    status: '0',
+    priority: '2',
+    assignee: 'Karan',
   },
   {
     name: 'Danny Carter',
-    company: 'Kohler and Sons',
-    email: 'Marina3@hotmail.com',
+    status: '1',
+    priority: '0',
+    assignee: 'Yagvalkya',
   },
   {
     name: 'Trace Tremblay PhD',
-    company: 'Crona, Aufderhar and Senger',
-    email: 'Antonina.Pouros@yahoo.com',
+    status: '2',
+    priority: '2',
+    assignee: 'Karan',
   },
   {
     name: 'Derek Dibbert',
-    company: 'Gottlieb LLC',
-    email: 'Abagail29@hotmail.com',
+    status: '2',
+    priority: '1',
+    assignee: 'Hitesh',
   },
   {
     name: 'Viola Bernhard',
-    company: 'Funk, Rohan and Kreiger',
-    email: 'Jamie23@hotmail.com',
-  },
-  {
-    name: 'Austin Jacobi',
-    company: 'Botsford - Corwin',
-    email: 'Genesis42@yahoo.com',
-  },
-  {
-    name: 'Hershel Mosciski',
-    company: 'Okuneva, Farrell and Kilback',
-    email: 'Idella.Stehr28@yahoo.com',
-  },
-  {
-    name: 'Mylene Ebert',
-    company: 'Kirlin and Sons',
-    email: 'Hildegard17@hotmail.com',
-  },
-  {
-    name: 'Lou Trantow',
-    company: 'Parisian - Lemke',
-    email: 'Hillard.Barrows1@hotmail.com',
-  },
-  {
-    name: 'Dariana Weimann',
-    company: 'Schowalter - Donnelly',
-    email: 'Colleen80@gmail.com',
-  },
-  {
-    name: 'Dr. Christy Herman',
-    company: 'VonRueden - Labadie',
-    email: 'Lilyan98@gmail.com',
-  },
-  {
-    name: 'Katelin Schuster',
-    company: 'Jacobson - Smitham',
-    email: 'Erich_Brekke76@gmail.com',
-  },
-  {
-    name: 'Melyna Macejkovic',
-    company: 'Schuster LLC',
-    email: 'Kylee4@yahoo.com',
-  },
-  {
-    name: 'Pinkie Rice',
-    company: 'Wolf, Trantow and Zulauf',
-    email: 'Fiona.Kutch@hotmail.com',
-  },
-  {
-    name: 'Brain Kreiger',
-    company: 'Lueilwitz Group',
-    email: 'Rico98@hotmail.com',
+    status: '1',
+    priority: '0',
+    assignee: 'Sanket',
   },
 ];
+
+const statusBadge = (status) => {
+  if (status === '0') {
+    return (
+      <Badge size="lg" color="red">
+        Not Started
+      </Badge>
+    );
+  } else if (status === '1') {
+    return (
+      <Badge color="green" size="lg">
+        On-Going
+      </Badge>
+    );
+  } else {
+    return (
+      <Badge color="blue" size="lg">
+        Completed
+      </Badge>
+    );
+  }
+};
+
+const priorityBadge = (priority) => {
+  if (priority === '0') {
+    return (
+      <Badge size="lg" color="Yellow">
+        Low Priority
+      </Badge>
+    );
+  } else if (priority === '1') {
+    return (
+      <Badge color="orange" size="lg">
+        Medium Priority
+      </Badge>
+    );
+  } else {
+    return (
+      <Badge color="red" size="lg">
+        High Priority
+      </Badge>
+    );
+  }
+};
 
 export function ListView() {
   const [search, setSearch] = useState('');
@@ -185,15 +187,16 @@ export function ListView() {
   const rows = sortedData.map((row) => (
     <tr key={row.name}>
       <td>{row.name}</td>
-      <td>{row.email}</td>
-      <td>{row.company}</td>
+      <td>{statusBadge(row.priority)}</td>
+      <td>{priorityBadge(row.status)}</td>
+      <td> {row.assignee}</td>
     </tr>
   ));
 
   return (
     <ScrollArea>
       <TextInput
-        placeholder="Search by any field"
+        placeholder="Search by Name"
         mb="md"
         icon={<Search size={14} />}
         value={search}
@@ -211,21 +214,28 @@ export function ListView() {
               reversed={reverseSortDirection}
               onSort={() => setSorting('name')}
             >
-              Name
+              Ticket Name
             </Th>
             <Th
-              sorted={sortBy === 'email'}
+              sorted={sortBy === 'priority'}
               reversed={reverseSortDirection}
-              onSort={() => setSorting('email')}
+              onSort={() => setSorting('priority')}
             >
-              Email
+              Status
             </Th>
             <Th
-              sorted={sortBy === 'company'}
+              sorted={sortBy === 'status'}
               reversed={reverseSortDirection}
-              onSort={() => setSorting('company')}
+              onSort={() => setSorting('status')}
             >
-              Company
+              Priority Level
+            </Th>
+            <Th
+              sorted={sortBy === 'assignee'}
+              reversed={reverseSortDirection}
+              onSort={() => setSorting('assignee')}
+            >
+              Assignee
             </Th>
           </tr>
         </thead>

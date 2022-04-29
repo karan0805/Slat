@@ -18,7 +18,7 @@ const Ticket = (props) => {
       shadow="xl"
       style={{
         marginBottom: '5px',
-        width: '334px',
+        width: '300px',
         borderBottom: '3px solid pink',
       }}
     >
@@ -30,16 +30,16 @@ const Ticket = (props) => {
           </Badge>
           <BsThreeDots />
         </Group>
-        <Text size="lg" weight={500}>
+        <Text size="md" weight={500}>
           {/* {props.item.content} */}
           Audit information architecture{' '}
         </Text>
         <Space h="sm" />
-        <Text size="md" color="dimmed" weight={500}>
+        <Text size="sm" color="dimmed" weight={500}>
           Lorem ipsum dolor sit amet, consect fg h etur adipiscing elit.
         </Text>
         <Space h="sm" />
-        <AvatarsGroup limit={2}>
+        <AvatarsGroup size={'sm'} limit={2}>
           <Avatar
             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
             component="a"

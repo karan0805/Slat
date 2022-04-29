@@ -138,7 +138,7 @@ export const Board = () => {
                             ? 'lightyellow'
                             : 'white',
                           padding: 4,
-                          width: '334px',
+                          width: '300px',
                           minHeight: 500,
                         }}
                       >

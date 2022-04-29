@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { BsPlusCircle } from 'react-icons/bs';
 import { uuid } from 'uuidv4';
+import CreateTicket from '../../components/CreateTicket';
 import Ticket from '../../components/Ticket';
 
 const columnsFromBackend = {
@@ -94,85 +95,89 @@ const onDragEnd = (result, columns, setColumns) => {
 
 export const Board = () => {
   const [columns, setColumns] = useState(columnsFromBackend);
+  const [addTask, setAddTask] = useState(false);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        height: '100%',
-        paddingTop: '30px',
-      }}
-    >
-      <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+    <div style={{ overflow: 'hidden' }}>
+      <CreateTicket addTask={addTask} setAddTask={setAddTask} />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100%',
+          paddingTop: '30px',
+        }}
       >
-        {Object.entries(columns).map(([columnId, column]) => {
-          return (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-              key={columnId}
-            >
-              <Group
-                direction="apart"
-                style={{ padding: '0 10px', justifyContent: 'space-between' }}
+        <DragDropContext
+          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+        >
+          {Object.entries(columns).map(([columnId, column]) => {
+            return (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+                key={columnId}
               >
-                <Text color="dimmed" style={{ fontWeight: '600' }}>
-                  {column.name}
-                </Text>
-                <BsPlusCircle />
-              </Group>
+                <Group
+                  direction="apart"
+                  style={{ padding: '0 10px', justifyContent: 'space-between' }}
+                >
+                  <Text color="dimmed" style={{ fontWeight: '600' }}>
+                    {column.name}
+                  </Text>
+                  <BsPlusCircle onClick={() => setAddTask(true)} />
+                </Group>
 
-              <div style={{ margin: 8, alignItems: 'center' }}>
-                <Droppable droppableId={columnId} key={columnId}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver
-                            ? 'lightyellow'
-                            : 'white',
-                          padding: 4,
-                          width: '300px',
-                          minHeight: 500,
-                        }}
-                      >
-                        {column.items.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={item.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
-                              {(provided) => {
-                                return (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                  >
-                                    <Ticket item={item} />
-                                  </div>
-                                );
-                              }}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
-                  }}
-                </Droppable>
+                <div style={{ margin: 8, alignItems: 'center' }}>
+                  <Droppable droppableId={columnId} key={columnId}>
+                    {(provided, snapshot) => {
+                      return (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          style={{
+                            background: snapshot.isDraggingOver
+                              ? 'lightyellow'
+                              : 'white',
+                            padding: 4,
+                            width: '334px',
+                            minHeight: 500,
+                          }}
+                        >
+                          {column.items.map((item, index) => {
+                            return (
+                              <Draggable
+                                key={item.id}
+                                draggableId={item.id}
+                                index={index}
+                              >
+                                {(provided) => {
+                                  return (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                    >
+                                      <Ticket item={item} />
+                                    </div>
+                                  );
+                                }}
+                              </Draggable>
+                            );
+                          })}
+                          {provided.placeholder}
+                        </div>
+                      );
+                    }}
+                  </Droppable>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </DragDropContext>
+            );
+          })}
+        </DragDropContext>
+      </div>
     </div>
   );
 };

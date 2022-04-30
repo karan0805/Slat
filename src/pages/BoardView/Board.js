@@ -8,58 +8,6 @@ import { boardApi } from '../../api';
 import CreateTicket from '../../components/CreateTicket';
 import Ticket from '../../components/Ticket';
 
-const columnsFromBackend = {
-  // waitingforApproval: [],
-  // backlog: [],
-  // design: [],
-  todos: [
-    {
-      assignee_id: [],
-      comments: [],
-      status: 'open',
-      priority: 'low',
-      type: 'bug',
-      _id: '626cd60e4dbe6c3e06162986',
-      title: 'First Ticket',
-      description: 's',
-      createdAt: '2022-04-30T06:24:14.194Z',
-      updatedAt: '2022-04-30T06:24:14.194Z',
-      __v: 0,
-    },
-  ],
-  inprogress: [
-    {
-      assignee_id: [],
-      comments: [],
-      status: 'open',
-      priority: 'low',
-      type: 'bug',
-      _id: '626cd6124dbe6c3e06s6298b',
-      title: 'Second Ticket',
-      description: 's',
-      createdAt: '2022-04-30T06:24:18.646Z',
-      updatedAt: '2022-04-30T06:24:18.646Z',
-      __v: 0,
-    },
-    {
-      assignee_id: [],
-      comments: [],
-      status: 'open',
-      priority: 'high',
-      type: 'bug',
-      _id: '626cd6124sbe6c3e0616298b',
-      title: 'Sample Ticket',
-      description: 's',
-      createdAt: '2022-04-30T06:24:18.646Z',
-      updatedAt: '2022-04-30T06:24:18.646Z',
-      __v: 0,
-    },
-  ],
-  inreview: [],
-  testing: [],
-  completed: [],
-};
-
 //Drag and Drop function
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
@@ -95,23 +43,8 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-export const Board = ({ boardDetails }) => {
-  const [columns, setColumns] = useState(columnsFromBackend);
+export const Board = ({ boardDetails, columns, setColumns }) => {
   const [addTask, setAddTask] = useState(false);
-
-  // useEffect(() => {
-  //   boardApi
-  //     .getBoardTickets({ boardId: boardDetails._id })
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         console.log(res.data.data);
-  //         //setColumns(res.data.data);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [addTask]);
 
   return (
     <>

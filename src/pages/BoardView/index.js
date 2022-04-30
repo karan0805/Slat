@@ -13,14 +13,38 @@ import { VscSettingsGear } from 'react-icons/vsc';
 import { Board } from './Board';
 import { ListView } from './ListView';
 
+const columnsFromBackend = {
+  waitingforApproval: [],
+  backlog: [],
+  design: [],
+  todos: [],
+  inprogress: [],
+  inreview: [],
+  testing: [],
+  completed: [],
+};
+
 const BoardView = () => {
   const [boardDetails, setBoardDetails] = useState('');
+  const [columns, setColumns] = useState(columnsFromBackend);
+
   useEffect(() => {
     const queryparams = new URLSearchParams(window.location.search);
     const payload = queryparams.get('boardId');
     boardApi.getBoardData({ boardId: payload }).then((res) => {
       setBoardDetails(res.data.data);
     });
+    boardApi
+      .getBoardTickets({ boardId: payload })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data.data);
+          setColumns(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -68,7 +92,11 @@ const BoardView = () => {
           }}
         >
           <Tabs.Tab label="Board">
-            <Board boardDetails={boardDetails} />
+            <Board
+              boardDetails={boardDetails}
+              columns={columns}
+              setColumns={setColumns}
+            />
           </Tabs.Tab>
           <Tabs.Tab label="List View">
             <ListView />

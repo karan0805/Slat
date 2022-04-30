@@ -64,36 +64,33 @@ const columnsFromBackend = {
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
   const { source, destination } = result;
-  console.log(source, destination);
 
   if (source.droppableId !== destination.droppableId) {
     const sourceColumn = columns[source.droppableId];
     const destColumn = columns[destination.droppableId];
-    const sourceItems = [...sourceColumn.items];
-    const destItems = [...destColumn.items];
+    const sourceItems = [...sourceColumn];
+    const destItems = [...destColumn];
+    console.log('sourceColumn', sourceColumn);
+    console.log('destColumn', destColumn);
+    console.log('sourceItems', sourceItems);
+    console.log('destItems', destItems);
+
     const [removed] = sourceItems.splice(source.index, 1);
     destItems.splice(destination.index, 0, removed);
     setColumns({
       ...columns,
-      [source.droppableId]: {
-        ...sourceColumn,
-        items: sourceItems,
-      },
-      [destination.droppableId]: {
-        ...destColumn,
-        items: destItems,
-      },
+      [source.droppableId]: [...sourceItems],
+      [destination.droppableId]: [...destItems],
     });
   } else {
     const column = columns[source.droppableId];
     const copiedItems = [...column];
     const [removed] = copiedItems.splice(source.index, 1);
+    console.log(removed);
     copiedItems.splice(destination.index, 0, removed);
     setColumns({
       ...columns,
-      [source.droppableId]: {
-        ...copiedItems,
-      },
+      [source.droppableId]: [...copiedItems],
     });
   }
 };
@@ -136,7 +133,7 @@ export const Board = ({ boardDetails }) => {
           onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
         >
           {Object.entries(columns).map(([columnId, column]) => {
-            console.log(columnId, column);
+            //console.log(columnId, column);
             return (
               <div
                 style={{

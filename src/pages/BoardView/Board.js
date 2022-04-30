@@ -64,6 +64,7 @@ const columnsFromBackend = {
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
   const { source, destination } = result;
+  console.log(source, destination);
 
   if (source.droppableId !== destination.droppableId) {
     const sourceColumn = columns[source.droppableId];
@@ -149,7 +150,7 @@ export const Board = ({ boardDetails }) => {
                   style={{ padding: '0 10px', justifytitle: 'space-between' }}
                 >
                   <Text color="dimmed" style={{ fontWeight: '600' }}>
-                    {columnId}
+                    {columnId.toUpperCase()}
                   </Text>
                   {columnId === 'todos' && (
                     <BsPlusCircle onClick={() => setAddTask(true)} />

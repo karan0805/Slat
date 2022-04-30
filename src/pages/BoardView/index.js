@@ -27,6 +27,7 @@ const columnsFromBackend = {
 const BoardView = () => {
   const [boardDetails, setBoardDetails] = useState('');
   const [columns, setColumns] = useState(columnsFromBackend);
+  const [addTask, setAddTask] = useState(false);
 
   useEffect(() => {
     const queryparams = new URLSearchParams(window.location.search);
@@ -38,14 +39,13 @@ const BoardView = () => {
       .getBoardTickets({ boardId: payload })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data.data);
           setColumns(res.data.data);
         }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [addTask]);
 
   return (
     <Container fluid style={{ padding: '0 50px' }}>
@@ -96,6 +96,8 @@ const BoardView = () => {
               boardDetails={boardDetails}
               columns={columns}
               setColumns={setColumns}
+              addTask={addTask}
+              setAddTask={setAddTask}
             />
           </Tabs.Tab>
           <Tabs.Tab label="List View">

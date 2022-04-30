@@ -3,8 +3,6 @@ import { Group, Text } from '@mantine/core';
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { BsPlusCircle } from 'react-icons/bs';
-import { uuid } from 'uuidv4';
-import { boardApi } from '../../api';
 import CreateTicket from '../../components/CreateTicket';
 import Ticket from '../../components/Ticket';
 
@@ -18,10 +16,6 @@ const onDragEnd = (result, columns, setColumns) => {
     const destColumn = columns[destination.droppableId];
     const sourceItems = [...sourceColumn];
     const destItems = [...destColumn];
-    console.log('sourceColumn', sourceColumn);
-    console.log('destColumn', destColumn);
-    console.log('sourceItems', sourceItems);
-    console.log('destItems', destItems);
 
     const [removed] = sourceItems.splice(source.index, 1);
     destItems.splice(destination.index, 0, removed);
@@ -43,9 +37,13 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-export const Board = ({ boardDetails, columns, setColumns }) => {
-  const [addTask, setAddTask] = useState(false);
-
+export const Board = ({
+  boardDetails,
+  columns,
+  setColumns,
+  addTask,
+  setAddTask,
+}) => {
   return (
     <>
       <CreateTicket

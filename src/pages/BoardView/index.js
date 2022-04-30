@@ -68,7 +68,7 @@ const BoardView = () => {
           }}
         >
           <Tabs.Tab label="Board">
-            <Board />
+            <Board boardDetails={boardDetails} />
           </Tabs.Tab>
           <Tabs.Tab label="List View">
             <ListView />

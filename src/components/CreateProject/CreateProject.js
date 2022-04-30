@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Textarea, TextInput, Modal, Select } from '@mantine/core';
+import { Button, Modal, Select, Textarea, TextInput } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
-import { projectApi, userApi } from '../../api';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { update } from '../../redux/slices/UserSlice';
+import { orgApi, projectApi, userApi } from '../../api';
 import { switchOrg } from '../../redux/slices/OrgSlice';
-import { orgApi } from '../../api';
+import { update } from '../../redux/slices/UserSlice';
 
 const CreateProject = ({ addProject, setAddProject, activeOrg }) => {
   const [projectName, setProjectName] = useState('');

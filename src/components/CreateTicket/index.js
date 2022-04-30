@@ -1,12 +1,37 @@
 import { Button, Modal, Select, Textarea, TextInput } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { boardApi } from '../../api';
 
-const CreateTicket = ({ addTask, setAddTask }) => {
+const CreateTicket = ({ addTask, setAddTask, boardDetails }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('');
   const [dueDate, setDueDate] = useState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const payload = {
+      title,
+      description,
+      priority,
+      dueDate,
+      boardId: boardDetails._id,
+    };
+    boardApi.addTicket(payload).then(
+      (res) => {
+        if (res.status === 200) {
+          console.log(res);
+          toast.success('Ticket added successfully');
+          setAddTask(false);
+        }
+      },
+      (err) => {
+        toast.error(err.response.data.message);
+      },
+    );
+  };
 
   return (
     <>
@@ -28,7 +53,7 @@ const CreateTicket = ({ addTask, setAddTask }) => {
           body: {},
         }}
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <TextInput
             placeholder="Title"
             label="Title"

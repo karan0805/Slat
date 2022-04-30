@@ -23,10 +23,49 @@ const columnsFromBackend = {
   testing: [],
   completed: [],
 };
+const data = [
+  {
+    title: 'Athena Weissnat',
+    status: '0',
+    priority: '1',
+    assignee: 'Sanket',
+  },
+  {
+    title: 'Deangelo Runolfsson',
+    status: '0',
+    priority: '2',
+    assignee: 'Karan',
+  },
+  {
+    title: 'Danny Carter',
+    status: '1',
+    priority: '0',
+    assignee: 'Yagvalkya',
+  },
+  {
+    title: 'Trace Tremblay PhD',
+    status: '2',
+    priority: '2',
+    assignee: 'Karan',
+  },
+  {
+    title: 'Derek Dibbert',
+    status: '2',
+    priority: '1',
+    assignee: 'Hitesh',
+  },
+  {
+    title: 'Viola Bernhard',
+    status: '1',
+    priority: '0',
+    assignee: 'Sanket',
+  },
+];
 
 const BoardView = () => {
   const [boardDetails, setBoardDetails] = useState('');
   const [columns, setColumns] = useState(columnsFromBackend);
+  const [listview, setListview] = useState(data);
   const [addTask, setAddTask] = useState(false);
 
   useEffect(() => {
@@ -40,6 +79,8 @@ const BoardView = () => {
       .then((res) => {
         if (res.status === 200) {
           setColumns(res.data.data);
+          setListview(Object.values(res.data.data).flat(1));
+          console.log(listview);
         }
       })
       .catch((err) => {
@@ -101,7 +142,7 @@ const BoardView = () => {
             />
           </Tabs.Tab>
           <Tabs.Tab label="List View">
-            <ListView />
+            <ListView listviewdata={listview} />
           </Tabs.Tab>
           <Tabs.Tab label="Settings" icon={<VscSettingsGear />}>
             Settings tab content

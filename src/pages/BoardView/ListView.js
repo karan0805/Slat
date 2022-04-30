@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
 import {
-  createStyles,
-  Table,
-  ScrollArea,
-  UnstyledButton,
-  Group,
-  Text,
-  Center,
-  TextInput,
   Badge,
+  Center,
+  createStyles,
+  Group,
+  ScrollArea,
+  Table,
+  Text,
+  TextInput,
+  UnstyledButton,
 } from '@mantine/core';
-import { Selector, ChevronDown, ChevronUp, Search } from 'tabler-icons-react';
+import React, { useState } from 'react';
+import { ChevronDown, ChevronUp, Search, Selector } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
   th: {
@@ -55,21 +55,21 @@ function Th({ children, reversed, sorted, onSort }) {
   );
 }
 
-function filterData(data, search) {
-  const keys = Object.keys(data[0]);
+function filterData(listviewdata, search) {
+  const keys = Object.keys(listviewdata[0]);
   const query = search.toLowerCase().trim();
-  return data.filter((item) =>
+  return listviewdata.filter((item) =>
     keys.some((key) => item[key].toLowerCase().includes(query)),
   );
 }
 
-function sortData(data, payload) {
+function sortData(listviewdata, payload) {
   if (!payload.sortBy) {
-    return filterData(data, payload.search);
+    return filterData(listviewdata, payload.search);
   }
 
   return filterData(
-    [...data].sort((a, b) => {
+    [...listviewdata].sort((a, b) => {
       if (payload.reversed) {
         return b[payload.sortBy].localeCompare(a[payload.sortBy]);
       }
@@ -80,56 +80,17 @@ function sortData(data, payload) {
   );
 }
 
-const data = [
-  {
-    name: 'Athena Weissnat',
-    status: '0',
-    priority: '1',
-    assignee: 'Sanket',
-  },
-  {
-    name: 'Deangelo Runolfsson',
-    status: '0',
-    priority: '2',
-    assignee: 'Karan',
-  },
-  {
-    name: 'Danny Carter',
-    status: '1',
-    priority: '0',
-    assignee: 'Yagvalkya',
-  },
-  {
-    name: 'Trace Tremblay PhD',
-    status: '2',
-    priority: '2',
-    assignee: 'Karan',
-  },
-  {
-    name: 'Derek Dibbert',
-    status: '2',
-    priority: '1',
-    assignee: 'Hitesh',
-  },
-  {
-    name: 'Viola Bernhard',
-    status: '1',
-    priority: '0',
-    assignee: 'Sanket',
-  },
-];
-
 const statusBadge = (status) => {
-  if (status === '0') {
+  if (status === 'open') {
     return (
       <Badge size="lg" color="red">
         Not Started
       </Badge>
     );
-  } else if (status === '1') {
+  } else if (status === 'in-progress') {
     return (
       <Badge color="green" size="lg">
-        On-Going
+        In Progress{' '}
       </Badge>
     );
   } else {
@@ -142,13 +103,13 @@ const statusBadge = (status) => {
 };
 
 const priorityBadge = (priority) => {
-  if (priority === '0') {
+  if (priority === 'low') {
     return (
       <Badge size="lg" color="Yellow">
         Low Priority
       </Badge>
     );
-  } else if (priority === '1') {
+  } else if (priority === 'medium') {
     return (
       <Badge color="orange" size="lg">
         Medium Priority
@@ -163,9 +124,9 @@ const priorityBadge = (priority) => {
   }
 };
 
-export function ListView() {
+export function ListView({ listviewdata }) {
+  const [sortedData, setSortedData] = useState(listviewdata);
   const [search, setSearch] = useState('');
-  const [sortedData, setSortedData] = useState(data);
   const [sortBy, setSortBy] = useState(null);
   const [reverseSortDirection, setReverseSortDirection] = useState(false);
 
@@ -173,30 +134,35 @@ export function ListView() {
     const reversed = field === sortBy ? !reverseSortDirection : false;
     setReverseSortDirection(reversed);
     setSortBy(field);
-    setSortedData(sortData(data, { sortBy: field, reversed, search }));
+    setSortedData(sortData(listviewdata, { sortBy: field, reversed, search }));
   };
 
   const handleSearchChange = (event) => {
     const { value } = event.currentTarget;
     setSearch(value);
     setSortedData(
-      sortData(data, { sortBy, reversed: reverseSortDirection, search: value }),
+      sortData(listviewdata, {
+        sortBy,
+        reversed: reverseSortDirection,
+        search: value,
+      }),
     );
   };
 
   const rows = sortedData.map((row) => (
-    <tr key={row.name}>
-      <td>{row.name}</td>
-      <td>{statusBadge(row.priority)}</td>
-      <td>{priorityBadge(row.status)}</td>
-      <td> {row.assignee}</td>
+    <tr key={row._id}>
+      <td>{row.title}</td>
+      <td>{statusBadge(row.status)}</td>
+      <td>{priorityBadge(row.priority)}</td>
+      <td> {row.assignee ? row.assignee : 'Not Assigned'}</td>
+      <td>{row.dueDate}</td>
     </tr>
   ));
 
   return (
     <ScrollArea>
       <TextInput
-        placeholder="Search by Name"
+        placeholder="Search by title"
         mb="md"
         icon={<Search size={14} />}
         value={search}
@@ -210,11 +176,11 @@ export function ListView() {
         <thead>
           <tr>
             <Th
-              sorted={sortBy === 'name'}
+              sorted={sortBy === 'title'}
               reversed={reverseSortDirection}
-              onSort={() => setSorting('name')}
+              onSort={() => setSorting('title')}
             >
-              Ticket Name
+              Ticket
             </Th>
             <Th
               sorted={sortBy === 'priority'}
@@ -237,6 +203,13 @@ export function ListView() {
             >
               Assignee
             </Th>
+            <Th
+              sorted={sortBy === 'dueDate'}
+              reversed={reverseSortDirection}
+              onSort={() => setSorting('dueDate')}
+            >
+              Due Date
+            </Th>
           </tr>
         </thead>
         <tbody>
@@ -244,7 +217,7 @@ export function ListView() {
             rows
           ) : (
             <tr>
-              <td colSpan={Object.keys(data[0]).length}>
+              <td colSpan={5}>
                 <Text weight={500} align="center">
                   Nothing found
                 </Text>

@@ -24,6 +24,7 @@ import {
 } from '../../redux/slices/OrgSlice';
 import { selectUser } from '../../redux/slices/UserSlice';
 import Members from '../OrganizationSettings/components/Members';
+import { useLocalStorageValue } from '@mantine/hooks';
 
 export const Time = styled.div`
   display: flex;
@@ -53,6 +54,10 @@ const Dashboard = () => {
   const orgDetails = useSelector(selectActiveOrgDetails);
   const nav = useNavigate();
   const [addProject, setAddProject] = useState(false);
+  const [quicknotes, setQuickNotes] = useLocalStorageValue({
+    key: 'quicknotes',
+    defaultValue: '',
+  });
 
   var myDate = new Date();
   var hrs = myDate.getHours();
@@ -90,6 +95,8 @@ const Dashboard = () => {
                 <Textarea
                   placeholder="Start typing..."
                   variant="unstyled"
+                  value={quicknotes}
+                  onChange={(event) => setQuickNotes(event.currentTarget.value)}
                   autosize
                   minRows={3}
                   size="md"
@@ -98,7 +105,7 @@ const Dashboard = () => {
             </Card>
           </Grid.Col>
           <Grid.Col span={6}>
-            <Card radius="md" shadow="sm" withBorder>
+            <Card radius="md" shadow="sm" withBorder style={{ height: '100%' }}>
               <Text weight={500} size="xl">
                 Projects
               </Text>
@@ -163,7 +170,7 @@ const Dashboard = () => {
               </Text>
             </Card>
           </Grid.Col>
-          <Grid.Col span={6}>
+          <Grid.Col span={12}>
             <Card radius="md" shadow="sm" withBorder>
               <Text weight={500} size="xl">
                 Members

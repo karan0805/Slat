@@ -39,7 +39,7 @@ const Ticket = ({ item }) => {
 
         <Space h="sm" />
         <Text size="sm" color="dimmed" weight={500}>
-          Lorem ipsum dolor sit amet, consect fg h etur adipiscing elit.
+          {item.description}
         </Text>
         <Space h="sm" />
         <Group position="apart" direction="row">

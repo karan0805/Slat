@@ -183,16 +183,16 @@ export function ListView({ listviewdata }) {
               Ticket
             </Th>
             <Th
-              sorted={sortBy === 'priority'}
+              sorted={sortBy === 'status'}
               reversed={reverseSortDirection}
-              onSort={() => setSorting('priority')}
+              onSort={() => setSorting('status')}
             >
               Status
             </Th>
             <Th
-              sorted={sortBy === 'status'}
+              sorted={sortBy === 'priority'}
               reversed={reverseSortDirection}
-              onSort={() => setSorting('status')}
+              onSort={() => setSorting('priority')}
             >
               Priority Level
             </Th>

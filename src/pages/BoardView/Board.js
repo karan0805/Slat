@@ -5,11 +5,20 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { BsPlusCircle } from 'react-icons/bs';
 import CreateTicket from '../../components/CreateTicket';
 import Ticket from '../../components/Ticket';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/slices/UserSlice';
+import toast from 'react-hot-toast';
+import { boardApi } from '../../api';
 
 //Drag and Drop function
-const onDragEnd = (result, columns, setColumns) => {
+const onDragEnd = (result, columns, setColumns, isAdmin, boardDetails) => {
   if (!result.destination) return;
+
   const { source, destination } = result;
+
+  if (!isAdmin && source.droppableId == 'waitingforApproval') {
+    return toast.error("Sorry, You can't Approve this ticket");
+  }
 
   if (source.droppableId !== destination.droppableId) {
     const sourceColumn = columns[source.droppableId];
@@ -24,16 +33,39 @@ const onDragEnd = (result, columns, setColumns) => {
       [source.droppableId]: [...sourceItems],
       [destination.droppableId]: [...destItems],
     });
+    boardApi
+      .updateBoardTickets({
+        boardId: boardDetails._id,
+        result,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success('Changes Saved');
+        } else {
+          toast.error('Something went wrong');
+        }
+      });
   } else {
     const column = columns[source.droppableId];
     const copiedItems = [...column];
     const [removed] = copiedItems.splice(source.index, 1);
-    console.log(removed);
     copiedItems.splice(destination.index, 0, removed);
     setColumns({
       ...columns,
       [source.droppableId]: [...copiedItems],
     });
+    boardApi
+      .updateBoardTicketsSameLevel({
+        boardId: boardDetails._id,
+        result,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success('Changes Saved');
+        } else {
+          toast.error('Something went wrong');
+        }
+      });
   }
 };
 
@@ -44,6 +76,12 @@ export const Board = ({
   addTask,
   setAddTask,
 }) => {
+  const user = useSelector(selectUser);
+
+  const isAdmin = (user) => {
+    return user._id === boardDetails.project.lead;
+  };
+
   return (
     <>
       <CreateTicket
@@ -78,10 +116,11 @@ export const Board = ({
           Add Task
         </Button>
         <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+          onDragEnd={(result) =>
+            onDragEnd(result, columns, setColumns, isAdmin(user), boardDetails)
+          }
         >
           {Object.entries(columns).map(([columnId, column]) => {
-            //console.log(columnId, column);
             return (
               <div
                 style={{

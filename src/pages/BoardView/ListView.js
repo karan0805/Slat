@@ -160,7 +160,7 @@ export function ListView({ listviewdata }) {
   ));
 
   return (
-    <ScrollArea>
+    <ScrollArea style={{ paddingTop: '30px' }}>
       <TextInput
         placeholder="Search by title"
         mb="md"

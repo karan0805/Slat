@@ -80,7 +80,7 @@ const BoardView = () => {
         if (res.status === 200) {
           setColumns(res.data.data);
           setListview(Object.values(res.data.data).flat(1));
-          console.log(listview);
+          console.log('api call');
         }
       })
       .catch((err) => {

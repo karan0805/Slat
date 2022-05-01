@@ -40,26 +40,29 @@ const Ticket = ({ item }) => {
       >
         <Group grow direction="column" spacing={0}>
           <Group position="apart" direction="row">
-            <Text size="md" weight={500}>
+            <Text size="sm" weight={600}>
               {item.title}
             </Text>
 
             <BsThreeDots />
           </Group>
 
-          <Space h="sm" />
-          <Text size="sm" color="dimmed" weight={500}>
+          <Space h="3px" />
+
+          <Text size="xs" color="dimmed" weight={500}>
             {item.description}
           </Text>
+
           <Space h="sm" />
           <Group position="apart" direction="row">
             <AvatarsGroup size={'sm'} limit={2}>
-              <Avatar
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
-                component="a"
-                href="https://github.com/rtivital"
-              />
-              <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" />
+              {item?.assignee_id.map((assignee) => {
+                <Avatar
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
+                  component="a"
+                  href="https://github.com/karan0805"
+                />;
+              })}
             </AvatarsGroup>
             {item.priority === 'high' && (
               <Badge color="red" style={{ width: 120 }}>

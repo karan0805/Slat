@@ -29,7 +29,6 @@ const TicketDetails = ({ showDetails, setShowDetails, item }) => {
     <>
       <Modal
         centered
-        withcloseButton={false}
         opened={showDetails}
         onClose={() => setShowDetails(false)}
         overlayColor="#7f7f7f"
@@ -107,7 +106,7 @@ const TicketDetails = ({ showDetails, setShowDetails, item }) => {
           </Text>
         </Group>
         <br />
-        <Group spacing={50}>
+        <Group spacing={20}>
           <Avatar
             radius="xl"
             size="sm"
@@ -119,6 +118,7 @@ const TicketDetails = ({ showDetails, setShowDetails, item }) => {
             onChange={(e) => setComment(e.target.value)}
             radius="md"
             required
+            style={{ width: '450px' }}
           />
           <Button>
             <AiOutlineSend />

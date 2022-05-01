@@ -6,7 +6,7 @@
   height: 100vh;
 }
 #header .closemenu {
-  color: #000;
+  color: #fff;
   position: absolute;
   right: 0;
   z-index: 9999;
@@ -26,24 +26,23 @@
   min-width: 80px;
 }
 #header .pro-sidebar-inner {
-  background-color: white;
+  background-color: #25262B;
   box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
 }
 #header .pro-sidebar-inner .pro-sidebar-layout {
   overflow-y: hidden;
 }
 #header .pro-sidebar-inner .pro-sidebar-layout .logotext p {
-  font-size: 20px;
+  font-size: 18px;
   padding: 0 20px;
-  color: #000;
+  color: #fff;
   font-weight: 500;
 }
 #header .pro-sidebar-inner .pro-sidebar-layout ul {
   padding: 0 5px;
 }
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
-  color: #000;
-  margin: 10px 0px;
+  color: #fff;
   font-weight: 500;
 }
 #header
@@ -52,9 +51,11 @@
   ul
   .pro-inner-item
   .pro-icon-wrapper {
-  background-color: #fbf4cd;
-  color: #000;
+  font-size: 18px;
+  background-color: #25262B;
+  color: #fff;
 }
+
 #header
   .pro-sidebar-inner
   .pro-sidebar-layout
@@ -65,10 +66,10 @@
   color: #000;
 }
 #header .pro-sidebar-inner .pro-sidebar-layout .active {
-  background-image: linear-gradient(0deg, #fece00 0%, #ffe172 100%);
+  background:#1A1B1E;
 }
 #header .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
-  background: whitesmoke;
+  background: #25262B;
   text-align: left;
 }
 #header .logo {

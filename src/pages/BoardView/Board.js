@@ -97,9 +97,6 @@ export const Board = ({
                   <Text color="dimmed" style={{ fontWeight: '600' }}>
                     {columnId.toUpperCase()}
                   </Text>
-                  {columnId === 'todos' && (
-                    <BsPlusCircle onClick={() => setAddTask(true)} />
-                  )}
                 </Group>
 
                 <div style={{ margin: 8, alignItems: 'center' }}>
@@ -112,10 +109,10 @@ export const Board = ({
                           style={{
                             background: snapshot.isDraggingOver
                               ? 'lightyellow'
-                              : 'white',
+                              : '#eeeeee80',
                             padding: 4,
                             width: '300px',
-                            minHeight: 500,
+                            minHeight: '400px',
                           }}
                         >
                           {column.map((item, index) => {

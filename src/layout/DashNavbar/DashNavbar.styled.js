@@ -19,6 +19,7 @@ export const NavbarContainer = styled(Container)`
   flex-direction: row;
   align-items: center;
   height: 89px;
+  padding: 0 40px;
 
   ${Container};
 `;

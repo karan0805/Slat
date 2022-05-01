@@ -21,7 +21,7 @@ export default function Organisation({ user }) {
                 </Group>
               </td>
               <td>Personal</td>
-              <td>Member</td>
+              <td>Admin</td>
             </tr>
           ))}
         </tbody>

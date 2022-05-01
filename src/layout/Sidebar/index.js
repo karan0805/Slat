@@ -45,11 +45,11 @@ const Sidebar = ({ menuCollapse }) => {
             <div className="logotext">
               <p>
                 {menuCollapse ? (
-                  <span style={{ fontSize: '2rem' }}>
+                  <span style={{ fontSize: '1.5rem' }}>
                     <img style={{ maxWidth: '30px' }} src={logo} alt="slat" />
                   </span>
                 ) : (
-                  <span style={{ fontSize: '2rem' }}>
+                  <span style={{ fontSize: '1.5rem' }}>
                     <img
                       style={{ maxWidth: '30px', marginRight: '10px' }}
                       src={logo}

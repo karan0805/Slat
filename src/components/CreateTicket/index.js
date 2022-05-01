@@ -9,6 +9,7 @@ const CreateTicket = ({ addTask, setAddTask, boardDetails }) => {
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('');
   const [dueDate, setDueDate] = useState();
+  const [type, setType] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,6 +69,18 @@ const CreateTicket = ({ addTask, setAddTask, boardDetails }) => {
             radius="md"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
+            required
+          />
+          <Select
+            label="Choose Type"
+            placeholder="Pick One"
+            data={[
+              { value: 'bug', label: '🐛 Bug' },
+              { value: 'feature', label: '🚀 Feature' },
+              { value: 'task', label: '📃 Task' },
+            ]}
+            value={type}
+            onChange={setType}
             required
           />
           <Select

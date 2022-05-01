@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Group, Text } from '@mantine/core';
+import { Button, Group, Text, ActionIcon } from '@mantine/core';
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { BsPlusCircle } from 'react-icons/bs';
@@ -51,15 +51,32 @@ export const Board = ({
         setAddTask={setAddTask}
         boardDetails={boardDetails}
       />
+
       <div
         style={{
           display: 'flex',
-          width: '1000px',
+          width: '1200px',
           justifytitle: 'center',
-          height: '100%',
+          height: '450px',
           paddingTop: '30px',
+          overflowX: 'scroll',
+          overflowY: 'scroll',
         }}
       >
+        <Button
+          variant="filled"
+          size="lg"
+          radius={100}
+          leftIcon={<BsPlusCircle />}
+          style={{
+            position: 'absolute',
+            right: '20px',
+            bottom: '20px',
+          }}
+          onClick={() => setAddTask(true)}
+        >
+          Add Task
+        </Button>
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
         >

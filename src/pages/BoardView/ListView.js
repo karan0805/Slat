@@ -59,7 +59,7 @@ function filterData(listviewdata, search) {
   const keys = Object.keys(listviewdata[0]);
   const query = search.toLowerCase().trim();
   return listviewdata.filter((item) =>
-    keys.some((key) => item[key].toLowerCase().includes(query)),
+    keys.some((key) => item[key].toString().toLowerCase().includes(query)),
   );
 }
 

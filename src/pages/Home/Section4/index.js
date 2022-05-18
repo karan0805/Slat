@@ -101,7 +101,6 @@ const Section4 = () => {
               <Card.Section>
                 <Image
                   radius="md"
-                  height="384px"
                   src={img}
                   alt="Random"
                   withPlaceholder

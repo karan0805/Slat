@@ -1,9 +1,11 @@
-import { TextInput, PasswordInput, Button, Group, Text } from '@mantine/core';
+import { Button, Group, PasswordInput, Text, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { userApi } from '../../../api';
+
 import logo from '../../../assets/images/logo.svg';
+import Illustration from '../Illustration';
 import './Signup.css';
 
 const Signup = () => {
@@ -104,7 +106,9 @@ const Signup = () => {
             </Text>
           </Group>
         </div>
-        <div className="right"></div>
+        <div className="right">
+          <Illustration />
+        </div>
       </div>
     </>
   );

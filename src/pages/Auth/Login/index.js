@@ -6,6 +6,7 @@ import { userApi } from '../../../api';
 import logo from '../../../assets/images/logo.svg';
 import { orgLogin } from '../../../redux/slices/OrgSlice';
 import { login } from '../../../redux/slices/UserSlice';
+import Illustration from '../Illustration';
 import './Login.css';
 
 const Login = () => {
@@ -77,7 +78,9 @@ const Login = () => {
             </div>
           </form>
         </div>
-        <div className="right"></div>
+        <div className="right">
+          <Illustration />
+        </div>
       </div>
     </>
   );

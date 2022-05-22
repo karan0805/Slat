@@ -10,6 +10,7 @@ import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import Dashboard from './pages/Dashboard';
 import BoardView from './pages/BoardView';
+import CalendarView from './pages/CalendarView';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import OrganizationSettings from './pages/OrganizationSettings';
@@ -36,6 +37,14 @@ function App() {
               element={
                 <DashboardAppshell>
                   <Explore />
+                </DashboardAppshell>
+              }
+            />
+            <Route
+              path="calendar"
+              element={
+                <DashboardAppshell>
+                  <CalendarView />
                 </DashboardAppshell>
               }
             />

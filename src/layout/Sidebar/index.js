@@ -1,7 +1,7 @@
 import { Avatar } from '@mantine/core';
 import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
-import { FiHome, FiLogOut, FiSearch } from 'react-icons/fi';
+import { FiHome, FiLogOut, FiSearch, FiCalendar } from 'react-icons/fi';
 import { MdWorkspaces } from 'react-icons/md';
 import {
   Menu,
@@ -70,12 +70,20 @@ const Sidebar = ({ menuCollapse }) => {
                 Home
                 <Link to="/" />
               </MenuItem>
+
               <MenuItem
                 active={window.location.pathname === '/dashboard/explore'}
                 icon={<FiSearch />}
               >
                 Explore
                 <Link to="/dashboard/explore" />
+              </MenuItem>
+              <MenuItem
+                active={window.location.pathname === '/dashboard/calendar'}
+                icon={<FiCalendar />}
+              >
+                Schedule
+                <Link to="/dashboard/calendar" />
               </MenuItem>
 
               <SubMenu title={activeOrg.orgName} icon={<MdWorkspaces />}>

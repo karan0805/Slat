@@ -35,7 +35,7 @@ const TicketDetails = ({ showDetails, setShowDetails, item }) => {
         overlayOpacity={0.25}
         size="xl"
         radius={'md'}
-        zIndex={5}
+        zIndex={10}
         // styles={{
         //   root: { fontSize: '16px', padding: '0px' },
         //   inner: {},

@@ -78,6 +78,8 @@ export const Board = ({
 }) => {
   const user = useSelector(selectUser);
 
+  console.log(boardDetails);
+
   const isAdmin = (user) => {
     return user._id === boardDetails.project.lead;
   };
@@ -168,7 +170,10 @@ export const Board = ({
                                       {...provided.draggableProps}
                                       {...provided.dragHandleProps}
                                     >
-                                      <Ticket item={item} />
+                                      <Ticket
+                                        item={item}
+                                        boardDetails={boardDetails}
+                                      />
                                     </div>
                                   );
                                 }}

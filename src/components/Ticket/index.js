@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import TicketDetails from '../TicketDetails';
 
-const Ticket = ({ item }) => {
+const Ticket = ({ item, boardDetails }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (
@@ -21,6 +21,7 @@ const Ticket = ({ item }) => {
       <TicketDetails
         showDetails={showDetails}
         setShowDetails={setShowDetails}
+        boardDetails={boardDetails}
         item={item}
       />
       <Card

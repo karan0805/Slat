@@ -103,7 +103,7 @@ const CreateTicket = ({ addTask, setAddTask, boardDetails }) => {
             radius="md"
             onChange={setDueDate}
             minDate={new Date()}
-            required
+            required={true}
           />
           <br />
           <Button type="submit">Create </Button>

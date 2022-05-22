@@ -5,6 +5,7 @@ import {
   Divider,
   Group,
   Modal,
+  Select,
   Text,
   TextInput,
   Title,
@@ -20,10 +21,31 @@ import { BiCommentDetail } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/slices/UserSlice';
 
-const TicketDetails = ({ showDetails, setShowDetails, item }) => {
+const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
   console.log(item);
   const user = useSelector(selectUser);
   const [comment, setComment] = useState('');
+  const memberList = [];
+  const [member, setMember] = useState();
+
+  memberList.push({
+    value: boardDetails.project.lead._id,
+    label: boardDetails.project.lead.name,
+  });
+
+  // for (var i = 0; i < boardDetails.project.members.length; i++) {
+  //   memberList.push({
+  //     value: boardDetails.project.members[i]._id,
+  //     label: boardDetails.project.members[i].name,
+  //   });
+  // }
+
+  // for (var j = 0; i < boardDetails.project.maintainers.length; j++) {
+  //   memberList.push({
+  //     value: boardDetails.project.maintainers[j]._id,
+  //     label: boardDetails.project.maintainers[j].name,
+  //   });
+  // }
 
   return (
     <>
@@ -52,6 +74,22 @@ const TicketDetails = ({ showDetails, setShowDetails, item }) => {
         <Text color="dimmed" size="sm">
           {item.description}
         </Text>
+        <br />
+        <Group spacing={75}>
+          <Group>
+            <AiFillClockCircle color="#999" size={20} />
+            <Text color="dimmed" size="lg" inline="true">
+              Assigned To
+            </Text>
+          </Group>
+          <Select
+            placeholder="Pick One"
+            data={memberList}
+            value={member}
+            onChange={setMember}
+            required
+          />
+        </Group>
         <br />
         <Group spacing={75}>
           <Group>

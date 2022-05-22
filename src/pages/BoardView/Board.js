@@ -20,6 +20,24 @@ const onDragEnd = (result, columns, setColumns, isAdmin, boardDetails) => {
     return toast.error("Sorry, You can't Approve this ticket");
   }
 
+  if (
+    source.droppableId != 'waitingforApproval' &&
+    destination.droppableId == 'waitingforApproval'
+  ) {
+    return toast.error(
+      "Sorry, Once Approved, You can't send back to Waiting for Approval",
+    );
+  }
+
+  if (
+    source.droppableId == 'waitingforApproval' &&
+    destination.droppableId != 'todos'
+  ) {
+    return toast.error(
+      'You can only approve the ticket by moving it to To DOs',
+    );
+  }
+
   if (source.droppableId !== destination.droppableId) {
     const sourceColumn = columns[source.droppableId];
     const destColumn = columns[destination.droppableId];

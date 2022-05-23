@@ -1,10 +1,12 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import { Table } from '@mantine/core';
 import { Badge } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 import { useSelector } from 'react-redux';
-import { selectActiveOrgDetails } from '../../redux/slices/OrgSlice';
+import { selectActiveOrg } from '../../redux/slices/OrgSlice';
+import { orgApi } from '../../api';
 
 const Explore = () => {
   // const projectData = [
@@ -80,7 +82,18 @@ const Explore = () => {
   //   },
   // ];
 
-  const projectData = useSelector(selectActiveOrgDetails);
+  // const projectData = useSelector(selectActiveOrgDetails);
+  const [projectData, setProjectData] = useState([]);
+
+  const activeOrg = useSelector(selectActiveOrg);
+
+  useEffect(() => {
+    orgApi.getProjects(activeOrg).then((res) => {
+      if (res.status === 200) {
+        setProjectData(res.data.data);
+      }
+    });
+  }, [activeOrg]);
 
   const nav = useNavigate();
 
@@ -102,7 +115,7 @@ const Explore = () => {
     }
   };
 
-  const projects = projectData.projects.map((project) => (
+  const projects = projectData.map((project) => (
     <tr
       key={project.id}
       onClick={() => nav('/dashboard/project-chart/' + project._id)}

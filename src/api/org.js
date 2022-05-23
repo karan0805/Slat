@@ -39,3 +39,7 @@ export const getMembers = (activeOrg) => {
 export const deleteOrg = (activeOrg) => {
   return axiosInstance.post('/api/org/deleteOrg', { activeOrg });
 };
+
+export const getProjects = (activeOrg) => {
+  return axiosInstance.post('/api/org/getprojects', { activeOrg });
+};

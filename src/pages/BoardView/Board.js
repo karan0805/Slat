@@ -99,7 +99,10 @@ export const Board = ({
   console.log(boardDetails);
 
   const isAdmin = (user) => {
-    return user._id === boardDetails.project.lead;
+    return (
+      user._id === boardDetails.project.lead ||
+      user._id in boardDetails.project.maintainers
+    );
   };
 
   return (

@@ -22,7 +22,6 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/slices/UserSlice';
 
 const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
-  console.log(item);
   const user = useSelector(selectUser);
   const [comment, setComment] = useState('');
   const memberList = [];

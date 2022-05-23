@@ -73,6 +73,7 @@ const BoardView = () => {
     const payload = queryparams.get('boardId');
     boardApi.getBoardData({ boardId: payload }).then((res) => {
       setBoardDetails(res.data.data);
+      console.log(res.data.data);
     });
     boardApi
       .getBoardTickets({ boardId: payload })

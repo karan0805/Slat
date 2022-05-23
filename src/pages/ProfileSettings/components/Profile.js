@@ -1,4 +1,10 @@
-import { Button, SimpleGrid, TextInput, Modal } from '@mantine/core';
+import {
+  Button,
+  SimpleGrid,
+  TextInput,
+  Modal,
+  MultiSelect,
+} from '@mantine/core';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
@@ -13,6 +19,9 @@ export default function Profile({ user }) {
   const [UserName, setUserName] = useState(user.username);
   const [UserNumber, setUserNumber] = useState('9168336170');
   const [UserEmail, setUserEmail] = useState(user.email);
+  const [UserSkills, setUserSkills] = useState(['React', 'Angular']);
+
+  const data = ['React', 'Angular', 'Svelte', 'Vue'];
 
   const submitHandler = () => {
     userApi
@@ -21,6 +30,7 @@ export default function Profile({ user }) {
         username: UserName,
         email: UserEmail,
         phone: UserNumber,
+        //skills: UserSkills,
       })
       .then(
         (response) => {
@@ -77,7 +87,6 @@ export default function Profile({ user }) {
           value={UserName}
           onChange={(event) => setUserName(event.currentTarget.value)}
         />
-
         <TextInput
           required
           label="Email"
@@ -95,6 +104,22 @@ export default function Profile({ user }) {
           value={UserNumber}
           onChange={(event) => setUserNumber(event.currentTarget.value)}
         />
+        <TextInput
+          label="Skills"
+          radius="md"
+          size="md"
+          value={UserSkills}
+          disabled
+        />
+        <MultiSelect
+          data={data}
+          label="Update Skills"
+          placeholder="select all that apply"
+          onChange={setUserSkills}
+          value={UserSkills}
+          searchable
+        />
+
         <Button
           color="teal"
           style={{ marginTop: '20px' }}

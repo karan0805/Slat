@@ -5,8 +5,12 @@ import {
   Button,
   Group,
   Select,
+  Modal,
   Table,
   Text,
+  Card,
+  List,
+  ListItem,
 } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -21,6 +25,14 @@ export const Member = () => {
   const [orgMembers, setOrgMembers] = useState([]);
   const [member, setMember] = useState();
   const [role, setRole] = useState();
+  const [opened, setOpened] = useState(false);
+  const [userSkills, setUserSkills] = useState([
+    'React',
+    'Node',
+    'MongoDB',
+    'Express',
+    'GraphQL',
+  ]);
   const memberList = [];
 
   const activeOrg = useSelector(selectActiveOrg);
@@ -70,6 +82,17 @@ export const Member = () => {
 
   return (
     <>
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title="User Skills!"
+      >
+        <List type="ordered" withPadding>
+          {userSkills.map((skill) => (
+            <ListItem key={skill}>{skill}</ListItem>
+          ))}
+        </List>
+      </Modal>
       <Table verticalSpacing="sm">
         <thead>
           <tr>
@@ -82,7 +105,12 @@ export const Member = () => {
         <tbody>
           <tr key={lead}>
             <td>
-              <Group spacing="sm">
+              <Group
+                onClick={() => {
+                  setOpened(true);
+                }}
+                spacing="sm"
+              >
                 <Avatar src={lead.image} alt="it's me" radius={30} size={30} />
                 <Text size="sm" weight={500}>
                   {lead.fullName}
@@ -102,7 +130,12 @@ export const Member = () => {
           {maintainers.map((maintainer) => (
             <tr key={maintainer}>
               <td>
-                <Group spacing="sm">
+                <Group
+                  onClick={() => {
+                    setOpened(true);
+                  }}
+                  spacing="sm"
+                >
                   <Avatar
                     src={maintainer.image}
                     alt="it's me"
@@ -128,7 +161,12 @@ export const Member = () => {
           {members.map((member) => (
             <tr key={member}>
               <td>
-                <Group spacing="sm">
+                <Group
+                  onClick={() => {
+                    setOpened(true);
+                  }}
+                  spacing="sm"
+                >
                   <Avatar
                     src={member.image}
                     alt="it's me"

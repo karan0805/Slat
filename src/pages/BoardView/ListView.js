@@ -149,15 +149,18 @@ export function ListView({ listviewdata }) {
     );
   };
 
-  const rows = sortedData.map((row) => (
-    <tr key={row._id}>
-      <td>{row.title}</td>
-      <td>{statusBadge(row.status)}</td>
-      <td>{priorityBadge(row.priority)}</td>
-      <td> {row.assignee ? row.assignee : 'Not Assigned'}</td>
-      <td>{row.dueDate}</td>
-    </tr>
-  ));
+  const rows = sortedData.map(
+    (row) =>
+      !row.isDeleted && (
+        <tr key={row._id}>
+          <td>{row.title}</td>
+          <td>{statusBadge(row.status)}</td>
+          <td>{priorityBadge(row.priority)}</td>
+          <td> {row.assignee ? row.assignee : 'Not Assigned'}</td>
+          <td>{row.dueDate}</td>
+        </tr>
+      ),
+  );
 
   return (
     <ScrollArea style={{ paddingTop: '30px' }}>

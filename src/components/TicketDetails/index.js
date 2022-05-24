@@ -6,24 +6,26 @@ import {
   Group,
   Modal,
   Select,
+  Space,
   Text,
   TextInput,
   Title,
-  Space,
 } from '@mantine/core';
-import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import {
-  AiFillRightCircle,
-  AiFillClockCircle,
-  AiOutlineSend,
   AiFillInfoCircle,
+  AiFillRightCircle,
+  AiOutlineClockCircle,
+  AiOutlineSend,
+  AiOutlineUser,
 } from 'react-icons/ai';
-import { BiCommentDetail } from 'react-icons/bi';
+import { MdDateRange } from 'react-icons/md';
+import { BiCommentDetail, BiTrash } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/slices/UserSlice';
 import { ticketApi } from '../../api';
-import moment from 'moment';
+import { selectUser } from '../../redux/slices/UserSlice';
 
 const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
   const user = useSelector(selectUser);
@@ -34,7 +36,6 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
   useEffect(() => {
     ticketApi.getComments({ ticketId: item._id }).then((res) => {
       item.comments = res.data.data;
-      console.log(res.data.data);
     });
   }, [showDetails, comment]);
 
@@ -74,6 +75,20 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
       });
   };
 
+  const deleteTicket = () => {
+    ticketApi
+      .deleteTicket({
+        ticketId: item._id,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success('Ticket deleted');
+          item.isDeleted = true;
+          setShowDetails(false);
+        }
+      });
+  };
+
   return (
     <>
       <Modal
@@ -88,72 +103,95 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
         padding={'50px'}
         overflow={'inside'}
       >
-        <Title>{item.title}</Title>
+        <Title size="lg">{item.title}</Title>
         <br />
-        <Text color="dimmed" size="sm">
+        <Text color="dimmed" size="md">
           {item.description}
         </Text>
         <br />
-        <Group spacing={75}>
+        <Group direction="column" grow>
           <Group>
-            <AiFillClockCircle color="#999" size={20} />
-            <Text color="dimmed" size="lg" inline="true">
-              Assigned To
+            <Group>
+              <AiOutlineUser color="#999" size={20} />
+              <Text color="dimmed" size="md" inline="true">
+                Assignee:
+              </Text>
+            </Group>
+            <Select
+              placeholder="Pick One"
+              data={memberList}
+              value={member}
+              onChange={setMember}
+              size="xs"
+              required
+            />
+          </Group>
+          <Group>
+            <Group>
+              <AiFillInfoCircle color="#999" size={20} />
+              <Text color="dimmed" size="md" inline="true">
+                Status:
+              </Text>
+            </Group>
+            <Text size="sm">{item.status}</Text>
+          </Group>
+          <Group>
+            <Group>
+              <AiFillRightCircle color="#999" size={20} />
+              <Text color="dimmed" size="md" inline="true">
+                Priority:
+              </Text>
+            </Group>
+            {item.priority === 'high' && (
+              <Badge color="red" style={{ width: 110 }}>
+                High Priority
+              </Badge>
+            )}
+            {item.priority === 'medium' && (
+              <Badge color="orange" style={{ width: 130 }}>
+                Medium Priority
+              </Badge>
+            )}
+            {item.priority === 'low' && (
+              <Badge color="blue" style={{ width: 110 }}>
+                Low Priority
+              </Badge>
+            )}
+          </Group>
+          <Group>
+            <Group>
+              <MdDateRange color="#999" size={20} />
+              <Text color="dimmed" size="md" inline="true">
+                Due Date:
+              </Text>
+            </Group>
+            <Text size="sm">
+              {moment(item.dueDate).format('MMMM Do YYYY, h:mm:ss a')}
             </Text>
           </Group>
-          <Select
-            placeholder="Pick One"
-            data={memberList}
-            value={member}
-            onChange={setMember}
-            required
-          />
-        </Group>
-        <br />
-        <Group spacing={75}>
           <Group>
-            <AiFillClockCircle color="#999" size={20} />
-            <Text color="dimmed" size="lg" inline="true">
-              Due Date
+            <Group>
+              <AiOutlineClockCircle color="#999" size={20} />
+              <Text color="dimmed" size="md" inline="true">
+                Date Created:
+              </Text>
+            </Group>
+            <Text size="sm">
+              {moment(item.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
             </Text>
           </Group>
-          <Text>{item.dueDate.split('T')[0]}</Text>
-        </Group>
-        <br />
-        <Group spacing={75}>
           <Group>
-            <AiFillRightCircle color="#999" size={20} />
-            <Text color="dimmed" size="lg" inline="true">
-              Priority
-            </Text>
+            <Button
+              color="red"
+              size="xs"
+              leftIcon={<BiTrash size={15} />}
+              onClick={deleteTicket}
+            >
+              Delete
+            </Button>
           </Group>
-          {item.priority === 'high' && (
-            <Badge color="red" style={{ width: 120 }}>
-              High Priority
-            </Badge>
-          )}
-          {item.priority === 'medium' && (
-            <Badge color="orange" style={{ width: 150 }}>
-              Medium Priority
-            </Badge>
-          )}
-          {item.priority === 'low' && (
-            <Badge color="blue" style={{ width: 120 }}>
-              Low Priority
-            </Badge>
-          )}
         </Group>
-        <br />
-        <Group spacing={75}>
-          <Group>
-            <AiFillInfoCircle color="#999" size={20} />
-            <Text color="dimmed" size="lg" inline="true">
-              Status
-            </Text>
-          </Group>
-          <Text>{item.status}</Text>
-        </Group>
-        <br />
+
         <Divider my="sm" />
         <br />
         <Group>

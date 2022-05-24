@@ -7,6 +7,7 @@ import './index.css';
 import { useSelector } from 'react-redux';
 import { selectActiveOrg } from '../../redux/slices/OrgSlice';
 import { orgApi } from '../../api';
+import moment from 'moment';
 
 const Explore = () => {
   // const projectData = [
@@ -121,7 +122,7 @@ const Explore = () => {
       onClick={() => nav('/dashboard/project-chart/' + project._id)}
     >
       <td>{project.name}</td>
-      <td>{project.endDate.split('T')[0]}</td>
+      <td>{moment(project.endDate).format('LL')}</td>
       <td>{statusBadge(project.status)}</td>
       <td>{project.lead.fullName}</td>
     </tr>

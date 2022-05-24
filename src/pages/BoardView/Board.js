@@ -96,8 +96,6 @@ export const Board = ({
 }) => {
   const user = useSelector(selectUser);
 
-  console.log(boardDetails);
-
   const isAdmin = (user) => {
     return (
       user._id === boardDetails.project.lead ||

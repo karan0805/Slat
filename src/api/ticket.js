@@ -7,3 +7,7 @@ export const addComment = (payload) => {
 export const getComments = (payload) => {
   return axiosInstance.post('/api/board/getComments', payload);
 };
+
+export const deleteTicket = (payload) => {
+  return axiosInstance.post('/api/board/deleteTicket', payload);
+};

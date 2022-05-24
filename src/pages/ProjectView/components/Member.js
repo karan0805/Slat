@@ -11,6 +11,7 @@ import {
   Card,
   List,
   ListItem,
+  ScrollArea,
 } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -19,6 +20,8 @@ import { orgApi, projectApi } from '../../../api';
 import { selectActiveOrg } from '../../../redux/slices/OrgSlice';
 
 export const Member = () => {
+  const link =
+    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80';
   const [maintainers, setMaintainers] = useState([]);
   const [members, setMembers] = useState([]);
   const [lead, setLead] = useState([]);
@@ -33,6 +36,7 @@ export const Member = () => {
     'Express',
     'GraphQL',
   ]);
+  const [info, setInfo] = useState({});
   const memberList = [];
 
   const activeOrg = useSelector(selectActiveOrg);
@@ -83,15 +87,35 @@ export const Member = () => {
   return (
     <>
       <Modal
+        size="sm"
         opened={opened}
         onClose={() => setOpened(false)}
-        title="User Skills!"
+        title="User Info!"
       >
-        <List type="ordered" withPadding>
-          {userSkills.map((skill) => (
-            <ListItem key={skill}>{skill}</ListItem>
-          ))}
-        </List>
+        <Card withBorder p="xl" radius="md">
+          <Card.Section
+            sx={{
+              backgroundImage: `url(${link})`,
+
+              height: 140,
+            }}
+          />
+          <Avatar src={info.image} size={80} radius={80} mx="auto" mt={-30} />
+          <Text align="center" size="lg" weight={500} mt="sm">
+            {info.name}
+          </Text>
+          <Text align="center" size="sm" color="dimmed">
+            {info.role}
+          </Text>
+          <br />
+          <Group position="center" spacing="xl">
+            {userSkills.map((skill) => (
+              <Badge key={skill} color="teal" size="lg" variant="dot">
+                {skill}
+              </Badge>
+            ))}
+          </Group>
+        </Card>
       </Modal>
       <Table verticalSpacing="sm">
         <thead>
@@ -108,6 +132,11 @@ export const Member = () => {
               <Group
                 onClick={() => {
                   setOpened(true);
+                  setInfo({
+                    image: lead.image,
+                    name: lead.fullName,
+                    role: 'Lead',
+                  });
                 }}
                 spacing="sm"
               >
@@ -133,6 +162,11 @@ export const Member = () => {
                 <Group
                   onClick={() => {
                     setOpened(true);
+                    setInfo({
+                      image: maintainer.image,
+                      name: maintainer.fullName,
+                      role: 'Maintainer',
+                    });
                   }}
                   spacing="sm"
                 >
@@ -164,6 +198,11 @@ export const Member = () => {
                 <Group
                   onClick={() => {
                     setOpened(true);
+                    setInfo({
+                      image: member.image,
+                      name: member.fullName,
+                      role: 'Member',
+                    });
                   }}
                   spacing="sm"
                 >

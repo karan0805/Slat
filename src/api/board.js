@@ -7,9 +7,11 @@ export const getBoardData = (payload) => {
 export const getBoardTickets = (payload) => {
   return axiosInstance.post('/api/board/getBoardTickets', payload);
 };
+
 export const updateBoardTickets = (payload) => {
   return axiosInstance.post('/api/board/updateBoardTickets', payload);
 };
+
 export const updateBoardTicketsSameLevel = (payload) => {
   return axiosInstance.post('/api/board/updateBoardTicketsSameLevel', payload);
 };

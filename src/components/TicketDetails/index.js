@@ -9,8 +9,10 @@ import {
   Text,
   TextInput,
   Title,
+  Space,
 } from '@mantine/core';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import {
   AiFillRightCircle,
   AiFillClockCircle,
@@ -20,6 +22,8 @@ import {
 import { BiCommentDetail } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/slices/UserSlice';
+import { ticketApi } from '../../api';
+import moment from 'moment';
 
 const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
   const user = useSelector(selectUser);
@@ -27,9 +31,16 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
   const memberList = [];
   const [member, setMember] = useState();
 
+  useEffect(() => {
+    ticketApi.getComments({ ticketId: item._id }).then((res) => {
+      item.comments = res.data.data;
+      console.log(res.data.data);
+    });
+  }, [showDetails, comment]);
+
   memberList.push({
-    value: boardDetails.project.lead._id,
-    label: boardDetails.project.lead.name,
+    value: boardDetails?.project?.lead._id,
+    label: boardDetails?.project?.lead.name,
   });
 
   // for (var i = 0; i < boardDetails.project.members.length; i++) {
@@ -46,6 +57,23 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
   //   });
   // }
 
+  const submitHandler = () => {
+    if (comment.trim() === '') {
+      return toast.error('Please enter a comment');
+    }
+    ticketApi
+      .addComment({
+        ticketId: item._id,
+        comment,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success('Comment added');
+          setComment('');
+        }
+      });
+  };
+
   return (
     <>
       <Modal
@@ -57,14 +85,6 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
         size="xl"
         radius={'md'}
         zIndex={10}
-        // styles={{
-        //   root: { fontSize: '16px', padding: '0px' },
-        //   inner: {},
-        //   modal: {},
-        //   header: {},
-        //   title: { fontWeight: 'bold' },
-        //   body: {},
-        // }}
         padding={'50px'}
         overflow={'inside'}
       >
@@ -157,43 +177,44 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
             required
             style={{ width: '450px' }}
           />
-          <Button>
+          <Button onClick={submitHandler}>
             <AiOutlineSend />
           </Button>
         </Group>
-        <br />
-        <Group mb={12}>
-          <Avatar
-            radius="xl"
-            size="sm"
-            src={`https://avatars.dicebear.com/api/initials/${user.fullName}.svg`}
-          />
-          <Text size="lg" weight={500} color="#333">
-            {user.fullName}
+        <Space h="sm" />
+        {item.comments.length > 0 &&
+          item.comments.map((comment) => (
+            <Group
+              mt={10}
+              mb={10}
+              key={comment?._id}
+              direction={'column'}
+              spacing="0"
+            >
+              <Group>
+                <Avatar
+                  radius="xl"
+                  size="sm"
+                  src={`https://avatars.dicebear.com/api/initials/${comment?.user_id?.fullName}.svg`}
+                />
+                <Text size="md" weight={700} color="#333">
+                  {comment?.user_id?.fullName}
+                </Text>
+                <Text size="sm" color="#999">
+                  {moment(comment?.createdAt).fromNow()}
+                </Text>
+              </Group>
+              <Text size="md" weight={300}>
+                {comment?.text}
+              </Text>
+            </Group>
+          ))}
+        {item.comments.length === 0 && (
+          <Text size="md" color={'dimmed'} style={{ textAlign: 'center' }}>
+            <Space h="md" />
+            No Comments to show. Add a comment to see it here.
           </Text>
-        </Group>
-        <Text size="md">Hello World!</Text>
-        {/* ------------------------------- */}
-        <Group mt={10} mb={10}>
-          <Avatar
-            radius="xl"
-            size="sm"
-            src={`https://avatars.dicebear.com/api/initials/${user.fullName}.svg`}
-          />
-
-          <Text size="lg" weight={500} color="#333">
-            {user.fullName}
-          </Text>
-        </Group>
-        <Text size="md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Text>
+        )}
       </Modal>
     </>
   );

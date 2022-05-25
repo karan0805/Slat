@@ -18,6 +18,7 @@ import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { orgApi, projectApi } from '../../../api';
 import { selectActiveOrg } from '../../../redux/slices/OrgSlice';
+import { selectUser } from '../../../redux/slices/UserSlice';
 
 export const Member = () => {
   const link =
@@ -36,9 +37,11 @@ export const Member = () => {
     'Express',
     'GraphQL',
   ]);
+  const [call, setCall] = useState(false);
   const [info, setInfo] = useState({});
   const memberList = [];
 
+  const user = useSelector(selectUser);
   const activeOrg = useSelector(selectActiveOrg);
 
   useEffect(() => {
@@ -50,38 +53,47 @@ export const Member = () => {
         setLead(response.data.data.lead);
         setMembers(response.data.data.members);
         setMaintainers(response.data.data.maintainers);
+        setCall(false);
       }
     });
     orgApi.getMembers(activeOrg).then((response) => {
       if (response.status === 200) {
         setOrgMembers(response.data.data);
+        console.log('orgMembers', response.data.data);
       }
     });
-  }, [activeOrg]);
+  }, [activeOrg, call]);
 
   for (var i = 0; i < orgMembers.length; i++) {
-    memberList.push({
-      value: orgMembers[i]._id,
-      label: orgMembers[i].fullName,
-    });
+    if (orgMembers[i]._id !== lead._id) {
+      memberList.push({
+        value: orgMembers[i]._id,
+        label: orgMembers[i].fullName,
+      });
+    }
   }
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = () => {
     const queryparams = new URLSearchParams(window.location.search);
     const payload = {
       projectId: queryparams.get('projectId'),
       userId: member,
       role: role,
     };
-    projectApi.addMember(payload).then((res) => {
-      if (res.status === 200) {
-        console.log(res);
-        toast.success('Member added successfully');
-        setMember('');
-        setRole('');
-      }
-    });
+    projectApi.addMember(payload).then(
+      (res) => {
+        if (res.status === 200) {
+          console.log(res);
+          toast.success('Successfully Executed');
+          setMember('');
+          setRole('');
+          setCall(true);
+        }
+      },
+      (err) => {
+        toast.error(err.response.data.message);
+      },
+    );
   };
 
   return (
@@ -123,7 +135,6 @@ export const Member = () => {
             <th>Name</th>
             <th>Role</th>
             <th>Email</th>
-            <th>Phone</th>
           </tr>
         </thead>
         <tbody>
@@ -150,11 +161,6 @@ export const Member = () => {
               <Badge color="green">Lead</Badge>
             </td>
             <td>{lead.email}</td>
-            <td>
-              <Text size="sm" color="gray">
-                +91 721-865-4389
-              </Text>
-            </td>
           </tr>
           {maintainers.map((maintainer) => (
             <tr key={maintainer}>
@@ -185,11 +191,6 @@ export const Member = () => {
                 <Badge color="pink">Maintainer</Badge>
               </td>
               <td>{maintainer.email}</td>
-              <td>
-                <Text size="sm" color="gray">
-                  +91 721-865-4389
-                </Text>
-              </td>
             </tr>
           ))}
           {members.map((member) => (
@@ -218,51 +219,49 @@ export const Member = () => {
                 </Group>
               </td>
               <td>
-                <Badge color="blue">Memeber</Badge>
+                <Badge color="blue">Member</Badge>
               </td>
               <td>{member.email}</td>
-              <td>
-                <Text size="sm" color="gray">
-                  +91 721-865-4389
-                </Text>
-              </td>
             </tr>
           ))}
         </tbody>
       </Table>
       <br />
-      <Table>
-        <tbody>
-          <tr>
-            <td>
-              <Select
-                placeholder="Choose Member"
-                data={memberList}
-                value={member}
-                onChange={setMember}
-                required
-              />
-            </td>
-            <td>
-              <Select
-                placeholder="Select Role"
-                data={[
-                  { value: 'maintainer', label: 'Maintainer' },
-                  { value: 'member', label: 'Member' },
-                ]}
-                value={role}
-                onChange={setRole}
-                required
-              />
-            </td>
-            <td>
-              <Button type="submit" onClick={submitHandler}>
-                Add
-              </Button>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+
+      {user._id == lead._id && (
+        <Table>
+          <tbody>
+            <tr>
+              <td>
+                <Select
+                  placeholder="Choose Member"
+                  data={memberList}
+                  value={member}
+                  onChange={setMember}
+                  required
+                />
+              </td>
+              <td>
+                <Select
+                  placeholder="Select Role"
+                  data={[
+                    { value: 'maintainer', label: 'Maintainer' },
+                    { value: 'member', label: 'Member' },
+                  ]}
+                  value={role}
+                  onChange={setRole}
+                  required
+                />
+              </td>
+              <td>
+                <Button type="submit" onClick={submitHandler}>
+                  Add
+                </Button>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      )}
     </>
   );
 };

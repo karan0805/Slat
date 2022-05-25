@@ -112,13 +112,13 @@ const BoardView = () => {
         >
           {boardDetails?.name?.toUpperCase() + ' BOARD'}
         </Title>
-        <AvatarsGroup limit={3} total={7}>
+        <AvatarsGroup limit={3} total={4}>
           <Avatar
             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
             component="a"
-            href="https://github.com/rtivital"
+            href="https://github.com/karan0805"
           />
-          <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80" />
+          <Avatar src="https://avatars.githubusercontent.com/u/61943065?s=400&u=806a6c80c755d133263a37c10df8cbf569dc4f1d&v=4" />
         </AvatarsGroup>
       </Group>
       <Space h="46px" />

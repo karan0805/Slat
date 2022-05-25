@@ -41,22 +41,22 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
 
   memberList.push({
     value: boardDetails?.project?.lead._id,
-    label: boardDetails?.project?.lead.name,
+    label: boardDetails?.project?.lead.fullName,
   });
 
-  // for (var i = 0; i < boardDetails.project.members.length; i++) {
-  //   memberList.push({
-  //     value: boardDetails.project.members[i]._id,
-  //     label: boardDetails.project.members[i].name,
-  //   });
-  // }
+  for (let i = 0; i < boardDetails?.project?.members.length; i++) {
+    memberList.push({
+      value: boardDetails?.project?.members[i]?._id,
+      label: boardDetails?.project?.members[i]?.fullName,
+    });
+  }
 
-  // for (var j = 0; i < boardDetails.project.maintainers.length; j++) {
-  //   memberList.push({
-  //     value: boardDetails.project.maintainers[j]._id,
-  //     label: boardDetails.project.maintainers[j].name,
-  //   });
-  // }
+  for (let j = 0; j < boardDetails?.project?.maintainers.length; j++) {
+    memberList.push({
+      value: boardDetails?.project?.maintainers[j]._id,
+      label: boardDetails?.project?.maintainers[j].fullName,
+    });
+  }
 
   const submitHandler = () => {
     if (comment.trim() === '') {
@@ -87,6 +87,28 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
           setShowDetails(false);
         }
       });
+  };
+
+  const statusBadge = (status) => {
+    if (status === 'open') {
+      return (
+        <Badge color="red" size="md">
+          Not Started
+        </Badge>
+      );
+    } else if (status === 'in-progress') {
+      return (
+        <Badge color="green" size="md">
+          In Progress
+        </Badge>
+      );
+    } else {
+      return (
+        <Badge color="blue" size="md">
+          Completed
+        </Badge>
+      );
+    }
   };
 
   return (
@@ -133,7 +155,7 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
                 Status:
               </Text>
             </Group>
-            <Text size="sm">{item.status}</Text>
+            <Text size="sm">{statusBadge(item.status)}</Text>
           </Group>
           <Group>
             <Group>

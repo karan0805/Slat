@@ -9,6 +9,7 @@ import {
   TextInput,
   UnstyledButton,
 } from '@mantine/core';
+import moment from 'moment';
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Search, Selector } from 'tabler-icons-react';
 
@@ -157,7 +158,7 @@ export function ListView({ listviewdata }) {
           <td>{statusBadge(row.status)}</td>
           <td>{priorityBadge(row.priority)}</td>
           <td> {row.assignee ? row.assignee : 'Not Assigned'}</td>
-          <td>{row.dueDate}</td>
+          <td>{moment(row.dueDate).format('LL')}</td>
         </tr>
       ),
   );

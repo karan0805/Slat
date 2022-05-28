@@ -1,8 +1,16 @@
-import { Button, Modal, Select, Textarea, TextInput } from '@mantine/core';
+import {
+  Button,
+  Modal,
+  MultiSelect,
+  Select,
+  Textarea,
+  TextInput,
+} from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { boardApi } from '../../api';
+import { skills } from '../../assets/data/skillsData';
 
 const CreateTicket = ({ addTask, setAddTask, boardDetails }) => {
   const [title, setTitle] = useState('');
@@ -10,6 +18,9 @@ const CreateTicket = ({ addTask, setAddTask, boardDetails }) => {
   const [priority, setPriority] = useState('');
   const [dueDate, setDueDate] = useState();
   const [type, setType] = useState('');
+  const [UserSkills, setUserSkills] = useState([]);
+
+  const data = skills;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,6 +105,15 @@ const CreateTicket = ({ addTask, setAddTask, boardDetails }) => {
             value={priority}
             onChange={setPriority}
             required
+          />
+          <MultiSelect
+            data={data}
+            label="Required Skills"
+            placeholder="Choose Required Skills"
+            onChange={setUserSkills}
+            value={UserSkills}
+            searchable
+            nothingFound="Nothing found"
           />
           <DatePicker
             firstDayOfWeek="sunday"

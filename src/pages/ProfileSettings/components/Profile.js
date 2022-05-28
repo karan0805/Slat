@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { userApi } from '../../../api';
 import ResetPassword from '../../../components/ResetPassword';
 import { update } from '../../../redux/slices/UserSlice';
+import { skills } from '../../../assets/data/skillsData';
 
 export default function Profile({ user }) {
   const dispatch = useDispatch();
@@ -19,9 +20,9 @@ export default function Profile({ user }) {
   const [UserName, setUserName] = useState(user.username);
   const [UserNumber, setUserNumber] = useState('9168336170');
   const [UserEmail, setUserEmail] = useState(user.email);
-  const [UserSkills, setUserSkills] = useState(['React', 'Angular']);
+  const [UserSkills, setUserSkills] = useState([]);
 
-  const data = ['React', 'Angular', 'Svelte', 'Vue'];
+  const data = skills;
 
   const submitHandler = () => {
     userApi
@@ -114,10 +115,11 @@ export default function Profile({ user }) {
         <MultiSelect
           data={data}
           label="Update Skills"
-          placeholder="select all that apply"
+          placeholder="Update your skills"
           onChange={setUserSkills}
           value={UserSkills}
           searchable
+          nothingFound="Nothing found"
         />
 
         <Button

@@ -88,7 +88,7 @@ const statusBadge = (status) => {
         Not Started
       </Badge>
     );
-  } else if (status === 'in-progress') {
+  } else if (status === 'in progress') {
     return (
       <Badge color="green" size="lg">
         In Progress{' '}
@@ -157,7 +157,8 @@ export function ListView({ listviewdata }) {
           <td>{row.title}</td>
           <td>{statusBadge(row.status)}</td>
           <td>{priorityBadge(row.priority)}</td>
-          <td> {row.assignee ? row.assignee : 'Not Assigned'}</td>
+          {row.assignees?.length > 0 && <td>{row.assignees[0].fullName}</td>}
+          {row.assignees?.length === 0 && <td>Not Assigned</td>}
           <td>{moment(row.dueDate).format('LL')}</td>
         </tr>
       ),
@@ -200,13 +201,7 @@ export function ListView({ listviewdata }) {
             >
               Priority Level
             </Th>
-            <Th
-              sorted={sortBy === 'assignee'}
-              reversed={reverseSortDirection}
-              onSort={() => setSorting('assignee')}
-            >
-              Assignee
-            </Th>
+            <Th>Assignee</Th>
             <Th
               sorted={sortBy === 'dueDate'}
               reversed={reverseSortDirection}

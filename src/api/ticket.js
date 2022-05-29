@@ -11,3 +11,7 @@ export const getComments = (payload) => {
 export const deleteTicket = (payload) => {
   return axiosInstance.post('/api/board/deleteTicket', payload);
 };
+
+export const assignTicket = (payload) => {
+  return axiosInstance.post('/api/board/assignTicket', payload);
+};

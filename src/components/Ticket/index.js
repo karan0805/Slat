@@ -14,7 +14,7 @@ import { BiCommentDetail } from 'react-icons/bi';
 import { BsThreeDots } from 'react-icons/bs';
 import TicketDetails from '../TicketDetails';
 
-const Ticket = ({ item, boardDetails }) => {
+const Ticket = ({ item, boardDetails, isAdmin }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (
@@ -24,6 +24,7 @@ const Ticket = ({ item, boardDetails }) => {
         setShowDetails={setShowDetails}
         boardDetails={boardDetails}
         item={item}
+        isAdmin={isAdmin}
       />
       {item.isDeleted !== true && (
         <Card
@@ -74,7 +75,7 @@ const Ticket = ({ item, boardDetails }) => {
             <Space h="sm" />
             <Group position="apart" direction="row">
               <AvatarsGroup size={'sm'} limit={2}>
-                {item?.assignee_id.map((assignee) => {
+                {item?.assignees.map((assignee) => {
                   <Avatar
                     src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
                     component="a"

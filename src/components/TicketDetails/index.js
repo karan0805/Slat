@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Avatar,
   Badge,
@@ -28,11 +29,17 @@ import { useSelector } from 'react-redux';
 import { ticketApi } from '../../api';
 import { selectUser } from '../../redux/slices/UserSlice';
 
-const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
+const TicketDetails = ({
+  showDetails,
+  setShowDetails,
+  item,
+  boardDetails,
+  isAdmin,
+}) => {
   const user = useSelector(selectUser);
   const [comment, setComment] = useState('');
   const memberList = [];
-  const [member, setMember] = useState();
+  const [member, setMember] = useState(item?.assignees[0]);
   const [call, setCall] = useState(false);
 
   useEffect(() => {
@@ -79,6 +86,22 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
       });
   };
 
+  const submitAssignee = (member) => {
+    if (member === undefined) {
+      return toast.error('Please select a member');
+    }
+    ticketApi
+      .assignTicket({
+        ticketId: item._id,
+        member,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success('Ticket Assigned');
+        }
+      });
+  };
+
   const deleteTicket = () => {
     ticketApi
       .deleteTicket({
@@ -100,7 +123,7 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
           Not Started
         </Badge>
       );
-    } else if (status === 'in-progress') {
+    } else if (status === 'in progress') {
       return (
         <Badge color="green" size="md">
           In Progress
@@ -143,14 +166,22 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
                 Assignee:
               </Text>
             </Group>
-            <Select
-              placeholder="Pick One"
-              data={memberList}
-              value={member}
-              onChange={setMember}
-              size="xs"
-              required
-            />
+            {isAdmin && (
+              <Select
+                placeholder="Pick One"
+                data={memberList}
+                value={member}
+                onChange={(e) => submitAssignee(e)}
+                size="xs"
+                required
+              />
+            )}
+            {!isAdmin && (
+              <Text color="dimmed" size="md">
+                {item.assignees?.length > 0 && item.assignees[0].fullName}
+                {item.assignees?.length === 0 && 'Not Assigned'}
+              </Text>
+            )}
           </Group>
           <Group>
             <Group>

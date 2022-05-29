@@ -182,7 +182,7 @@ const Dashboard = () => {
           </Grid.Col>
         </Grid>
       </Container>
-      <Bot />
+      <Bot user={user} greet={greet} />
     </>
   );
 };

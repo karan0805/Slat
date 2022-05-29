@@ -99,8 +99,8 @@ export const Board = ({
 
   const isAdmin = (user) => {
     return (
-      user._id === boardDetails.project.lead._id ||
-      boardDetails.project.maintainers.filter(function (obj) {
+      user._id === boardDetails?.project?.lead._id ||
+      boardDetails?.project?.maintainers.filter(function (obj) {
         return obj._id === user._id;
       })
     );
@@ -194,6 +194,7 @@ export const Board = ({
                                     >
                                       <Ticket
                                         item={item}
+                                        isAdmin={isAdmin(user)}
                                         boardDetails={boardDetails}
                                       />
                                     </div>

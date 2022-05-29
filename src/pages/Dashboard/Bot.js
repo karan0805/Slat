@@ -1,26 +1,26 @@
 import React from 'react';
 import ChatBot from 'react-simple-chatbot';
 
-const Bot = () => {
+const Bot = ({ greet, user }) => {
   const steps = [
     {
       id: '0',
-      message: 'Hey Geek!',
-      trigger: '1',
-    },
-    {
-      id: '1',
-      message: 'Please write your Name',
-      trigger: '2',
-    },
-    {
-      id: '2',
-      user: true,
+      message: greet,
       trigger: '3',
     },
+    // {
+    //   id: '1',
+    //   message: 'Please write your Name',
+    //   trigger: '2',
+    // },
+    // {
+    //   id: '2',
+    //   user: true,
+    //   trigger: '3',
+    // },
     {
       id: '3',
-      message: ' hi {previousValue}, how can I help you?',
+      message: ' hi ' + user.fullName + ', how can I help you?',
       trigger: '4',
     },
     {
@@ -83,7 +83,7 @@ const Bot = () => {
   };
   return (
     <>
-      <ChatBot headerTitle="Help" steps={steps} {...config} />
+      <ChatBot headerTitle="Slat Assistant" steps={steps} {...config} />
     </>
   );
 };

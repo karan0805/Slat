@@ -9,7 +9,6 @@ import {
 } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { boardApi } from '../../api';
-import { VscSettingsGear } from 'react-icons/vsc';
 import { Board } from './Board';
 import { ListView } from './ListView';
 
@@ -81,7 +80,7 @@ const BoardView = () => {
         if (res.status === 200) {
           setColumns(res.data.data);
           setListview(Object.values(res.data.data).flat(1));
-          console.log('api call');
+          console.log('api call', Object.values(res.data.data).flat(1));
         }
       })
       .catch((err) => {
@@ -145,9 +144,9 @@ const BoardView = () => {
           <Tabs.Tab label="List View">
             <ListView listviewdata={listview} />
           </Tabs.Tab>
-          <Tabs.Tab label="Settings" icon={<VscSettingsGear />}>
+          {/* <Tabs.Tab label="Settings" icon={<VscSettingsGear />}>
             Settings tab content
-          </Tabs.Tab>
+          </Tabs.Tab> */}
         </Tabs>
         <Group></Group>
       </Group>

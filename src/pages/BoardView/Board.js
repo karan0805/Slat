@@ -95,11 +95,14 @@ export const Board = ({
   setAddTask,
 }) => {
   const user = useSelector(selectUser);
+  console.log('boardDetails', boardDetails);
 
   const isAdmin = (user) => {
     return (
-      user._id === boardDetails.project.lead ||
-      user._id in boardDetails.project.maintainers
+      user._id === boardDetails.project.lead._id ||
+      boardDetails.project.maintainers.filter(function (obj) {
+        return obj._id === user._id;
+      })
     );
   };
 

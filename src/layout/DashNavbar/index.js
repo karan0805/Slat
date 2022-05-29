@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import {
-  Autocomplete,
   Avatar,
   Divider,
   Group,
@@ -11,12 +10,7 @@ import {
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { BsGear, BsTrash } from 'react-icons/bs';
-import {
-  FiArrowLeftCircle,
-  FiLogOut,
-  FiPlusCircle,
-  FiSearch,
-} from 'react-icons/fi';
+import { FiArrowLeftCircle, FiLogOut, FiPlusCircle } from 'react-icons/fi';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrOrganization } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
@@ -110,22 +104,6 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
             </span>
           </Group>
           <Group position="right">
-            <Autocomplete
-              placeholder="Search"
-              icon={<FiSearch />}
-              radius="lg"
-              data={[
-                'Create an Organization',
-                'Join an Organization',
-                'Create a Project',
-                'Create a Board',
-              ]}
-              nothingFound="No results found"
-              onItemSubmit={(item) => {
-                alert(item.value);
-              }}
-              zIndex={9999}
-            />
             <Menu
               delay={100}
               withArrow

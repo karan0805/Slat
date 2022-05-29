@@ -11,6 +11,7 @@ import {
   Textarea,
   ThemeIcon,
 } from '@mantine/core';
+import { useLocalStorageValue } from '@mantine/hooks';
 import moment from 'moment';
 import { useState } from 'react';
 import { BiPlus } from 'react-icons/bi';
@@ -24,7 +25,7 @@ import {
 } from '../../redux/slices/OrgSlice';
 import { selectUser } from '../../redux/slices/UserSlice';
 import Members from '../OrganizationSettings/components/Members';
-import { useLocalStorageValue } from '@mantine/hooks';
+import Bot from './Bot';
 
 export const Time = styled.div`
   display: flex;
@@ -181,6 +182,7 @@ const Dashboard = () => {
           </Grid.Col>
         </Grid>
       </Container>
+      <Bot />
     </>
   );
 };

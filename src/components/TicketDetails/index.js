@@ -22,6 +22,7 @@ import {
   AiOutlineUser,
 } from 'react-icons/ai';
 import { MdDateRange } from 'react-icons/md';
+import { BsLightningCharge } from 'react-icons/bs';
 import { BiCommentDetail, BiTrash } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { ticketApi } from '../../api';
@@ -32,12 +33,14 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
   const [comment, setComment] = useState('');
   const memberList = [];
   const [member, setMember] = useState();
+  const [call, setCall] = useState(false);
 
   useEffect(() => {
     ticketApi.getComments({ ticketId: item._id }).then((res) => {
       item.comments = res.data.data;
+      setCall(false);
     });
-  }, [showDetails, comment]);
+  }, [call]);
 
   memberList.push({
     value: boardDetails?.project?.lead._id,
@@ -71,6 +74,7 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
         if (res.status === 200) {
           toast.success('Comment added');
           setComment('');
+          setCall(true);
         }
       });
   };
@@ -179,6 +183,19 @@ const TicketDetails = ({ showDetails, setShowDetails, item, boardDetails }) => {
                 Low Priority
               </Badge>
             )}
+          </Group>
+          <Group>
+            <Group>
+              <BsLightningCharge color="#999" size={20} />
+              <Text color="dimmed" size="md" inline="true">
+                Skills:
+              </Text>
+            </Group>
+            {item.skills.map((skill) => (
+              <Badge key={skill} color="teal" size="lg" variant="dot">
+                {skill}
+              </Badge>
+            ))}
           </Group>
           <Group>
             <Group>

@@ -27,10 +27,12 @@ const CreateTicket = ({ addTask, setAddTask, boardDetails }) => {
     const payload = {
       title,
       description,
+      skills: UserSkills,
       priority,
       dueDate,
       boardId: boardDetails._id,
     };
+    console.log('ticket payload', payload);
     boardApi.addTicket(payload).then(
       (res) => {
         if (res.status === 200) {

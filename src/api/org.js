@@ -43,3 +43,11 @@ export const deleteOrg = (activeOrg) => {
 export const getProjects = (activeOrg) => {
   return axiosInstance.post('/api/org/getprojects', { activeOrg });
 };
+
+export const addEvent = (payload) => {
+  return axiosInstance.post('/api/org/addEvent', payload);
+};
+
+export const getEvents = (activeOrg) => {
+  return axiosInstance.post('/api/org/getEvents', { activeOrg });
+};

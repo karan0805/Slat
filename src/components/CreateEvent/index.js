@@ -1,11 +1,30 @@
 import { Button, Modal, Select, TextInput } from '@mantine/core';
 import { DatePicker, DateRangePicker } from '@mantine/dates';
 import React, { useState } from 'react';
+import { orgApi } from '../../api';
+import toast from 'react-hot-toast';
 
-const CreateEvent = ({ addEvent, setAddEvent }) => {
+const CreateEvent = ({ addEvent, setAddEvent, activeOrg, setCall }) => {
   const [title, setTitle] = useState('');
-  const [eventDate, setEventDate] = useState();
   const [type, setType] = useState('');
+  const [eventDate, setEventDate] = useState();
+
+  const submithandler = (e) => {
+    e.preventDefault();
+    orgApi.addEvent({ title, type, eventDate, activeOrg }).then(
+      (res) => {
+        if (res.status === 200) {
+          console.log(res);
+          toast.success('Event added successfully');
+          setAddEvent(false);
+          setCall(true);
+        }
+      },
+      (err) => {
+        toast.error(err.response.data.message);
+      },
+    );
+  };
 
   return (
     <>
@@ -70,7 +89,9 @@ const CreateEvent = ({ addEvent, setAddEvent }) => {
             />
           )}
           <br />
-          <Button type="submit">Create </Button>
+          <Button type="submit" onClick={submithandler}>
+            Create{' '}
+          </Button>
         </form>
       </Modal>
     </>

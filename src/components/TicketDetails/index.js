@@ -39,9 +39,8 @@ const TicketDetails = ({
   const user = useSelector(selectUser);
   const [comment, setComment] = useState('');
   const memberList = [];
-  const [member, setMember] = useState(item?.assignees[0]);
+  const [member, setMember] = useState(item?.assignees[0]?._id);
   const [call, setCall] = useState(false);
-
   useEffect(() => {
     ticketApi.getComments({ ticketId: item._id }).then((res) => {
       item.comments = res.data.data;
@@ -166,7 +165,7 @@ const TicketDetails = ({
                 Assignee:
               </Text>
             </Group>
-            {isAdmin && (
+            {isAdmin == true && (
               <Select
                 placeholder="Pick One"
                 data={memberList}
@@ -178,7 +177,7 @@ const TicketDetails = ({
             )}
             {!isAdmin && (
               <Text color="dimmed" size="md">
-                {item.assignees?.length > 0 && item.assignees[0].fullName}
+                {item.assignees?.length > 0 && item?.assignees[0].fullName}
                 {item.assignees?.length === 0 && 'Not Assigned'}
               </Text>
             )}

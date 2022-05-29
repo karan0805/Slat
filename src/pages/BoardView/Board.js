@@ -99,10 +99,10 @@ export const Board = ({
 
   const isAdmin = (user) => {
     return (
-      user._id === boardDetails?.project?.lead._id ||
+      user._id == boardDetails?.project?.lead._id ||
       boardDetails?.project?.maintainers.filter(function (obj) {
-        return obj._id === user._id;
-      })
+        return obj._id == user._id;
+      }).length != 0
     );
   };
 

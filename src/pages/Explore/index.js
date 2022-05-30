@@ -119,7 +119,7 @@ const Explore = () => {
   const projects = projectData.map((project) => (
     <tr
       key={project.id}
-      onClick={() => nav('/dashboard/project-chart/' + project._id)}
+      //onClick={() => nav('/dashboard/project-chart/' + project._id)}
     >
       <td>{project.name}</td>
       <td>{moment(project.endDate).format('LL')}</td>

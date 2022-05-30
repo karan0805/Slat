@@ -1,5 +1,6 @@
 import { Button, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
+import toast from 'react-hot-toast';
 import { orgApi } from '../../api';
 
 const Invite2Org = ({ setInviteOpen, activeOrg, user }) => {
@@ -32,7 +33,7 @@ const Invite2Org = ({ setInviteOpen, activeOrg, user }) => {
           };
           orgApi.inviteOrg(payload).then((response) => {
             if (response.status === 200) {
-              alert('Invite sent');
+              toast.success('Invite Sent Succesfully');
               setInviteOpen(false);
             }
           });

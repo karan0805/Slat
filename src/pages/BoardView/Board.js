@@ -139,7 +139,7 @@ export const Board = ({
             right: '225px',
             bottom: '20px',
           }}
-          onClick={() => setAutoAssign(true)}
+          onClick={() => setAddTask(true)}
         >
           Add Task
         </Button>

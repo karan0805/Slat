@@ -20,7 +20,7 @@ export default function Profile({ user }) {
   const [UserName, setUserName] = useState(user.username);
   const [UserNumber, setUserNumber] = useState('9168336170');
   const [UserEmail, setUserEmail] = useState(user.email);
-  const [UserSkills, setUserSkills] = useState([]);
+  const [UserSkills, setUserSkills] = useState(user.skills);
 
   const data = skills;
 
@@ -31,7 +31,7 @@ export default function Profile({ user }) {
         username: UserName,
         email: UserEmail,
         phone: UserNumber,
-        //skills: UserSkills,
+        skills: UserSkills,
       })
       .then(
         (response) => {

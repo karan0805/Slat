@@ -66,6 +66,7 @@ const BoardView = () => {
   const [columns, setColumns] = useState(columnsFromBackend);
   const [listview, setListview] = useState(data);
   const [addTask, setAddTask] = useState(false);
+  const [autoAssign, setAutoAssign] = useState(false);
 
   useEffect(() => {
     const queryparams = new URLSearchParams(window.location.search);
@@ -139,6 +140,8 @@ const BoardView = () => {
               setColumns={setColumns}
               addTask={addTask}
               setAddTask={setAddTask}
+              autoAssign={autoAssign}
+              setAutoAssign={setAutoAssign}
             />
           </Tabs.Tab>
           <Tabs.Tab label="List View">

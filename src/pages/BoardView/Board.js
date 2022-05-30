@@ -2,8 +2,9 @@
 import { Button, Group, Text, ActionIcon } from '@mantine/core';
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { BsPlusCircle } from 'react-icons/bs';
+import { BsLightning, BsPlusCircle } from 'react-icons/bs';
 import CreateTicket from '../../components/CreateTicket';
+import AutoAssignTicket from '../../components/AutoAssignTicket';
 import Ticket from '../../components/Ticket';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/slices/UserSlice';
@@ -93,6 +94,8 @@ export const Board = ({
   setColumns,
   addTask,
   setAddTask,
+  autoAssign,
+  setAutoAssign,
 }) => {
   const user = useSelector(selectUser);
   console.log('boardDetails', boardDetails);
@@ -113,6 +116,7 @@ export const Board = ({
         setAddTask={setAddTask}
         boardDetails={boardDetails}
       />
+      <AutoAssignTicket autoAssign={autoAssign} setAutoAssign={setAutoAssign} />
 
       <div
         style={{
@@ -132,12 +136,27 @@ export const Board = ({
           leftIcon={<BsPlusCircle />}
           style={{
             position: 'absolute',
+            right: '225px',
+            bottom: '20px',
+          }}
+          onClick={() => setAutoAssign(true)}
+        >
+          Add Task
+        </Button>
+        <Button
+          variant="filled"
+          size="lg"
+          radius={250}
+          leftIcon={<BsLightning />}
+          color="red"
+          style={{
+            position: 'absolute',
             right: '20px',
             bottom: '20px',
           }}
-          onClick={() => setAddTask(true)}
+          onClick={() => setAutoAssign(true)}
         >
-          Add Task
+          Auto Assign
         </Button>
         <DragDropContext
           onDragEnd={(result) =>

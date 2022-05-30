@@ -1,5 +1,18 @@
 import React from 'react';
 import ChatBot from 'react-simple-chatbot';
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  background: '#f5f8fb',
+  fontFamily: 'Helvetica Neue',
+  headerBgColor: '#4a4a4a',
+  headerFontColor: '#fff',
+  headerFontSize: '15px',
+  botBubbleColor: '#4a4a4a',
+  botFontColor: '#fff',
+  userBubbleColor: '#fff',
+  userFontColor: '#4a4a4a',
+};
 
 const Bot = ({ greet, user }) => {
   const steps = [
@@ -83,7 +96,14 @@ const Bot = ({ greet, user }) => {
   };
   return (
     <>
-      <ChatBot headerTitle="Slat Assistant" steps={steps} {...config} />
+      <ThemeProvider theme={theme}>
+        <ChatBot
+          headerTitle="Slat Assistant"
+          speechSynthesis={{ enable: true, lang: 'en' }}
+          steps={steps}
+          {...config}
+        />
+      </ThemeProvider>
     </>
   );
 };

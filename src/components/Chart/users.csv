@@ -1,0 +1,8 @@
+name,imageUrl,positionName,id,parentId
+Hitesh,https://avatars.dicebear.com/api/initials/Hitesh.svg,Lead,1,
+Charlie,https://avatars.dicebear.com/api/initials/Charlie.svg,Maintainer,2,1
+Barney,https://avatars.dicebear.com/api/initials/Barney.svg,Maintainer,3,1
+Alan,https://avatars.dicebear.com/api/initials/Alan.svg,Member,4,2
+Jake,https://avatars.dicebear.com/api/initials/Jake.svg,Member,5,2
+Ted,https://avatars.dicebear.com/api/initials/Ted.svg,Member,6,3
+Marshal,https://avatars.dicebear.com/api/initials/Marshal.svg,Member,7,3

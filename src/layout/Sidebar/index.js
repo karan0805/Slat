@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { BiCog } from 'react-icons/bi';
 import { FiHome, FiLogOut, FiSearch, FiCalendar } from 'react-icons/fi';
 import { MdWorkspaces } from 'react-icons/md';
+import { GiOrganigram } from 'react-icons/gi';
 import {
   Menu,
   MenuItem,
@@ -84,6 +85,13 @@ const Sidebar = ({ menuCollapse }) => {
               >
                 Schedule
                 <Link to="/dashboard/calendar" />
+              </MenuItem>
+              <MenuItem
+                active={window.location.pathname === '/dashboard/organization'}
+                icon={<GiOrganigram />}
+              >
+                Organization
+                <Link to="/dashboard/organization/chart" />
               </MenuItem>
 
               <SubMenu title={activeOrg.orgName} icon={<MdWorkspaces />}>

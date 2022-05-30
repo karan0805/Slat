@@ -65,7 +65,7 @@ function App() {
               }
             />
             <Route
-              path="project-chart/:projectId"
+              path="organization/chart"
               element={
                 <DashboardAppshell>
                   <Chart />

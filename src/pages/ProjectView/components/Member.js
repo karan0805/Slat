@@ -121,11 +121,12 @@ export const Member = () => {
           </Text>
           <br />
           <Group position="center" spacing="xl">
-            {userSkills.map((skill) => (
-              <Badge key={skill} color="teal" size="lg" variant="dot">
-                {skill}
-              </Badge>
-            ))}
+            {info?.skills?.length > 0 &&
+              info?.skills?.map((skill) => (
+                <Badge key={skill} color="teal" size="lg" variant="dot">
+                  {skill}
+                </Badge>
+              ))}
           </Group>
         </Card>
       </Modal>
@@ -147,6 +148,7 @@ export const Member = () => {
                     image: lead.image,
                     name: lead.fullName,
                     role: 'Lead',
+                    skills: lead.skills,
                   });
                 }}
                 spacing="sm"
@@ -172,6 +174,7 @@ export const Member = () => {
                       image: maintainer.image,
                       name: maintainer.fullName,
                       role: 'Maintainer',
+                      skills: maintainer.skills,
                     });
                   }}
                   spacing="sm"
@@ -203,6 +206,7 @@ export const Member = () => {
                       image: member.image,
                       name: member.fullName,
                       role: 'Member',
+                      skills: member.skills,
                     });
                   }}
                   spacing="sm"

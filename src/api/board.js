@@ -19,3 +19,7 @@ export const updateBoardTicketsSameLevel = (payload) => {
 export const addTicket = (payload) => {
   return axiosInstance.post('/api/board/addTicket', payload);
 };
+
+export const autoAssign = (payload) => {
+  return axiosInstance.post('/api/board/autoAssign', payload);
+};

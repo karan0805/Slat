@@ -118,7 +118,7 @@ const Chart = () => {
 
   useEffect(() => {
     d3.csv(
-      'https://gist.githubusercontent.com/kkhitesh/e132e6ec468302efdae0aff323733db4/raw/8221d2bfe1e10921636a9ae1b4d7c7fdc314cb19/users.csv',
+      'https://gist.githubusercontent.com/kkhitesh/e132e6ec468302efdae0aff323733db4/raw/9c155de0c5d0c4b05acf586ab4bd57bb648c42be/users.csv',
     ).then((data) => {
       setData(data);
     });

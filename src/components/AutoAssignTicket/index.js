@@ -1,12 +1,19 @@
 import { Button, Modal, Space, Text } from '@mantine/core';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { boardApi } from '../../api';
 
-const AutoAssignTicket = ({ autoAssign, setAutoAssign }) => {
+const AutoAssignTicket = ({ autoAssign, setAutoAssign, boardDetails }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success('Ticket auto assigned successfully');
-    setAutoAssign(false);
+    boardApi.autoAssign({ boardId: boardDetails._id }).then((res) => {
+      if (res.status === 200) {
+        toast.success('Ticket auto assigned successfully');
+        setAutoAssign(false);
+      } else {
+        toast.error('Auto Assign Failed');
+      }
+    });
   };
   return (
     <>

@@ -116,7 +116,11 @@ export const Board = ({
         setAddTask={setAddTask}
         boardDetails={boardDetails}
       />
-      <AutoAssignTicket autoAssign={autoAssign} setAutoAssign={setAutoAssign} />
+      <AutoAssignTicket
+        autoAssign={autoAssign}
+        boardDetails={boardDetails}
+        setAutoAssign={setAutoAssign}
+      />
 
       <div
         style={{

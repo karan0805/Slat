@@ -1,0 +1,81 @@
+#header {
+  position: absolute;
+  width: 220px;
+}
+#header .pro-sidebar {
+  height: 100vh;
+}
+#header .closemenu {
+  color: #fff;
+  position: absolute;
+  right: 0;
+  z-index: 9999;
+  line-height: 20px;
+  border-radius: 50%;
+  font-weight: 300;
+  font-size: 22px;
+  top: 55px;
+  cursor: pointer;
+}
+#header .pro-sidebar {
+  width: 100%;
+  min-width: 100%;
+}
+#header .pro-sidebar.collapsed {
+  width: 80px;
+  min-width: 80px;
+}
+#header .pro-sidebar-inner {
+  background-color: #25262B;
+  box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
+}
+#header .pro-sidebar-inner .pro-sidebar-layout {
+  overflow-y: hidden;
+}
+#header .pro-sidebar-inner .pro-sidebar-layout .logotext p {
+  font-size: 18px;
+  padding: 0 20px;
+  color: #fff;
+  font-weight: 500;
+}
+#header .pro-sidebar-inner .pro-sidebar-layout ul {
+  padding: 0 5px;
+}
+#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
+  color: #fff;
+  font-weight: 500;
+}
+#header
+  .pro-sidebar-inner
+  .pro-sidebar-layout
+  ul
+  .pro-inner-item
+  .pro-icon-wrapper {
+  font-size: 18px;
+  background-color: #25262B;
+  color: #fff;
+}
+
+#header
+  .pro-sidebar-inner
+  .pro-sidebar-layout
+  ul
+  .pro-inner-item
+  .pro-icon-wrapper
+  .pro-item-content {
+  color: #000;
+}
+#header .pro-sidebar-inner .pro-sidebar-layout .active {
+  background:#1A1B1E;
+}
+#header .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+  background: #25262B;
+  text-align: left;
+}
+#header .logo {
+  padding: 20px;
+}
+
+@media only screen and (max-width: 720px) {
+
+}

@@ -153,13 +153,8 @@ const DashNavbar = ({ menuCollapse, setMenuCollapse }) => {
               >
                 My Profile and Settings
               </Menu.Item>
-              <Divider />
-              <Menu.Label>Danger zone</Menu.Label>
               <Menu.Item onClick={logoutHandler} icon={<FiLogOut />}>
                 Log Out
-              </Menu.Item>
-              <Menu.Item color="red" icon={<BsTrash />}>
-                Delete my account
               </Menu.Item>
             </Menu>
           </Group>

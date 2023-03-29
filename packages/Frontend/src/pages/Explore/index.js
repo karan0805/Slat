@@ -130,7 +130,7 @@ const Explore = () => {
 
   return (
     <>
-      <div align="center" className="table">
+      <div className="table">
         <h1> 🔍 Explore</h1>
         <p>Have a look at all the Projects within the Organization</p>
         <Table horizontalSpacing="xl" verticalSpacing="xs" highlightOnHover>
